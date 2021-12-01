@@ -3,9 +3,12 @@
 }*/
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	stroke(255);
-	noFill();
+  var canvas = createCanvas(100, 100);
+ 
+  // Move the canvas so it’s inside our <div id="sketch-holder">.
+  canvas.parent('sketch-holder');
+
+  background(255, 0, 200);
 }
 
 function draw() {
