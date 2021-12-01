@@ -1,0 +1,12 @@
+body {
+  background-color: slategray;
+}
+canvas {
+  /* -ms-touch-action: none; */
+}
+.header {
+  padding: 30px;
+  text-align: center;
+  font-size: 30px;
+  color: forestgreen;
+}
