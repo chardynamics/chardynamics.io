@@ -1,8 +1,8 @@
-body {
-  background-color: slategray;
+/*body {
+	background-color: slategray;
 }
 canvas {
-  /* -ms-touch-action: none; */
+	-ms-touch-action: none;
 }
 
 header.page-header {
@@ -14,4 +14,4 @@ header.page-header {
 
 h1 {
 	font-family: ui-monospace;
-}
+}*/
