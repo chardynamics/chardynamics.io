@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-	background(255, 255, 255);
+	background(0, 200, 150);
 	fill(0, 0, 0);
 	rect(windowWidth/2, 100, 50, 50);
 }
