@@ -1,4 +1,4 @@
-var scene = 2;
+var scene = 1;
 var fade = 130;
 var arialBold;
 
@@ -32,7 +32,7 @@ function menu() {
 }
 
 function draw() {
-	if (scene == 2) {
+	if (scene == 1) {
 		intro();
 	} else if (scene == 2) {
 		menu();
