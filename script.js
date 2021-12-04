@@ -19,8 +19,7 @@ function intro() {
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(250);
-	text("D", (windowWidth/2) - 250, 100);
-	text("P", (windowWidth/2) + 250, 100);
+	text("D P", windowWidth/4, 100);
 }
 
 function menu() {
