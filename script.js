@@ -11,17 +11,16 @@ function setup() {
 	canvas.parent('script-holder');
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
-    noStroke();
 	textFont(arialBold);
+    noStroke();
 }
 
 function intro() {
-	var blackScreen = false;
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(250);
-	text("D", 500, 220);
-	text("P", 700, 220);
+	text("D", (windowWidth/2) - 250, 100);
+	text("P", (windowWidth/2) + 250, 100);
 }
 
 function menu() {
