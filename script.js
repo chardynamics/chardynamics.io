@@ -12,14 +12,14 @@ function setup() {
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
 	textFont(arialBold);
-    noStroke();
+    	noStroke();
 }
 
 function intro() {
 	background(0, 0, 0);
 	fill(255, 255, 255);
-	textSize(250);
-	text("D P", windowWidth/4, 100);
+	textSize(750);
+	text("D P", windowWidth/4, windowHeight/2);
 }
 
 function menu() {
