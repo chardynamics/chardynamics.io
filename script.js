@@ -5,7 +5,7 @@ var scaleResolutionX;
 var scaleResolutionY;
 
 function preload() {
-	arialBold = loadFont("https:///assets/fonts/arialbd.ttf");
+	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
 }
 
 function setup() {
