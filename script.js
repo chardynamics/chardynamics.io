@@ -26,7 +26,7 @@ function intro() {
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(750 * scaleResolutionX); //I'm just using this as a general scale/ratio factor
-	text("DP", 500 * scaleResolutionX, windowHeight/2;
+	text("DP", 500 * scaleResolutionX, windowHeight/2);
 }
 
 function menu() {
