@@ -4,11 +4,6 @@ var arialBold;
 var scaleResolutionX;
 var scaleResolutionY;
 
-//probably should find a better solution
-scaleResolutionX = windowWidth/1517;
-scaleResolutionY = windowHeight/853;
-
-
 function preload() {
 	arialBold = loadFont("/assets/fonts/arialbd.ttf");
 }
@@ -16,6 +11,9 @@ function preload() {
 function setup() {
 	var canvas = createCanvas(windowWidth, windowHeight);
 	canvas.parent('script-holder');
+	//probably should find a better solution
+	scaleResolutionX = windowWidth/1517;
+	scaleResolutionY = windowHeight/853;
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
 	textFont(arialBold);
