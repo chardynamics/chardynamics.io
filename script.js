@@ -25,7 +25,7 @@ function setup() {
 function intro() {
 	background(0, 0, 0);
 	fill(255, 255, 255);
-	textSize(750);
+	textSize(750 * scaleResolutionX); //I'm just using this as a general scale/ratio factor
 	text("DP", 500 * scaleResolutionX, windowHeight/2;
 }
 
@@ -46,5 +46,7 @@ function draw() {
 	}
 }
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(windowWidth, windowHeight);
+	scaleResolutionX = windowWidth/1517;
+	scaleResolutionY = windowHeight/853;
 }
