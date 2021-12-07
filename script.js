@@ -25,6 +25,7 @@ function intro() {
 	fill(255, 255, 255);
 	textSize(750 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works for Chromebook ratios
 	text("DP", 500 * scaleResolutionX, 400 * scaleResolutionY);
+	
 }
 
 function menu() {
