@@ -21,7 +21,8 @@ function setup() {
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
 	textFont(arialBold);
-    	noStroke();
+	noStroke();
+	angleMode(DEGREES);
 }
 
 function intro() {
@@ -34,6 +35,7 @@ function intro() {
 	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
 	push();
     translate(200, 760);
+	rotate(angle);
 	fill(-pulse, pulse, pulse + 100);
 	rect(0, 0, 100, 100, 10);
 	pop();
