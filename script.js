@@ -33,7 +33,7 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
 	push();
-        translate(200, 760);
+    translate(200, 760);
 	fill(-pulse, pulse, pulse + 100);
 	rect(0, 0, 100, 100, 10);
 	pop();
