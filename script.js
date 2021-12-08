@@ -5,6 +5,7 @@ var scaleResolutionX;
 var scaleResolutionY;
 var pulse =  200;
 var pulseRate = 5;
+var angle = 0;
 
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
@@ -24,6 +25,7 @@ function setup() {
 }
 
 function intro() {
+	angle++;
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -44,9 +46,9 @@ function menu() {
 }
 
 function draw() {
-    pulse -= pulseRate;
-    if(pulse<125){pulseRate = -0.25;}
-    if(pulse>225){pulseRate = 0.25;}
+	pulse -= pulseRate;
+	if(pulse<125){pulseRate = -0.25;}
+	if(pulse>225){pulseRate = 0.25;}
     
 	if (scene == 1) {
 		intro();
