@@ -3,6 +3,8 @@ var fade = 130;
 var arialBold;
 var scaleResolutionX;
 var scaleResolutionY;
+var pulse =  200;
+var pulseRate = 5;
 
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
@@ -24,10 +26,13 @@ function setup() {
 function intro() {
 	background(0, 0, 0);
 	fill(255, 255, 255);
-	textSize(750 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
-	text("DP", 500 * scaleResolutionX, 350 * scaleResolutionY);
-	text("roductions", 850 * scaleResolutionX, 750 * scaleResolutionY);
-}
+	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
+	text("DP", 700 * scaleResolutionX, 250 * scaleResolutionY);
+	textSize(75 * scaleResolutionX);
+	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
+	fill(-pulse, pulse, pulse + 100);
+	rect(200, 760, 100, 100, 10);
+}    
 
 function menu() {
 	background(0, 200, 150);
@@ -39,11 +44,19 @@ function menu() {
 }
 
 function draw() {
+    pulse -= pulseRate;
+    if(pulse<125){pulseRate = -0.25;}
+    if(pulse>225){pulseRate = 0.25;}
+    
 	if (scene == 1) {
 		intro();
 	} else if (scene == 2) {
 		menu();
 	}
+	fill(255, 0, 0);
+	textSize(25 * scaleResolutionX);
+	text(mouseX, mouseX + 125, mouseY);
+	text(mouseY, mouseX + 125, mouseY + 20);
 }
 
 function windowResized() {
