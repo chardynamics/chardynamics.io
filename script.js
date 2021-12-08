@@ -41,6 +41,22 @@ function intro() {
 	pop();
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
+	push();
+    translate(625, 155);
+    rotate(90);
+    fill(0, 120, 0);
+    rect(0,0,20 * scaleResolutionX,40 * scaleResolutionY,5);
+    fill(50);
+    rect(-13 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
+    rect(12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
+	pop();
+	push();
+    translate(625, 155);
+    rotate(180);
+    fill(0, 100, 0);
+    rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
+    rect(0,-10 * scaleResolutionX,5 * scaleResolutionX,20 * scaleResolutionY,0);
+	pop();
 }    
 
 function menu() {
