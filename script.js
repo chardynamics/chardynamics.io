@@ -26,7 +26,7 @@ function setup() {
 }
 
 function intro() {
-	angle++;
+	angle += 5;
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -34,11 +34,13 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
 	push();
-    translate(200, 760);
+    translate(150 * scaleResolutionX, 730 * scaleResolutionY);
 	rotate(angle);
 	fill(-pulse, pulse, pulse + 100);
-	rect(0, 0, 100, 100, 10);
+	rect(0, 0, 125 * scaleResolutionX, 125 * scaleResolutionY, 15);
 	pop();
+	textSize(75 * scaleResolutionX);
+	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 }    
 
 function menu() {
