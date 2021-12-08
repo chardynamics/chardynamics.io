@@ -50,8 +50,8 @@ function menu() {
 
 function draw() {
 	pulse -= pulseRate;
-	if(pulse<125){pulseRate = -0.25;}
-	if(pulse>225){pulseRate = 0.25;}
+	if(pulse<125){pulseRate = -1;}
+	if(pulse>225){pulseRate = 1;}
     
 	if (scene == 1) {
 		intro();
