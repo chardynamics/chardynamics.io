@@ -33,11 +33,11 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	if (bullet.timeLine < 513) {
-		bullet.timeLine += 1;
+	if (bullet.timeLine <= 1525) {
+		bullet.timeLine += 8;
 	}
-	if ((bullet.timeLine > 536) && (bullet.textCover < 0)) {
-		bullet.textCover += 1;
+	if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
+		bullet.textCover += 8;
 	}
 	background(0, 0, 0);
 	fill(255, 255, 255);
@@ -54,7 +54,7 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 	push();
-	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
+	translate(bullet.timeLine* scaleResolutionX, 716 * scaleResolutionY);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
 	fill(158, 60, 14);
