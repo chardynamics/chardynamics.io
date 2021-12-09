@@ -90,8 +90,8 @@ function draw() {
 	}
 	fill(255, 0, 0);
 	textSize(25 * scaleResolutionX);
-	text(mouseX, mouseX + 125, mouseY);
-	text(mouseY, mouseX + 125, mouseY + 20);
+	text(windowWidth, mouseX + 125, mouseY);
+	text(windowHeight, mouseX + 125, mouseY + 20);
 }
 
 function windowResized() {
