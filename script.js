@@ -9,7 +9,7 @@ var angle = 0;
 
 var bullet = {
 	timeLine: 170,
-	timeLineVel: 2.5,
+	timeLineVel: 1,
 }
 
 function preload() {
