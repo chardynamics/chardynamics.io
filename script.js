@@ -28,7 +28,7 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	bulletTimeLine++;
+	//bulletTimeLine++;
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -36,7 +36,7 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
 	push();
-    translate(150 * scaleResolutionX, 730 * scaleResolutionY);
+    	translate(150 * scaleResolutionX, 730 * scaleResolutionY);
 	rotate(angle);
 	fill(-pulse, pulse, pulse + 100);
 	rect(0, 0, 125 * scaleResolutionX, 125 * scaleResolutionY, 15);
