@@ -10,7 +10,7 @@ var angle = 0;
 var bullet = {
 	timeLine: 170,
 	timeLineVel: 1,
-	textCover: 0.25,
+	textCover: -864,
 }
 
 function preload() {
@@ -46,7 +46,7 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
 	push();
-    translate(150 * scaleResolutionX, 730 * scaleResolutionY);
+    	translate(150 * scaleResolutionX, 730 * scaleResolutionY);
 	rotate(angle);
 	fill(-pulse, pulse, pulse + 100);
 	rect(0, 0, 125 * scaleResolutionX, 125 * scaleResolutionY, 15);
@@ -75,11 +75,11 @@ function intro() {
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
 	rectMode(CORNER);
 	fill(255, 0, 0, 50);
-	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, -864, 120);
+	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, textCover, 120);
 	rectMode(CENTER);
 	push();
 	scale(3);
-	translate(184 * scaleResolutionX, 245 * scaleResolutionY);
+	translate(timeLine * scaleResolutionX, 245 * scaleResolutionY);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
 	fill(158, 60, 14);
