@@ -54,7 +54,7 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 	push();
-	translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);
+	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
 	fill(158, 60, 14);
