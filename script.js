@@ -6,6 +6,7 @@ var scaleResolutionY;
 var pulse =  200;
 var pulseRate = 5;
 var angle = 0;
+var bulletTimeLine = 210;
 
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
@@ -27,6 +28,7 @@ function setup() {
 
 function intro() {
 	angle += 5;
+	bulletTimeLine++;
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -42,8 +44,8 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 	push();
-	scale(3 * scaleResolutionX);
-    translate(125 * scaleResolutionX, 245 * scaleResolutionY);
+	scale(3.5 * scaleResolutionX);
+    translate(110 * scaleResolutionX, 210 * scaleResolutionY);
     rotate(-125);
     fill(0, 120, 0);
     rect(0,0,20 * scaleResolutionX,40 * scaleResolutionY,5);
@@ -52,16 +54,16 @@ function intro() {
     rect(12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
 	pop();
 	push();
-	scale(3 * scaleResolutionX);
-    translate(125 * scaleResolutionX, 245 * scaleResolutionY);
+	scale(3.5 * scaleResolutionX);
+    translate(110 * scaleResolutionX, 210 * scaleResolutionY);
     rotate(90);
     fill(0, 100, 0);
     rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
     rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
 	pop();
 	push();
-	scale(2);
-	translate(500, 500);
+	scale(3);
+	translate(bulletTimeLine, 245);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
 	fill(158, 60, 14);
