@@ -36,7 +36,7 @@ function intro() {
 	if (bullet.timeLine < 513) {
 		bullet.timeLine += 0.25;
 	}
-	if ((bullet.timeLine > 184) && (bullet.textCover > 0)) {
+	if ((bullet.timeLine > 184) && (bullet.textCover < 0)) {
 		bullet.textCover += 0.25;
 	}
 	background(0, 0, 0);
