@@ -79,12 +79,11 @@ function intro() {
 	rectMode(CENTER);
 	push();
 	scale(3);
-	translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);pushMatrix();
+	translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);
     fill(100, 100, 100, 50);
     triangle(-7.5, 45, 40, 17.5, -7.5, -9);
     fill(158, 60, 14);
     triangle(2, 27.5, 45, 17.5, 2, 10);
-    popMatrix();
 	pop();
 }    
 
