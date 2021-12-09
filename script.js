@@ -82,7 +82,7 @@ function intro() {
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
 	rectMode(CORNER);
 	fill(0);
-	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 120);
+	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 122);
 	rectMode(CENTER);
 }    
 
