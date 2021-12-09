@@ -36,7 +36,7 @@ function intro() {
 	if (bullet.timeLine < 513) {
 		bullet.timeLine += 0.25;
 	}
-	if ((bullet.timeLine > 184) && (bullet.textCover < 0)) {
+	if ((bullet.timeLine >= 184) && (bullet.textCover < 0)) {
 		bullet.textCover += 0.25;
 	}
 	background(0, 0, 0);
@@ -69,7 +69,7 @@ function intro() {
 	rotate(90);
 	fill(0, 100, 1);
 	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
-	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
+	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);   
 	pop();
 	textSize(165 * scaleResolutionX);
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
@@ -108,7 +108,7 @@ function draw() {
 	}
 	fill(255, 0, 0);
 	textSize(25 * scaleResolutionX);
-	text(mouseX, mouseX + 125, mouseY);
+	text(bullet.textCover, mouseX + 125, mouseY);
 	text(mouseY, mouseX + 125, mouseY + 20);
 }
 
