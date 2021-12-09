@@ -8,7 +8,7 @@ var pulseRate = 5;
 var angle = 0;
 
 var bullet = {
-	timeLine: 170,
+	timeLine: 497,
 	timeLineVel: 1,
 	textCover: -864,
 }
@@ -54,6 +54,14 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 	push();
+	//translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);
+	translate(497 * scaleResolutionX, 716 * scaleResolutionY);
+	fill(100, 100, 100, 50);
+	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
+	fill(158, 60, 14);
+	triangle(2, 27.5, 45, 17.5, 2, 10);
+	pop();
+	push();
 	scale(3.5 * scaleResolutionX);
 	translate(110 * scaleResolutionX, 210 * scaleResolutionY);
 	rotate(-125);
@@ -77,13 +85,6 @@ function intro() {
 	fill(255, 0, 0, 50);
 	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 120);
 	rectMode(CENTER);
-	push();
-	translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);
-	fill(100, 100, 100, 50);
-	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14);
-	triangle(2, 27.5, 45, 17.5, 2, 10);
-	pop();
 }    
 
 function menu() {
