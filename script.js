@@ -75,11 +75,11 @@ function intro() {
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
 	rectMode(CORNER);
 	fill(255, 0, 0, 50);
-	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, textCover, 120);
+	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 120);
 	rectMode(CENTER);
 	push();
 	scale(3);
-	translate(timeLine * scaleResolutionX, 245 * scaleResolutionY);
+	translate(bullet.timeLine * scaleResolutionX, 245 * scaleResolutionY);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
 	fill(158, 60, 14);
