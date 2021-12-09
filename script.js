@@ -32,10 +32,10 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	if (bullet.timeLine < 513) {
-		bullet.timeLineVel += 0.25;
-	    bullet.timeLine += bullet.timeLineVel;
-	}
+	//if (bullet.timeLine < 513) {
+	//	bullet.timeLineVel += 0.25;
+	//    bullet.timeLine += bullet.timeLineVel;
+	//}
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -68,9 +68,15 @@ function intro() {
 	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
 	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
 	pop();
+	textSize(165 * scaleResolutionX);
+	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
+	rectMode(CORNER);
+	fill(255, 0, 0, 50);
+	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, -864, 120);
+	rectMode(CENTER);
 	push();
 	scale(3);
-	translate(bullet.timeLine, 245);
+	translate(184 * scaleResolutionX, 245 * scaleResolutionY);
 	fill(100, 100, 100, 50);
 	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
 	fill(158, 60, 14);
@@ -99,8 +105,8 @@ function draw() {
 	}
 	fill(255, 0, 0);
 	textSize(25 * scaleResolutionX);
-	text(windowWidth, mouseX + 125, mouseY);
-	text(windowHeight, mouseX + 125, mouseY + 20);
+	text(mouseX, mouseX + 125, mouseY);
+	text(mouseY, mouseX + 125, mouseY + 20);
 }
 
 function windowResized() {
