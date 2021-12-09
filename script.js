@@ -33,7 +33,7 @@ function setup() {
 function intro() {
 	angle += 5;
 	if (bullet.timeLine < 513) {
-		bullet.timeLineVel += 0.125;
+		bullet.timeLineVel += 0.25;
 	    bullet.timeLine += bullet.timeLineVel;
 	}
 	background(0, 0, 0);
