@@ -81,7 +81,7 @@ function intro() {
 	textSize(165 * scaleResolutionX);
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
 	rectMode(CORNER);
-	fill(255, 0, 0, 50);
+	fill(0);
 	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 120);
 	rectMode(CENTER);
 }    
