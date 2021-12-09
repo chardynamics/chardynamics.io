@@ -10,6 +10,7 @@ var angle = 0;
 var bullet = {
 	timeLine: 170,
 	timeLineVel: 1,
+	textCover: 0.25,
 }
 
 function preload() {
@@ -32,10 +33,12 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	//if (bullet.timeLine < 513) {
-	//	bullet.timeLineVel += 0.25;
-	//    bullet.timeLine += bullet.timeLineVel;
-	//}
+	if (bullet.timeLine < 513) {
+		bullet.timeLine += 0.25;
+	}
+	if ((bullet.timeLine > 184) && (bullet.textCover > 0)) {
+		bullet.textCover += 0.25;
+	}
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
