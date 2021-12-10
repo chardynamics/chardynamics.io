@@ -86,7 +86,7 @@ function intro() {
 	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
 	fill(100, 100, 100, bullet.soundBarrier);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14, bulletVisible);
+	fill(158, 60, 14, bullet.bulletVisible);
 	triangle(2, 27.5, 45, 17.5, 2, 10);
 	pop();
 	push();
