@@ -132,10 +132,10 @@ function draw() {
 	textSize(25 * scaleResolutionX);
 	text(mouseX, mouseX + 125, mouseY);
 	text(mouseY, mouseX + 125, mouseY + 20);
-}
-
-function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
-	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = windowHeight/853;
+	
+	function windowResized() {
+		resizeCanvas(windowWidth, windowHeight);
+		scaleResolutionX = windowWidth/1517;
+		scaleResolutionY = windowHeight/853;
+	}
 }
