@@ -7,7 +7,7 @@ var pulse =  200;
 var pulseRate = 5;
 var angle = 0;
 
-var bullet = {
+var car = {
 	timeLine: 497,
 	timeLineVel: 1,
 	textCover: -864,
@@ -29,6 +29,11 @@ function setup() {
 	textFont(arialBold);
 	noStroke();
 	angleMode(DEGREES);
+	
+	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
+	for (var i = 0; i < privacyBanner.length; i++) {
+		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
+	}
 }
 
 function intro() {
