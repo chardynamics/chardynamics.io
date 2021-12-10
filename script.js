@@ -16,6 +16,7 @@ var bullet = {
 var car = {
 	y: 270,
 	rotate: 0,
+	grotate: 0,
 }
 
 function preload() {
@@ -43,10 +44,10 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	if (car.y >= 210) {
+	if (car.y > 210) {
 		car.y -= 1;
 	}
-	if (car.y == 210 && car.rotate > -125) {
+	if ((car.y == 210) && (car.rotate > -125)) {
 		car.rotate -= 1;
 	}
 	if (car.rotate == -125) {
