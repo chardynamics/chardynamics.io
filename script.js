@@ -8,9 +8,10 @@ var pulseRate = 5;
 var angle = 0;
 
 var bullet = {
-	timeLine: 497,
+	timeLine: 454,
 	timeLineVel: 1,
 	textCover: -864,
+	soundBarrier: 0,
 }
 
 var car = {
@@ -54,9 +55,12 @@ function intro() {
 	if (car.rotate == 25 && car.grotate < 90) {
         car.grotate += 1;
 	}
-	if (car.rotate == -125) {
+	if (car.grotate == 90) {
 		if (bullet.timeLine <= 1525) {
 			bullet.timeLine += 8;
+		}
+		if ((bullet.timeLine >= 497) && (bullet.soundBarrier < 50)) {
+			bullet.soundBarrier++;
 		}
 		if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
 			bullet.textCover += 8;
@@ -77,8 +81,8 @@ function intro() {
 	textSize(75 * scaleResolutionX);
 	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
 	push();
-	translate(bullet.timeLine* scaleResolutionX, 716 * scaleResolutionY);
-	fill(100, 100, 100, 50);
+	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
+	fill(100, 100, 100, bullet.soundBarrier);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
 	fill(158, 60, 14);
 	triangle(2, 27.5, 45, 17.5, 2, 10);
@@ -132,10 +136,10 @@ function draw() {
 	textSize(25 * scaleResolutionX);
 	text(mouseX, mouseX + 125, mouseY);
 	text(mouseY, mouseX + 125, mouseY + 20);
-	
-	function windowResized() {
-		resizeCanvas(windowWidth, windowHeight);
-		scaleResolutionX = windowWidth/1517;
-		scaleResolutionY = windowHeight/853;
-	}
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+	scaleResolutionX = windowWidth/1517;
+	scaleResolutionY = windowHeight/853;
 }
