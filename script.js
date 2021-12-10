@@ -7,7 +7,7 @@ var pulse =  200;
 var pulseRate = 5;
 var angle = 0;
 
-var car = {
+var bullet = {
 	timeLine: 497,
 	timeLineVel: 1,
 	textCover: -864,
