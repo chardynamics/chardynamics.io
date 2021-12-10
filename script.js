@@ -13,6 +13,11 @@ var bullet = {
 	textCover: -864,
 }
 
+var car = {
+	y: 270,
+	rotate: 0,
+}
+
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
 }
@@ -38,11 +43,19 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	if (bullet.timeLine <= 1525) {
-		bullet.timeLine += 8;
+	if (car.y <= 210) {
+		car.y -= 2.5;
 	}
-	if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
-		bullet.textCover += 8;
+	if (car.y == 210 && car.rotate > -125) {
+		car.rotate -= 2.5;
+	}
+	if (car.rotate == -125) {
+		if (bullet.timeLine <= 1525) {
+			bullet.timeLine += 8;
+		}
+		if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
+			bullet.textCover += 8;
+		}
 	}
 	background(0, 0, 0);
 	fill(255, 255, 255);
@@ -67,8 +80,8 @@ function intro() {
 	pop();
 	push();
 	scale(3.5 * scaleResolutionX);
-	translate(110 * scaleResolutionX, 210 * scaleResolutionY);
-	rotate(-125);
+	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
+	rotate(car.rotate);
 	fill(50, 0, 0);
 	rect(-12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
 	rect(12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
@@ -77,8 +90,8 @@ function intro() {
 	pop();
 	push();
 	scale(3.5 * scaleResolutionX);
-	translate(110 * scaleResolutionX, 210 * scaleResolutionY);
-	rotate(90);
+	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
+	rotate(car.rotate);
 	fill(0, 100, 0);
 	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
 	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
