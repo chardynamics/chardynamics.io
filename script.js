@@ -82,7 +82,7 @@ function intro() {
 	push();
 	scale(3.5 * scaleResolutionX);
 	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
-	rotate(-125);
+	rotate(car.rotate);
 	fill(50, 0, 0);
 	rect(-12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
 	rect(12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
@@ -92,7 +92,7 @@ function intro() {
 	push();
 	scale(3.5 * scaleResolutionX);
 	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
-	rotate(-125);
+	rotate(car.rotate);
 	fill(0, 100, 0);
 	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
 	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
