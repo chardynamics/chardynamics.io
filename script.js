@@ -47,8 +47,12 @@ function intro() {
 	if (car.y > 210) {
 		car.y -= 1;
 	}
-	if ((car.y == 210) && (car.rotate < 125)) {
+	if ((car.y == 210) && (car.rotate < 25)) {
 		car.rotate += 1;
+		car.grotate = car.rotate;
+	}
+	if (car.rotate == 25 && car.grotate < 90) {
+        car.rotate += 1;
 	}
 	if (car.rotate == -125) {
 		if (bullet.timeLine <= 1525) {
