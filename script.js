@@ -43,11 +43,11 @@ function setup() {
 
 function intro() {
 	angle += 5;
-	if (car.y <= 210) {
-		car.y -= 2.5;
+	if (car.y >= 210) {
+		car.y -= 1;
 	}
 	if (car.y == 210 && car.rotate > -125) {
-		car.rotate -= 2.5;
+		car.rotate -= 1;
 	}
 	if (car.rotate == -125) {
 		if (bullet.timeLine <= 1525) {
