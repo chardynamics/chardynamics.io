@@ -12,6 +12,7 @@ var bullet = {
 	timeLineVel: 1,
 	textCover: -864,
 	soundBarrier: 0,
+	bulletVisible: 0,
 }
 
 var car = {
@@ -53,14 +54,15 @@ function intro() {
 		car.grotate = car.rotate;
 	}
 	if (car.rotate == 25 && car.grotate < 90) {
-        car.grotate += 1;
+        	car.grotate += 1;
 	}
 	if (car.grotate == 90) {
+		bullet.bulletVisible = 255;
 		if (bullet.timeLine <= 1525) {
 			bullet.timeLine += 8;
 		}
 		if ((bullet.timeLine >= 497) && (bullet.soundBarrier < 50)) {
-			bullet.soundBarrier++;
+			bullet.soundBarrier += 5;
 		}
 		if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
 			bullet.textCover += 8;
@@ -84,7 +86,7 @@ function intro() {
 	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
 	fill(100, 100, 100, bullet.soundBarrier);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14);
+	fill(158, 60, 14, bulletVisible);
 	triangle(2, 27.5, 45, 17.5, 2, 10);
 	pop();
 	push();
