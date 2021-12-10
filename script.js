@@ -96,7 +96,7 @@ function intro() {
 	push();
 	scale(3.5 * scaleResolutionX);
 	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
-	rotate(car.rotate);
+	rotate(car.grotate);
 	fill(0, 100, 0);
 	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
 	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
