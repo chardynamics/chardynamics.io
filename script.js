@@ -16,7 +16,7 @@ var bullet = {
 }
 
 var car = {
-	y: 270,
+	y: 300,
 	rotate: 0,
 	grotate: 0,
 }
