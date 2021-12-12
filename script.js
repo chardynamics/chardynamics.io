@@ -6,6 +6,8 @@ var scaleResolutionY;
 var pulse =  200;
 var pulseRate = 5;
 var angle = 0;
+var fade = 255;
+var oppFade = 0;
 
 var bullet = {
 	timeLine: 454,
@@ -46,6 +48,7 @@ function setup() {
 
 function intro() {
 	angle += 5;
+	
 	if (car.y > 210) {
 		car.y -= 1;
 	}
@@ -64,10 +67,14 @@ function intro() {
 		if ((bullet.timeLine >= 497) && (bullet.soundBarrier < 50)) {
 			bullet.soundBarrier += 5;
 		}
-		if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
-			bullet.textCover += 8;
-		}
 	}
+	if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
+		bullet.textCover += 8;
+	}
+	if ((bullet.timeLine >= 1525) && (oppFade < 255)) {
+		oppFade += 2.5;
+	}
+	
 	background(0, 0, 0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
@@ -90,7 +97,7 @@ function intro() {
 	triangle(2, 27.5, 45, 17.5, 2, 10);
 	pop();
 	push();
-	scale(3.5 * scaleResolutionX);
+	scale(3.5);
 	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
 	rotate(car.rotate);
 	fill(50, 0, 0);
@@ -100,7 +107,7 @@ function intro() {
 	rect(0,0,20 * scaleResolutionX,40 * scaleResolutionY,5);
 	pop();
 	push();
-	scale(3.5 * scaleResolutionX);
+	scale(3.5);
 	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
 	rotate(car.grotate);
 	fill(0, 100, 0);
@@ -111,9 +118,18 @@ function intro() {
 	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
 	rectMode(CORNER);
 	fill(0);
-	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover, 122);
+	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover* scaleResolutionX, 122* scaleResolutionY);
 	rectMode(CENTER);
-}    
+	
+	if (fade > 0) {
+		fill(0, 0, 0, fade);
+		rect(300, 300, 600, 600);
+		fade -= 2.5;
+	}
+
+	fill(0, 0, 0, oppFade);
+	rect(300, 300, 600, 600);
+}
 
 function menu() {
 	background(0, 200, 150);
