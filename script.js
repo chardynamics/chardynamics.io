@@ -123,12 +123,12 @@ function intro() {
 	
 	if (fade > 0) {
 		fill(0, 0, 0, fade);
-		rect(300, 300, 600, 600);
+		rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
 		fade -= 2.5;
 	}
 
 	fill(0, 0, 0, oppFade);
-	rect(300, 300, 600, 600);
+	rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
 }
 
 function menu() {
