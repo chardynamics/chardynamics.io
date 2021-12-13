@@ -135,13 +135,17 @@ function intro() {
 	fill(0, 0, 0, fade.opp);
 	rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
 	
-	if (fade.opp > 255) {
+	if (fade.opp >= 255) {
 		scene = 2;
 	}
 }
 
 function menu() {
-	
+        background(0, 100, pulse);
+	fill(255, 245, 190);
+	rect(windowWidth/2, windowHeight/2, windowWidth - 25, windowHeight - 50, 10);
+	fill(52, 140, 49);
+	rect(windowWidth/2, windowHeight/2, windowWidth - 50, windowHeight - 80, 10);
 }
 	
 function draw() {
