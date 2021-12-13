@@ -141,7 +141,7 @@ function intro() {
 }
 
 function menu() {
-        background(0, 100, pulse);
+        background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
 	rect(windowWidth/2, windowHeight/2, windowWidth - 50, windowHeight - 50, 10);
 	fill(52, 140, 49);
@@ -156,7 +156,7 @@ function draw() {
 	if (scene == 1) {
 		intro();
 	} else if (scene == 2) {
-		menu()
+		menu();
 	}
 	
 	fill(255, 0, 0);
