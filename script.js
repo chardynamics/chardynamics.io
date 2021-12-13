@@ -143,7 +143,7 @@ function intro() {
 function menu() {
 	
 }
-
+	
 function draw() {
 	pulse.pulse -= pulse.rate;
 	if(pulse.pulse<125){pulse.rate = -1;}
@@ -154,6 +154,7 @@ function draw() {
 	} else if (scene == 2) {
 		menu()
 	}
+	
 	fill(255, 0, 0);
 	textSize(25 * scaleResolutionX);
 	text(mouseX, mouseX + 125, mouseY);
