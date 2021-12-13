@@ -1,30 +1,3 @@
-var arialBold;
-var scaleResolutionX;
-var scaleResolutionY;
-var scene = 1;
-var angle = 0;
-var fade = 255;
-var oppFade = 0;
-
-var pulse = {
-	pulse: 200,
-	rate: 5,
-}
-
-var bullet = {
-	timeLine: 454,
-	timeLineVel: 1,
-	textCover: -864,
-	soundBarrier: 0,
-	bulletVisible: 0,
-}
-
-var car = {
-	y: 300,
-	rotate: 0,
-	grotate: 0,
-}
-
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
 }
@@ -46,6 +19,36 @@ function setup() {
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
+}
+
+var arialBold;
+var scaleResolutionX;
+var scaleResolutionY;
+var scene = 1;
+var angle = 0;
+
+var fade = {
+	fade: 255,
+	opp: 0,
+}
+
+var pulse = {
+	pulse: 200,
+	rate: 5,
+}
+
+var bullet = {
+	timeLine: 454,
+	timeLineVel: 1,
+	textCover: -864,
+	soundBarrier: 0,
+	bulletVisible: 0,
+}
+
+var car = {
+	y: 300,
+	rotate: 0,
+	grotate: 0,
 }
 
 function intro() {
@@ -73,8 +76,8 @@ function intro() {
 	if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
 		bullet.textCover += 8;
 	}
-	if ((bullet.timeLine >= 1525) && (oppFade < 255)) {
-		oppFade += 2.5;
+	if ((bullet.timeLine >= 1525) && (fade.opp < 255)) {
+		fade.opp += 2.5;
 	}
 	
 	background(0, 0, 0);
@@ -123,14 +126,18 @@ function intro() {
 	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover* scaleResolutionX, 122* scaleResolutionY);
 	rectMode(CENTER);
 	
-	if (fade > 0) {
-		fill(0, 0, 0, fade);
+	if (fade.fade > 0) {
+		fill(0, 0, 0, fade.fade);
 		rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-		fade -= 2.5;
+		fade.fade -= 2.5;
 	}
 
-	fill(0, 0, 0, oppFade);
+	fill(0, 0, 0, fade.opp);
 	rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+	
+	if (fade.opp > 255) {
+		scene = 2;
+	}
 }
 
 function menu() {
