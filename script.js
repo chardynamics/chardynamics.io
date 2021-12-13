@@ -1,13 +1,15 @@
-var scene = 1;
-var fade = 130;
 var arialBold;
 var scaleResolutionX;
 var scaleResolutionY;
-var pulse =  200;
-var pulseRate = 5;
+var scene = 1;
 var angle = 0;
 var fade = 255;
 var oppFade = 0;
+
+var pulse = {
+	pulse: 200,
+	rate: 5,
+}
 
 var bullet = {
 	timeLine: 454,
@@ -84,7 +86,7 @@ function intro() {
 	push();
 	translate(150 * scaleResolutionX, 730 * scaleResolutionY);
 	rotate(angle);
-	fill(-pulse, pulse, pulse + 100);
+	fill(-pulse.pulse, pulse.pulse, pulse.pulse + 100);
 	rect(0, 0, 125 * scaleResolutionX, 125 * scaleResolutionY, 15);
 	pop();
 	textSize(75 * scaleResolutionX);
@@ -132,18 +134,13 @@ function intro() {
 }
 
 function menu() {
-	background(0, 200, 150);
-	fill(0, 0, 0);
-	rect(windowWidth/2, 100, 50, 50);
-	textSize(36);
-	textFont("Georgia");
-	text("Hello World! in Georgia.", 500, 500);
+	
 }
 
 function draw() {
-	pulse -= pulseRate;
-	if(pulse<125){pulseRate = -1;}
-	if(pulse>225){pulseRate = 1;}
+	pulse.pulse -= pulse.rate;
+	if(pulse.pulse<125){pulse.rate = -1;}
+	if(pulse.pulse>225){pulse.rate = 1;}
     
 	if (scene == 1) {
 		intro();
