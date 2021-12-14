@@ -4,27 +4,27 @@ function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
 }
 
-var scaleResolutionX;
-var scaleResolutionY;
+//probably should find a better solution
+var p5WindowHeight = windowWidth/(16/9);
+var scaleResolutionX = windowWidth/1517;
+var scaleResolutionY = p5WindowWidth/853;
 
 function setup() {
-	var canvas = createCanvas(windowWidth, windowWidth/(16/9));
+	var canvas = createCanvas(windowWidth, p5WindowWidth);
 	canvas.parent('script-holder');
 	
-	//probably should find a better solution
-	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = windowHeight/853;
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
 	textFont(arialBold);
-	noStroke();
 	angleMode(DEGREES);
+	noStroke();
 	
 	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
 }
+
 var scene = 1;
 var angle = 0;
 
@@ -168,6 +168,7 @@ function draw() {
 
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
+	p5WindowHeight = windowWidth/(16/9);
 	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = windowHeight/853;
+	scaleResolutionY = p5WindowWidth/853;
 }
