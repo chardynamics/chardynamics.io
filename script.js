@@ -3,7 +3,7 @@ function preload() {
 }
 
 function setup() {
-	var canvas = createCanvas(windowWidth, windowHeight);
+	var canvas = createCanvas(windowWidth, windowWidth/(16/9));
 	canvas.parent('script-holder');
 	
 	//probably should find a better solution
