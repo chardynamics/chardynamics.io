@@ -1,6 +1,11 @@
+var arialBold;
+
 function preload() {
 	arialBold = loadFont("https://chardynamics.github.io/assets/fonts/arialbd.ttf");
 }
+
+var scaleResolutionX;
+var scaleResolutionY;
 
 function setup() {
 	var canvas = createCanvas(windowWidth, windowWidth/(16/9));
@@ -20,10 +25,6 @@ function setup() {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
 }
-
-var arialBold;
-var scaleResolutionX;
-var scaleResolutionY;
 var scene = 1;
 var angle = 0;
 
