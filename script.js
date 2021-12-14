@@ -10,10 +10,10 @@ var scaleResolutionX;
 var scaleResolutionY;
 
 function setup() {
-    //probably should find a better solution
-    p5WindowHeight = windowWidth/(16/9);
-    scaleResolutionX = windowWidth/1517;
-    scaleResolutionY = p5WindowWidth/853;
+	//probably should find a better solution
+	p5WindowHeight = windowWidth/(16/9);
+	scaleResolutionX = windowWidth/1517;
+	scaleResolutionY = p5WindowHeight/853;
     
 	var canvas = createCanvas(windowWidth, p5WindowHeight);
 	canvas.parent('script-holder');
