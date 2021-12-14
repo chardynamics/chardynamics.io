@@ -5,11 +5,16 @@ function preload() {
 }
 
 //probably should find a better solution
-var p5WindowHeight = windowWidth/(16/9);
-var scaleResolutionX = windowWidth/1517;
-var scaleResolutionY = p5WindowWidth/853;
+var p5WindowHeight;
+var scaleResolutionX;
+var scaleResolutionY;
 
 function setup() {
+    //probably should find a better solution
+    p5WindowHeight = windowWidth/(16/9);
+    scaleResolutionX = windowWidth/1517;
+    scaleResolutionY = p5WindowWidth/853;
+    
 	var canvas = createCanvas(windowWidth, p5WindowHeight);
 	canvas.parent('script-holder');
 	
