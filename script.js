@@ -10,7 +10,7 @@ var scaleResolutionX = windowWidth/1517;
 var scaleResolutionY = p5WindowWidth/853;
 
 function setup() {
-	var canvas = createCanvas(windowWidth, p5WindowWidth);
+	var canvas = createCanvas(windowWidth, p5WindowHeight);
 	canvas.parent('script-holder');
 	
 	rectMode(CENTER);
