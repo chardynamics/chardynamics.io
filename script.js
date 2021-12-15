@@ -176,5 +176,5 @@ function windowResized() {
 	resizeCanvas(windowWidth, p5WindowHeight);
 	p5WindowHeight = windowWidth/(16/9);
 	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = p5WindowWidth/853;
+	scaleResolutionY = p5WindowHeight/853;
 }
