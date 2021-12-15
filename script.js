@@ -168,7 +168,7 @@ function draw() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolutionX);
 	text(windowWidth, mouseX + 125, mouseY);
-	text(p5WindowHeight, mouseX + 125, mouseY + 20);
+	text(p5WindowWidth, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
 }
 
