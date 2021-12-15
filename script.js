@@ -5,17 +5,17 @@ function preload() {
 }
 
 //probably should find a better solution
-var p5WindowHeight;
+var p5WindowWidth;
 var scaleResolutionX;
 var scaleResolutionY;
 
 function setup() {
 	//probably should find a better solution
-	p5WindowHeight = windowWidth/(16/9);
-	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = p5WindowHeight/853;
+	p5WindowWidth = windowHeight * (16/9);
+	scaleResolutionX = p5WindowWidth/1517;
+	scaleResolutionY = windowHeight/853;
     
-	var canvas = createCanvas(windowWidth, p5WindowHeight);
+	var canvas = createCanvas(p5WindowWidth, windowHeight);
 	canvas.parent('script-holder');
 	
 	rectMode(CENTER);
@@ -173,8 +173,8 @@ function draw() {
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth, p5WindowHeight);
-	p5WindowHeight = windowWidth/(16/9);
-	scaleResolutionX = windowWidth/1517;
-	scaleResolutionY = p5WindowHeight/853;
+	resizeCanvas(p5WindowWidth, windowHeight);
+	p5WindowWidth = windowHeight * (16/9);
+	scaleResolutionX = p5WindowWidth/1517;
+	scaleResolutionY = windowHeight/853;
 }
