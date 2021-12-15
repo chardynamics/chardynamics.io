@@ -173,8 +173,8 @@ function draw() {
 }
 
 function windowResized() {
-	resizeCanvas(p5WindowWidth, windowHeight);
 	p5WindowWidth = windowHeight * (16/9);
 	scaleResolutionX = p5WindowWidth/1517;
 	scaleResolutionY = windowHeight/853;
+	resizeCanvas(p5WindowWidth, windowHeight);
 }
