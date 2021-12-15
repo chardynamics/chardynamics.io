@@ -16,7 +16,7 @@ function setup() {
 	scaleResolutionY = windowHeight/853;
     
 	var canvas = createCanvas(p5WindowWidth, windowHeight);
-	canvas.center();
+	canvas.center(horizontal);
 	canvas.parent('script-holder');
 	
 	rectMode(CENTER);
