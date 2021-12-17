@@ -6,15 +6,13 @@ function preload() {
 
 //probably should find a better solution
 var p5WindowWidth;
-var scaleResolutionX;
-var scaleResolutionY;
+var scaleResolution;
 
 function setup() {
 	//probably should find a better solution
 	p5WindowWidth = windowHeight * (16/9);
-	Math.floor(p5WindowWidth);
-	scaleResolutionX = p5WindowWidth/1517;
-	scaleResolutionY = windowHeight/853;
+	Math.floor(p5WindowWidth);	
+	scaleResolution = windowHeight/853;
     
 	var canvas = createCanvas(p5WindowWidth, windowHeight);
 	canvas.style('margin', 'auto');
@@ -91,20 +89,20 @@ function intro() {
 	
 	background(0, 0, 0);
 	fill(255, 255, 255);
-	textSize(800 * scaleResolutionX); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
-	text("DP", 700 * scaleResolutionX, 250 * scaleResolutionY);
-	textSize(75 * scaleResolutionX);
-	text("roductions", 1100 * scaleResolutionX, 577.5 * scaleResolutionY);
+	textSize(800 * scaleResolution); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
+	text("DP", 700 * scaleResolution, 250 * scaleResolution);
+	textSize(75 * scaleResolution);
+	text("roductions", 1100 * scaleResolution, 577.5 * scaleResolution);
 	push();
-	translate(150 * scaleResolutionX, 730 * scaleResolutionY);
+	translate(150 * scaleResolution, 730 * scaleResolution);
 	rotate(angle);
 	fill(-pulse.pulse, pulse.pulse, pulse.pulse + 100);
-	rect(0, 0, 125 * scaleResolutionX, 125 * scaleResolutionY, 15);
+	rect(0, 0, 125 * scaleResolution, 125 * scaleResolution, 15*scaleResolution);
 	pop();
-	textSize(75 * scaleResolutionX);
-	text("X", 150 * scaleResolutionX, 725 * scaleResolutionY);
+	textSize(75 * scaleResolution);
+	text("X", 150 * scaleResolution, 725 * scaleResolution);
 	push();
-	translate(bullet.timeLine * scaleResolutionX, 716 * scaleResolutionY);
+	translate(bullet.timeLine * scaleResolution, 716 * scaleResolution);
 	fill(100, 100, 100, bullet.soundBarrier);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
 	fill(158, 60, 14, bullet.bulletVisible);
@@ -112,27 +110,27 @@ function intro() {
 	pop();
 	push();
 	scale(3.5);
-	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
+	translate(110 * scaleResolution, car.y * scaleResolution);
 	rotate(car.rotate);
 	fill(50, 0, 0);
-	rect(-12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
-	rect(12 * scaleResolutionX,0,5 * scaleResolutionX,35 * scaleResolutionY,5);
+	rect(-12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
+	rect(12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
 	fill(0, 120, 0);
-	rect(0,0,20 * scaleResolutionX,40 * scaleResolutionY,5);
+	rect(0,0,20 * scaleResolution,40 * scaleResolution,5*scaleResolution);
 	pop();
 	push();
 	scale(3.5);
-	translate(110 * scaleResolutionX, car.y * scaleResolutionY);
+	translate(110 * scaleResolution, car.y * scaleResolution);
 	rotate(car.grotate);
 	fill(0, 100, 0);
-	rect(0,0,15 * scaleResolutionX,15 * scaleResolutionY,5);
-	rect(0,-20 * scaleResolutionX,5 * scaleResolutionX,25 * scaleResolutionY,0);
+	rect(0,0,15 * scaleResolution,15 * scaleResolution,5*scaleResolution);
+	rect(0,-20 * scaleResolution,5 * scaleResolution,25 * scaleResolution,0);
 	pop();
-	textSize(165 * scaleResolutionX);
-	text("...and more", 1010 * scaleResolutionX, 715 * scaleResolutionY);
+	textSize(165 * scaleResolution);
+	text("...and more", 1010 * scaleResolution, 715 * scaleResolution);
 	rectMode(CORNER);
 	fill(0);
-	rect(1445  * scaleResolutionX, 670 * scaleResolutionY, bullet.textCover* scaleResolutionX, 122* scaleResolutionY);
+	rect(1445  * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
 	rectMode(CENTER);
 	
 	if (fade.fade > 0) {
@@ -150,7 +148,7 @@ function intro() {
 }
 
 function menu() {
-        background(0, 100, pulse.pulse);
+    background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
 	rect(windowWidth/2, windowHeight/2, windowWidth - 50, windowHeight - 50, 10);
 	fill(52, 140, 49);
@@ -169,7 +167,7 @@ function draw() {
 	}
 	
 	fill(255, 0, 0);
-	textSize(25 * scaleResolutionX);
+	textSize(25 * scaleResolution);
 	text(windowWidth, mouseX + 125, mouseY);
 	text(p5WindowWidth, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
@@ -178,7 +176,7 @@ function draw() {
 function windowResized() {
 	p5WindowWidth = windowHeight * (16/9);
 	Math.floor(p5WindowWidth);
-	scaleResolutionX = p5WindowWidth/1517;
-	scaleResolutionY = windowHeight/853;
+	scaleResolution = p5WindowWidth/1517;
+	scaleResolution = windowHeight/853;
 	resizeCanvas(p5WindowWidth, windowHeight);
 }
