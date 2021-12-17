@@ -13,9 +13,9 @@
 				background-color: black;
 				margin: 0px;
 				border: 0px;
-				user-select:none;
+				user-select: none;
 				color: white;
-				font-family: Arial, Helvetica, sans-serif;
+				font-family: "Courier New", monospace;
 			}
 			#script-description {
 				padding: 1%;
@@ -65,22 +65,25 @@
 				margin-inline-end: 0px;
 				font-weight: bold;
 			}
+			#title {
+				margin: auto;
+				text-align: center;
+			}
+			#grid-container {
+				display: grid;
+  				grid-gap: 10px;
+			}
 		</style>
-		
-		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-		<script src="script.js"></script>
     </head>
 
     <body>
-	    <div id="script-holder">
-		    <!-- p5.js Canvas Here !! -->
+	    <div id="title">
+		    <img src="/images/logos/productions.png" alt="dynamic productions logo">
+		    <h1>dynamic productions</h1>
 	    </div>
 	    
-	    <div id="p5_loading">
-		    <p>Loading...</p>
-	    </div>
-	    
-	    <div id="description">
+	    <div id="grid-container">
+		    
 		    <h1>Faction</h1>
 		    <h2>Description</h2>
 		    <p id="script-description">Currently a work in progress, this game is supposed to be some game in the wild. That's really it for now, I don't know if you should try to build a tribe or try to survive waves of zombies.</p>
