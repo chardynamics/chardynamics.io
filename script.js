@@ -12,11 +12,13 @@ var scaleResolutionY;
 function setup() {
 	//probably should find a better solution
 	p5WindowWidth = windowHeight * (16/9);
+	Math.floor(p5WindowWidth);
 	scaleResolutionX = p5WindowWidth/1517;
 	scaleResolutionY = windowHeight/853;
     
 	var canvas = createCanvas(p5WindowWidth, windowHeight);
 	canvas.style('margin', 'auto');
+	//canvas.style('border-style', 'none solid solid');
 	canvas.parent('script-holder');
 	
 	rectMode(CENTER);
@@ -175,6 +177,7 @@ function draw() {
 
 function windowResized() {
 	p5WindowWidth = windowHeight * (16/9);
+	Math.floor(p5WindowWidth);
 	scaleResolutionX = p5WindowWidth/1517;
 	scaleResolutionY = windowHeight/853;
 	resizeCanvas(p5WindowWidth, windowHeight);
