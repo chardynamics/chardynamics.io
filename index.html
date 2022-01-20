@@ -47,7 +47,6 @@
 				color: white;
 				background-color: transparent;
 			}
-			
 			h1 {
 				text-align: center;
 				font-size: 4em;
@@ -65,8 +64,8 @@
 				display: grid;
 				gap: 0.5vw, 1.25vh;
 				grid-template-columns: 1fr 1fr 1fr;
-				grid-template-rows: 1fr 1fr;
-				padding: 25px 10px 10px 10px;
+				grid-template-rows: 1fr 1fr 1fr;
+				padding: 25px 10px 10px 0px;
 			}
 			#grid-container > div {
 				border: 1px solid #ccc;
@@ -82,27 +81,40 @@
 				height: 28px;
 				width: auto;
 			}
+			.item-3 {
+				grid-row: 2 / 2;
+				grid-column: 1 / span 3;
+			}
 		</style>
 	</head>
 
+	<script>
+		let hiddenCounter = 0;
+		function hiddenClick() {
+			hiddenCounter++;
+			document.getElementById("htitle").innerHTML = "dynamic productions (" + String(hiddenCounter) + ")";
+		}
+	</script>
 	<body>
 		<div id="title">
 			<img src="/images/logos/productions.png" alt="dynamic productions logo">
-			<h1>dynamic productions</h1>
+			<h1 id="htitle" onclick="hiddenClick()">dynamic productions</h1>
 		</div>
 	   
 		<div id="grid-container">
-			<div class="item-1">
-				<img class="grid-img" src="/images/logos/bookmarklet.png" alt="bookmarklet">
-				<p id="privacyBookmarklet"><a href="javascript:(function()%7Bvar%20privacyBanner%20%3D%20document.querySelectorAll(%22%5Bdata-gg-privacy-banner-anchor%5D%22)%3B%20for(var%20i%20%3D%200%3B%20i%20%3C%20privacyBanner.length%3B%20i%2B%2B)%7B%20privacyBanner%5Bi%5D.parentNode.removeChild(privacyBanner%5Bi%5D)%3B%20%7D%7D)()%3B">Remove GoGuardian Privacy Banner Bookmarklet</a> (drag to bookmark bar and rename as fit)</p>
+			<div class="item-1">				
+				<img class="grid-img" id="wip-logo" src="/images/logos/productions.png" alt="faction logo">
+				<p id="p-title"><a href="/faction/index.html">Faction</a><br>Work in progress tribalist game (p5.js version)</p>
 			</div>
 			<div class="item-2">
 				<img class="grid-img" id="wip-logo" src="/images/logos/productions.png" alt="faction logo">
-				<p id="faction"><a href="/faction/index.html">Faction</a><br><br>(work in progress p5.js version)</p>
-			</div>
+				<p id="p-title"><a href="/pixifaction/index.html">Unnamed Clicker Game</a><br>Even more work in progress tribalist game (PixiJS version)</p>			</div>
 			<div class="item-3">
-				<img class="grid-img" id="wip-logo" src="/images/logos/productions.png" alt="faction logo">
-				<p id="faction"><a href="/pixifaction/index.html">Faction</a><br><br>(work in progress PixiJS version)</p>
+				<p id="container-title">Utility</p>
+			</div>
+			<div class="item-4">
+				<img class="grid-img" src="/images/logos/bookmarklet.png" alt="bookmarklet">
+				<p id="p-title"><a href="javascript:(function()%7Bvar%20privacyBanner%20%3D%20document.querySelectorAll(%22%5Bdata-gg-privacy-banner-anchor%5D%22)%3B%20for(var%20i%20%3D%200%3B%20i%20%3C%20privacyBanner.length%3B%20i%2B%2B)%7B%20privacyBanner%5Bi%5D.parentNode.removeChild(privacyBanner%5Bi%5D)%3B%20%7D%7D)()%3B">Remove Banner</a><br>a bookmarklet (drag to bookmark bar and rename as fit)</p>
 			</div>
 		</div>
 	</body>
