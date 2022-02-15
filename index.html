@@ -76,11 +76,16 @@
 				font-family: Helvetica, Arial, sans-serif;
 			}
 			div > p {
-				margin: 20px 0px 0px;
+				margin: 10px 0px 0px;
 			}
 			#wip-logo {
-				height: 28px;
+				height: 35px;
 				width: auto;
+				background-color: white;
+			}
+			#armor-logo {
+				height: 35px;
+				width: 35px;
 			}
 			.item-4 {
 				grid-row: 2;
@@ -90,8 +95,12 @@
 				font-size: 4em;
 			}
 			.grid-img {
+				height: 35px;
 				border: 1px solid #ccc;
 				color: white;
+			}
+			#logo {
+				background-color: white;
 			}
 		</style>
 	</head>
@@ -100,24 +109,24 @@
 		let hiddenCounter = 0;
 		function hiddenClick() {
 			hiddenCounter++;
-			document.getElementById("htitle").innerHTML = "dynamic productions (" + String(hiddenCounter) + ")";
+			document.getElementById("htitle").innerHTML = "dynamic productions (" + hiddenCounter + ")";
 		}
 	</script>
 	
 	<body>
 		<div id="title">
-			<img src="/assets/images/logos/productions.png" alt="dynamic productions logo">
+			<img id="logo" src="/assets/images/logos/productions.svg" alt="dynamic productions logo">
 			<h1 id="htitle" onclick="hiddenClick()">dynamic productions</h1>
 		</div>
 	   
 		<div id="grid-container">
 			<div class="item-1">
-				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.png" alt="faction logo">
+				<img class="project-logo-img" id="armor-logo" src="/assets/images/armor.svg" alt="armor logo">
 				<p id="p-title"><a href="/projects/armor/">Armor</a><br>A port of a project I made on Khan Academy, a spinoff</p>
 			</div>
 			<div class="item-2">
-				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.png" alt="faction logo">
-				<p id="p-title"><a href="/projects/assembl/">Assembl</a><br>A Tetris/Puyo Puyo inspired game with words</p>
+				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
+				<p id="p-title"><a href="/projects/assembl/">Assembl</a><br>Tower defense game with modular towers</p>
 			</div>
 			<div class="item-3">
 				<img class="grid-img" src="/assets/images/logos/bookmarklet.png" alt="bookmarklet">
@@ -127,15 +136,15 @@
 				<p id="container-title">some other stuff</p>
 			</div>
 			<div class="item-5">
-				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.png" alt="faction logo">
+				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/retrobowl/">Retro Bowl</a><br>An embedded page of Retro Bowl (<a href="https://game316009.konggames.com/gamez/0031/6009/live/index.html">original link here</a>)</p>
 			</div>
 			<div class="item-6">
-				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.png" alt="faction logo">
+				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/shellshockers/">Shell Shockers</a><br>An embedded page of Shell Shockers (<a href="https://violentegg.club/">accessible link here</a>)</p>
 			</div>
 			<div class="item-7">
-				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.png" alt="faction logo">
+				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/yohoho/">Yohoho.io</a><br>An embedded page of Yohoho.io (<a href="https://corsair.fun/">accessible link here</a>)</p>
 			</div>
 		</div>

@@ -18,7 +18,7 @@
 				color: white;
 				font-family: Arial, Helvetica, sans-serif;
 			}
-			#script-description {
+			#game-description {
 				padding: 1%;
 				margin: 0px;
 			}
@@ -57,7 +57,27 @@
 				margin-inline-start: 0px;
 				margin-inline-end: 0px;
 				font-weight: bold;
+				border-right: solid 2px;
+				white-space: nowrap;
+				overflow: hidden;
+				margin: auto;
 			}
+			
+			h1 {
+				animation: animated-text 750ms steps(15, end) 1s 1 normal both,
+				animated-cursor 530ms steps(29,end) infinite;
+			}
+
+			@keyframes animated-text {
+				from { width: 0; }
+				to { width: 264px; }
+			}
+
+			@keyframes animated-cursor {
+				from { border-right-color: rgba(255, 255, 255, .75); }
+				to { border-right-color: transparent; }
+			}
+
 			h2, h3 {
 				font-size: 2em;
 				margin-block-start: 0px;
@@ -69,7 +89,6 @@
 		</style>
 		
 		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-		<script src="script.js"></script>
     </head>
 
     <body>
@@ -80,9 +99,9 @@
 	    <div id="description">
 		    <h1>Assembl</h1>
 		    <h2>Description</h2>
-		    <p id="script-description">Work in progress, a Tetris/Puyo Puyo inspired game where you assemble words.</p>
+		    <p id="game-description">Work in progress, modular-style tower defense game with letter based towers.</p>
 		    <h3>Attribution</h3>
-		    <p id="attribution">This project is made using <a href="https://p5js.org/">p5.js</a>, a Javascript library. p5.js is licensed under the <a href="https://github.com/processing/p5.js/blob/main/license.txt">GNU Lesser General Public License v2.1</a>. This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
+		    <p id="attribution">This project is made using <a href="https://p5js.org/">p5.js</a>, a Javascript library. This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
 	    </div>
     </body>
 
