@@ -16,10 +16,10 @@ function setup() {
 function draw() {
 	clear();
 	rect(0, 0, 100, 100);
-	if (frameCount > 100) {
-        noLoop();
-        save();
-    }
+	//if (frameCount > 100) {
+    //    noLoop();
+    //    save();
+    //}
 }
 
 function windowResized() {
