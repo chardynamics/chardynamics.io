@@ -69,7 +69,6 @@
 				padding: 25px 10px 0px 10px;
 			}
 			#grid-container > div {
-				border: 1px solid #ccc;
 				color: white;
 				text-align: center;
 				padding: 1.25vw 2.5vh;
@@ -99,6 +98,9 @@
 				border: 1px solid #ccc;
 				color: white;
 			}
+			.grid-div {
+				border: 1px solid #ccc;
+			}
 			#logo {
 				background-color: white;
 			}
@@ -120,38 +122,38 @@
 		</div>
 	   
 		<div id="grid-container">
-			<div id="item-1">
+			<div id="item-1" class="grid-div">
 				<img class="project-logo-img" id="armor-logo" src="/assets/images/armor.svg" alt="armor logo">
 				<p id="p-title"><a href="/projects/armor/">Armor</a><br>A port of a project I made on Khan Academy, a spinoff</p>
 			</div>
-			<div id="item-2">
+			<div id="item-2" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/assembl/">Assembl</a><br>Tower defense game with modular towers</p>
 			</div>
-			<div id="item-3">
+			<div id="item-3" class="grid-div">
 				<img class="grid-img" src="/assets/images/logos/bookmarklet.png" alt="bookmarklet">
 				<p id="p-title"><a href="javascript:(function()%7Bvar%20privacyBanner%20%3D%20document.querySelectorAll(%22%5Bdata-gg-privacy-banner-anchor%5D%22)%3B%20for(var%20i%20%3D%200%3B%20i%20%3C%20privacyBanner.length%3B%20i%2B%2B)%7B%20privacyBanner%5Bi%5D.parentNode.removeChild(privacyBanner%5Bi%5D)%3B%20%7D%7D)()%3B">Remove Banner</a><br>a bookmarklet (drag to bookmark bar and rename as fit)</p>
 			</div>
-			<div id="item-4">
+			<div id="item-4" class="grid-div">
 				<img class="grid-img" src="/assets/images/logos/bookmarklet2.png" alt="bookmarklet">
 				<p id="p-title"><a href="javascript:var s=document.createElement('script');s.type='text/javascript';s.onerror=function(e){alert('Failed to load the script. The site\'s Content Security Policy might be blocking it. Feel free to try again.');};document.body.appendChild(s);s.src='https://blog.roysolberg.com/js/dom2.min.js';void(0);">DOM II: Javascript Hell</a><br>a bookmarklet (drag to bookmark bar and rename as fit) <a href="https://blog.roysolberg.com/2017/10/dom2-bookmarklet">credit</a></p>
 			</div>
 			<div id="item-5">
 			</div>
-			<div id="item-6">
+			<div id="item-6>
 			</div>
-			<div id="item-7">
+			<div id="item-7" class="grid-div">
 				<p id="container-title">some other stuff</p>
 			</div>
-			<div id="item-8">
+			<div id="item-8" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/retrobowl/">Retro Bowl</a><br>An embedded page of Retro Bowl (<a href="https://game316009.konggames.com/gamez/0031/6009/live/index.html">original link here</a>)</p>
 			</div>
-			<div id="item-9">
+			<div id="item-9" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/shellshockers/">Shell Shockers</a><br>An embedded page of Shell Shockers (<a href="https://violentegg.club/">accessible link here</a>)</p>
 			</div>
-			<div id="item-10">
+			<div id="item-10" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
 				<p id="p-title"><a href="/projects/yohoho/">Yohoho.io</a><br>An embedded page of Yohoho.io (<a href="https://corsair.fun/">accessible link here</a>)</p>
 			</div>
