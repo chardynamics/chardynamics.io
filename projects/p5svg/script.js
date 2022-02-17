@@ -1,5 +1,8 @@
+let canvasHeight = 100;
+let canvasWidth = 100;
+
 function setup() {
-	var canvas = createCanvas(windowWidth, windowHeight, SVG);
+	var canvas = createCanvas(canvasHeight, canvasWidth, SVG);
 	canvas.style('margin', 'auto');
 	canvas.parent('script-holder');
 	
@@ -23,6 +26,6 @@ function draw() {
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(canvasHeight, canvasWidth);
 }
  
