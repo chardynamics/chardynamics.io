@@ -1,5 +1,7 @@
-let canvasHeight = 100;
-let canvasWidth = 100;
+let canvasHeight = 50;
+let canvasWidth = 50;
+let code;
+let inputValue;
 
 function setup() {
 	var canvas = createCanvas(canvasHeight, canvasWidth, SVG);
@@ -16,13 +18,29 @@ function setup() {
 	}
 }
 
+function exportSVG() {
+	noLoop();
+	save();
+}
+
 function draw() {
 	clear();
-	rect(0, 0, 100, 100);
-	//if (frameCount > 100) {
-    //    noLoop();
-    //    save();
-    //}
+	eval(code);
+}
+
+function update() {
+	inputValue = document.getElementById("input").value;
+	code = inputValue;
+}
+
+function changeHeight(newHeight) {
+	canvasHeight = newHeight;
+	resizeCanvas(canvasHeight, canvasWidth);
+}
+
+function changeWidth(newWidth) {
+	canvasWidth = newWidth;
+	resizeCanvas(canvasHeight, canvasWidth);
 }
 
 function windowResized() {

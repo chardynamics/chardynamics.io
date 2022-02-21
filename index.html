@@ -57,6 +57,15 @@
 				margin-inline-end: 0px;
 				font-weight: normal;
 			}
+			.p-footer {
+				text-align: center;
+				font-size: 4em;
+				margin-block-start: 0px;
+				margin-block-end: 0px;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				font-weight: bold;
+			}
 			#title {
 				margin: auto;
 				text-align: center;
@@ -103,6 +112,9 @@
 			}
 			#logo {
 				background-color: white;
+			}
+			.window {
+				border: 1px solid #ccc;
 			}
 		</style>
 	</head>
@@ -158,6 +170,33 @@
 				<p id="p-title"><a href="/projects/yohoho/">Yohoho.io</a><br>An embedded page of Yohoho.io (<a href="https://corsair.fun/">accessible link here</a>)</p>
 			</div>
 		</div>
+
+		<footer>
+			<div style="display:flex; justify-content: center; align-items: center">
+				<p class="p-footer" style="margin-right: 25px">👋 <a href="https://github.com/chardynamics">&lt;/&gt;</a></p>
+				<div class="window-body">
+					<ul class="tree-view">
+						<li><a href="/">Home Page</a></li>
+						<li>
+						Projects
+						<ul>
+							<li><a href="/projects/p5svg/">p5svg</a></li>
+							<li><a href="/projects/armor/">Armor</a></li>
+							<li><a href="/projects/p5svg/">p5svg</a></li>
+						</ul>
+						</li>
+						<li>
+						iFrame Websites
+						<ul>
+							<li><a href="/projects/retrobowl/">Retro Bowl</a></li>
+							<li><a href="/projects/shellshockers/">Shell Shockers</a></li>
+							<li><a href="/projects/yohoho/">Yohoho</a></li>
+						</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
 	</body>
 
 </html>
