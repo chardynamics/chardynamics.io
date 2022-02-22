@@ -65,6 +65,7 @@
 				margin-inline-start: 0px;
 				margin-inline-end: 0px;
 				font-weight: bold;
+				font-family: "Pixelated MS Sans Serif";
 			}
 			#title {
 				margin: auto;
@@ -116,6 +117,103 @@
 			.window {
 				border: 1px solid #ccc;
 			}
+			@font-face {
+				font-family: "Pixelated MS Sans Serif";
+				src: url("/lib/98css/dist/ms_sans_serif.woff") format("woff");
+				src: url("/lib/98css/dist/ms_sans_serif.woff2") format("woff2");
+				font-weight: normal;
+				font-style: normal;
+			}
+			l.tree-view {
+			display: block;
+			background: var(--button-highlight);
+			box-shadow: var(--border-field);
+			padding: 6px;
+			margin: 0;
+			}
+
+			ul.tree-view li {
+			list-style-type: none;
+			}
+
+			ul.tree-view a {
+			text-decoration: none;
+			color: #000;
+			}
+
+			ul.tree-view a:focus {
+			background-color: var(--dialog-blue);
+			color: var(--button-highlight);
+			}
+
+			ul.tree-view ul,
+			ul.tree-view li {
+			margin-top: 3px;
+			}
+
+			ul.tree-view ul {
+			margin-left: 16px;
+			padding-left: 16px;
+			/* Goes down too far */
+			border-left: 1px dotted #808080;
+			}
+
+			ul.tree-view ul > li {
+			position: relative;
+			}
+			ul.tree-view ul > li::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: -16px;
+			top: 6px;
+			width: 12px;
+			border-bottom: 1px dotted #808080;
+			}
+
+			/* Cover the bottom of the left dotted border */
+			ul.tree-view ul > li:last-child::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: -20px;
+			top: 7px;
+			bottom: 0px;
+			width: 8px;
+			background: var(--button-highlight);
+			}
+
+			ul.tree-view details {
+			margin-top: 0;
+			}
+
+			ul.tree-view details[open] summary {
+			margin-bottom: 0;
+			}
+
+			ul.tree-view ul details > summary:before {
+			margin-left: -22px;
+			position: relative;
+			z-index: 1;
+			}
+
+			ul.tree-view details > summary:before {
+			text-align: center;
+			display: block;
+			float: left;
+			content: "+";
+			border: 1px solid #808080;
+			width: 8px;
+			height: 9px;
+			line-height: 9px;
+			margin-right: 5px;
+			padding-left: 1px;
+			background-color: #fff;
+			}
+
+			ul.tree-view details[open] > summary:before {
+			content: "-";
+			}
 		</style>
 	</head>
 
@@ -150,7 +248,9 @@
 				<img class="grid-img" src="/assets/images/logos/bookmarklet2.png" alt="bookmarklet">
 				<p id="p-title"><a href="javascript:var s=document.createElement('script');s.type='text/javascript';s.onerror=function(e){alert('Failed to load the script. The site\'s Content Security Policy might be blocking it. Feel free to try again.');};document.body.appendChild(s);s.src='https://blog.roysolberg.com/js/dom2.min.js';void(0);">DOM II: Javascript Hell</a><br>a bookmarklet (drag to bookmark bar and use <a href="https://blog.roysolberg.com/2017/10/dom2-bookmarklet">credit</a>)</p>
 			</div>
-			<div id="item-5">
+			<div id="item-5" class="grid-div">
+				<img class="grid-logo-img" id="wip-logo" src="/assets/images/logos/productions.svg" alt="faction logo">
+				<p id="p-title"><a href="/projects/p5svg/">p5svg</a><br>Convert p5 sketches to svg</p>
 			</div>
 			<div id="item-6">
 			</div>
