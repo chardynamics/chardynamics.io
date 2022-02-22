@@ -65,7 +65,6 @@
 				margin-inline-start: 0px;
 				margin-inline-end: 0px;
 				font-weight: bold;
-				font-family: "Pixelated MS Sans Serif";
 			}
 			#title {
 				margin: auto;
@@ -125,11 +124,11 @@
 				font-style: normal;
 			}
 			l.tree-view {
-			display: block;
-			background: var(--button-highlight);
-			box-shadow: var(--border-field);
-			padding: 6px;
-			margin: 0;
+				display: block;
+				background: var(--button-highlight);
+				box-shadow: var(--border-field);
+				padding: 6px;
+				margin: 0;
 			}
 
 			ul.tree-view li {
@@ -138,7 +137,7 @@
 
 			ul.tree-view a {
 			text-decoration: none;
-			color: #000;
+			color: purple;
 			}
 
 			ul.tree-view a:focus {
@@ -162,57 +161,60 @@
 			position: relative;
 			}
 			ul.tree-view ul > li::before {
-			content: "";
-			display: block;
-			position: absolute;
-			left: -16px;
-			top: 6px;
-			width: 12px;
-			border-bottom: 1px dotted #808080;
+				content: "";
+				display: block;
+				position: absolute;
+				left: -16px;
+				top: 6px;
+				width: 12px;
+				border-bottom: 1px dotted #808080;
 			}
 
 			/* Cover the bottom of the left dotted border */
-			ul.tree-view ul > li:last-child::after {
-			content: "";
-			display: block;
-			position: absolute;
-			left: -20px;
-			top: 7px;
-			bottom: 0px;
-			width: 8px;
-			background: var(--button-highlight);
+				ul.tree-view ul > li:last-child::after {
+				content: "";
+				display: block;
+				position: absolute;
+				left: -20px;
+				top: 7px;
+				bottom: 0px;
+				width: 8px;
+				background: var(--button-highlight);
 			}
 
 			ul.tree-view details {
-			margin-top: 0;
+				margin-top: 0;
 			}
 
 			ul.tree-view details[open] summary {
-			margin-bottom: 0;
+				margin-bottom: 0;
 			}
 
 			ul.tree-view ul details > summary:before {
-			margin-left: -22px;
-			position: relative;
-			z-index: 1;
+				margin-left: -22px;
+				position: relative;
+				z-index: 1;
 			}
 
 			ul.tree-view details > summary:before {
-			text-align: center;
-			display: block;
-			float: left;
-			content: "+";
-			border: 1px solid #808080;
-			width: 8px;
-			height: 9px;
-			line-height: 9px;
-			margin-right: 5px;
-			padding-left: 1px;
-			background-color: #fff;
+				text-align: center;
+				display: block;
+				float: left;
+				content: "+";
+				border: 1px solid #808080;
+				width: 8px;
+				height: 9px;
+				line-height: 9px;
+				margin-right: 5px;
+				padding-left: 1px;
+				background-color: #fff;
 			}
 
 			ul.tree-view details[open] > summary:before {
-			content: "-";
+				content: "-";
+			}
+			.window-body {
+				font-family: "Pixelated MS Sans Serif";
 			}
 		</style>
 	</head>
