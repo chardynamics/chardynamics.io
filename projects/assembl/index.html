@@ -86,23 +86,30 @@
 				margin-inline-end: 0px;
 				font-weight: bold;
 			}
-		</style>
-		
-		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+	    	</style>
+
+ 		<!-- Bootstrap -->
+		<script type="module">
+			import { device } from 'https://esm.run/melonjs';
+			import onload from './js/index.js';
+
+			device.onReady(() => {
+			  onload();
+			});
+		</script>
     </head>
 
     <body>
-	    <div id="game-holder">
-		    <!-- p5.js Canvas Here !! -->
-	    </div>
+		<!-- Canvas placeholder -->
+		<div id="screen"></div>
 	    
-	    <div id="description">
-		    <h1>Assembl</h1>
-		    <h2>Description</h2>
-		    <p id="game-description">Work in progress, modular-style tower defense game with letter based towers.</p>
-		    <h3>Attribution</h3>
-		    <p id="attribution">This project is made using <a href="https://p5js.org/">p5.js</a>, a Javascript library. This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
-	    </div>
+		<div id="description">
+			<h1>Assembl</h1>
+			<h2>Description</h2>
+			<p id="game-description">Work in progress, modular-style tower defense game with letter based towers.</p>
+			<h3>Attribution</h3>
+			<p id="attribution">This project is made using <a href="https://p5js.org/">p5.js</a>, a Javascript library. This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
+		</div>
     </body>
 
 </html>
