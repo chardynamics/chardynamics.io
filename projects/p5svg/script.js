@@ -1,5 +1,5 @@
-let canvasHeight = 50;
-let canvasWidth = 50;
+let canvasHeight = 100;
+let canvasWidth = 100;
 let code;
 let inputValue;
 
