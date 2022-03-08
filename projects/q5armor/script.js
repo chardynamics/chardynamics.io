@@ -1,3 +1,5 @@
+new Q5("global");
+
 var arialBold;
 
 function preload() {
