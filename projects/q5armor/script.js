@@ -16,10 +16,7 @@ function setup() {
 	Math.floor(p5WindowWidth);	
 	scaleResolution = windowHeight/853;
     
-	var canvas = createCanvas(p5WindowWidth, windowHeight);
-	canvas.style('margin', 'auto');
-	//canvas.style('border-style', 'none solid solid');
-	canvas.parent('script-holder');
+    createCanvas(p5WindowWidth, windowHeight);
 	
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
