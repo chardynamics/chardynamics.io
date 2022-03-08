@@ -21,7 +21,6 @@ function setup() {
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
 	textFont(arialBold);
-	angleMode(DEGREES);
 	noStroke();
   ellipseMode(CENTER);
 	
