@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8"/>
         
-        <title>Retro Bowl</title>
+        <title>Faction</title>
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logos/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logos/favicon-16x16.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/public/assets/images/logos/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/public/assets/images/logos/favicon-16x16.png">
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 		
 		<style id="style">
@@ -66,27 +66,28 @@
 				margin-inline-end: 0px;
 				font-weight: bold;
 			}
-			#iframe-holder {
+			#script-holder {
 				text-align: center;
-			}
-			iframe {
-				width: 100vw;
-				height: 100vh;
-				border: none;
 			}
 		</style>
 		
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+		<script src="script.js"></script>
     </head>
 
     <body>
-	    <div id="iframe-holder">
-		    <iframe src="https://game316009.konggames.com/gamez/0031/6009/live/index.html" title="Retro Bowl"></iframe>
+	    <div id="script-holder">
+		    <!-- p5.js Canvas Here !! -->
+	    </div>
+	    
+	    <div id="p5_loading">
+		    <p>Loading...</p>
 	    </div>
 	    
 	    <div id="description">
-		    <h1>Retro Bowl</h1>
+		    <h1>Faction</h1>
 		    <h2>Description</h2>
-		    <p id="script-description">Build your franchise, control players, and play in a 17 week game schedule, it's just Retro Bowl.</p>
+		    <p id="script-description">Currently a work in progress, this game is supposed to be an incremental game based on building a tribe and advancing civilization. I'm planning it to be primarily made using HTML, although I may use p5.js.</p>
 		    <h3>Attribution</h3>
 		    <p id="attribution">This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
 	    </div>

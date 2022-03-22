@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8"/>
         
-        <title>Armor</title>
+        <title>Shell Shockers</title>
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/armor/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/armor/favicon-16x16.png">
-		<link rel="icon" type="image/x-icon" href="favicon.ico">
+		<link rel="icon" type="image/png" sizes="32x32" href="/public/assets/images/logos/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/public/assets/images/logos/favicon-16x16.png">
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 		
 		<style id="style">
 			body {
@@ -66,30 +66,29 @@
 				margin-inline-end: 0px;
 				font-weight: bold;
 			}
-			#script-holder {
+			#iframe-holder {
 				text-align: center;
+			}
+			iframe {
+				width: 100vw;
+				height: 100vh;
+				border: none;
 			}
 		</style>
 		
-		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-		<script src="script.js"></script>
     </head>
 
     <body>
-	    <div id="script-holder">
-		    <!-- p5.js Canvas Here !! -->
-	    </div>
-	    
-	    <div id="p5_loading">
-		    <p>Loading...</p>
+	    <div id="iframe-holder">
+		    <iframe src="https://geometry.monster/" title="Shell Shockers"></iframe>
 	    </div>
 	    
 	    <div id="description">
-		    <h1>Armor</h1>
+		    <h1>Shell Shockers</h1>
 		    <h2>Description</h2>
-		    <p id="script-description">Controlling a tank, you destroy waves of drones on a island setting.</p>
+		    <p id="script-description">First person shooter involving eggs, really it's just Shell Shockers.</p>
 		    <h3>Attribution</h3>
-		    <p id="attribution">This project is made using <a href="https://p5js.org/">p5.js</a>, a Javascript library. This project was initially and primarily made using <a href="https://www.khanacademy.org/computer-programming/new/pjs">Khan Academy's live editor</a>, and this project is a spinoff of Eclipse5214's <a href="https://www.khanacademy.org/computer-programming/tonk/6572812416368640">Tonk</a>. This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
+		    <p id="attribution">This project is avaliable under the <a href="https://github.com/chardynamics/chardynamics.github.io/blob/main/LICENSE.txt">MIT license</a>.</p>
 	    </div>
     </body>
 
