@@ -31,8 +31,19 @@ function setup() {
 	}
 }
 
-var scene = 1;
+var keys = [];
+var scene = 3;
 var angle = 0;
+var paused = false;
+var buttonHover = false;
+
+function keyPressed() {
+	keys[keyCode] = true;
+}
+
+function keyReleased() {
+	keys[keyCode] = false;
+}
 
 var fade = {
 	fade: 255,
@@ -53,10 +64,21 @@ var bullet = {
 }
 
 var car = {
-	y: 300,
+    x:300,
+    y:300,
+    s:0,
+    rot:-90,
+    acc:0.1,
+    gx:300,
+    gy:300,
+    grot:0,
+    rightW:false,
+    leftW:false,
+    type:1,
+    deaths:0,
 	rotate: 0,
-	grotate: 0,
-}
+	grotate: 0
+};
 
 function intro() {
 	angle += 5;
@@ -150,9 +172,174 @@ function intro() {
 function menu() {
     background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
-	rect(windowWidth/2, windowHeight/2, windowWidth - 50, windowHeight - 50, 10);
+	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
-	rect(windowWidth/2, windowHeight/2, windowWidth - 100, windowHeight - 100, 10);
+	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+}
+
+function tankSpawn(tankVar, firing) {
+	tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+	
+	if(!paused){
+		if (keyIsPressed) {
+			 if(keys[65]) {
+				   if(tankVar.s >  (-2 * speed.speed)) {
+						tankVar.rot -= 3;
+						tankVar.rightW = false;
+						tankVar.leftW = true;
+				   }
+			 }
+			 if(keys[68]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot +=3;
+						tankVar.rightW = true;
+						tankVar.leftW = false;
+				   }
+			 }
+			 if(keys[87]) {
+				   if(tankVar.s <= (3 * speed.speed)) {
+						tankVar.s += tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(keys[83]) {
+				   if(tankVar.s > (-1.5 * speed.speed)) {
+						tankVar.s -= tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(!keys[87] && !keys[83]) {
+				   if(tankVar.s >= (0 * speed.speed)) {
+						tankVar.s -= 0.02 * speed.speed;
+				   }
+			 }
+			 if(keys[37]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot -=3;
+						tankVar.rightW = false;
+						tankVar.leftW = true;
+				   }
+			 }
+			 if(keys[39]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot +=3;
+						tankVar.rightW = true;
+						tankVar.leftW = false;
+				   }
+			 }
+			 if(keys[38]) {
+				   if(tankVar.s <= (3 * speed.speed)) {
+						tankVar.s += tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(keys[40]) {
+				   if(tankVar.s >= (-1.5 * speed.speed)) {
+						tankVar.s -= tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(!keys[38] && !keys[40]) {
+				   if(tankVar.s >= 0) {
+						tankVar.s -= 0.05 * speed.speed;
+				   } else if (tankVar.s <= 0) {
+						tankVar.s += 0.05 * speed.speed;
+				   }
+			 }
+			 //if(tankVar.s < 0) {
+			 //     tankVar.s = 0;
+			 //}
+			 if(tankVar.s === (3 * speed.speed)) {
+				   tankVar.s = 3 * speed.speed;
+			 } else if (tankVar.s === (-3 * speed.speed)) {
+				   tankVar.s = 3 * speed.speed;
+			 }
+		}
+	} else {
+	   tankVar.rightW = false;
+	   tankVar.leftW = false;
+	}
+
+	tankVar.x += cos(tankVar.rot)*tankVar.s;
+	tankVar.y += sin(tankVar.rot)*tankVar.s;
+   
+	tankVar.gx += cos(tankVar.rot)*tankVar.s;
+	tankVar.gy += sin(tankVar.rot)*tankVar.s;
+   
+	push();
+	
+	if (firing) {
+	   if ((!buttonHover)) {
+			 if(mouseIsPressed){
+				   if(reloadTime == 0){
+						bullets.push(new bullet(car.x,car.y));
+						reloadTime = reloadTime2;
+				   }
+			 }
+			 if(keys[32]){
+				   if(reloadTime == 0){
+						bullets.push(new bullet(car.x,car.y));
+						reloadTime = reloadTime2;
+				   }
+			 }
+	   }
+	}
+   if (car.type === 1) {
+	   noStroke();
+	   translate(tankVar.x,tankVar.y);
+	   rotate(tankVar.rot+90);
+	   fill(0, 120, 0);
+	   rect(0,0,20,40,5);
+	   fill(50);
+	   rect(-12,0,5,35,5);
+	   rect(12,0,5,35,5);
+	   pop();
+	 
+	   push();
+	   noStroke();
+	   translate(tankVar.gx,tankVar.gy);
+	   rotate(-tankVar.grot-180);
+	   fill(0, 100, 0);
+	   rect(0,0,15,15,5);
+	   rect(0,-10,5,20,0);
+	   pop();
+   } else {
+	   push();
+	   translate(tankVar.x,tankVar.y);
+	   
+	   if ((tankVar.rightW === false) && (tankVar.leftW === true)) {
+		   rotate(tankVar.rot+86);
+	   } 
+	   if ((tankVar.rightW === true) && (tankVar.leftW === false)) {
+		   rotate(tankVar.rot+94);
+	   }
+   
+	   fill(50);
+	   rect(-12.0,-9,5,13,5);
+	   rect(12.0,-9,5,13,5);
+	   pop();
+	   push();
+	   translate(tankVar.x,tankVar.y);
+	   rotate(tankVar.rot+90);
+	   fill(50);
+	   rect(-12,10,5,13,5);
+	   rect(12,10,5,13,5);
+	   fill(0, 120, 0);
+	   rect(0,0,20,40,5);
+	   pop();
+	   push();
+	   translate(tankVar.x,tankVar.y);
+	   rotate(-tankVar.grot-180);
+	   fill(0, 100, 0);
+	   rect(0,0,15,15,5);
+	   rect(0,-10,5,20,0);
+	   pop();
+   }
+};
+
+function levelOne() {
+    background(0, 100, pulse.pulse);
+	fill(255, 245, 190);
+	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
+	fill(52, 140, 49);
+	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+	tankSpawn(car, true);
 }
 	
 function draw() {
@@ -164,15 +351,19 @@ function draw() {
 		intro();
 	} else if (scene == 2) {
 		menu();
+	} else if (scene == 3) {
+		levelOne();
 	}
 	
+	debug();
+}
+function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
 	text(windowWidth, mouseX + 125, mouseY);
 	text(p5WindowWidth, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
 }
-
 function windowResized() {
 	p5WindowWidth = windowHeight * (16/9);
 	Math.floor(p5WindowWidth);
