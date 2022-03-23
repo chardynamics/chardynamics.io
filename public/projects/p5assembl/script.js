@@ -31,8 +31,8 @@ function setup() {
 	}
 }
 
-var keys = [];
 var scene = 3;
+var keys = [];
 var angle = 0;
 var paused = false;
 var buttonHover = false;
@@ -86,6 +86,125 @@ var speed = {
     speed: 0.75,
     cost: 200,
     level: 1
+};
+
+function tankSpawn(tankVar, firing) {
+	tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+	
+	if(!paused){
+		if (keyIsPressed) {
+			 if(keys[65]) {
+				   if(tankVar.s >  (-2 * speed.speed)) {
+						tankVar.rot -= 3;
+						tankVar.rightW = false;
+						tankVar.leftW = true;
+				   }
+			 }
+			 if(keys[68]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot +=3;
+						tankVar.rightW = true;
+						tankVar.leftW = false;
+				   }
+			 }
+			 if(keys[87]) {
+				   if(tankVar.s <= (3 * speed.speed)) {
+						tankVar.s += tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(keys[83]) {
+				   if(tankVar.s > (-1.5 * speed.speed)) {
+						tankVar.s -= tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(!keys[87] && !keys[83]) {
+				   if(tankVar.s >= (0 * speed.speed)) {
+						tankVar.s -= 0.02 * speed.speed;
+				   }
+			 }
+			 if(keys[37]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot -=3;
+						tankVar.rightW = false;
+						tankVar.leftW = true;
+				   }
+			 }
+			 if(keys[39]) {
+				   if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot +=3;
+						tankVar.rightW = true;
+						tankVar.leftW = false;
+				   }
+			 }
+			 if(keys[38]) {
+				   if(tankVar.s <= (3 * speed.speed)) {
+						tankVar.s += tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(keys[40]) {
+				   if(tankVar.s >= (-1.5 * speed.speed)) {
+						tankVar.s -= tankVar.acc * speed.speed;
+				   }
+			 }
+			 if(!keys[38] && !keys[40]) {
+				   if(tankVar.s >= 0) {
+						tankVar.s -= 0.05 * speed.speed;
+				   } else if (tankVar.s <= 0) {
+						tankVar.s += 0.05 * speed.speed;
+				   }
+			 }
+			 if(tankVar.s === (3 * speed.speed)) {
+				   tankVar.s = 3 * speed.speed;
+			 } else if (tankVar.s === (-3 * speed.speed)) {
+				   tankVar.s = 3 * speed.speed;
+			 }
+		}
+	}
+
+	tankVar.x += cos(tankVar.rot)*tankVar.s;
+	tankVar.y += sin(tankVar.rot)*tankVar.s;
+   
+	tankVar.gx += cos(tankVar.rot)*tankVar.s;
+	tankVar.gy += sin(tankVar.rot)*tankVar.s;
+   
+	push();
+	
+	if (firing) {
+	   if ((!buttonHover)) {
+			 if(mouseIsPressed){
+				   if(reload == 0){
+						bullets.push(new bullet(car.x,car.y));
+						reload = reload2;
+				   }
+			 }
+			 if(keys[32]){
+				   if(reloadTime == 0){
+						bullets.push(new bullet(car.x,car.y));
+						reload = reload2;
+				   }
+			 }
+	   }
+	}
+   if (car.type === 1) {
+	   noStroke();
+	   translate(tankVar.x,tankVar.y);
+	   rotate(tankVar.rot+90);
+	   fill(0, 120, 0);
+	   rect(0,0,20,40,5);
+	   fill(50);
+	   rect(-12,0,5,35,5);
+	   rect(12,0,5,35,5);
+	   pop();
+	 
+	   push();
+	   noStroke();
+	   translate(tankVar.gx,tankVar.gy);
+	   rotate(-tankVar.grot-180);
+	   fill(0, 100, 0);
+	   rect(0,0,15,15,5);
+	   rect(0,-10,5,20,0);
+	   pop();
+   }
 };
 
 function intro() {
@@ -185,127 +304,7 @@ function menu() {
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 }
 
-function tankSpawn(tankVar, firing) {
-	tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
-	
-	if(!paused){
-		if (keyIsPressed) {
-			 if(keys[65]) {
-				   if(tankVar.s >  (-2 * speed.speed)) {
-						tankVar.rot -= 3;
-						tankVar.rightW = false;
-						tankVar.leftW = true;
-				   }
-			 }
-			 if(keys[68]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot +=3;
-						tankVar.rightW = true;
-						tankVar.leftW = false;
-				   }
-			 }
-			 if(keys[87]) {
-				   if(tankVar.s <= (3 * speed.speed)) {
-						tankVar.s += tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(keys[83]) {
-				   if(tankVar.s > (-1.5 * speed.speed)) {
-						tankVar.s -= tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(!keys[87] && !keys[83]) {
-				   if(tankVar.s >= (0 * speed.speed)) {
-						tankVar.s -= 0.02 * speed.speed;
-				   }
-			 }
-			 if(keys[37]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot -=3;
-						tankVar.rightW = false;
-						tankVar.leftW = true;
-				   }
-			 }
-			 if(keys[39]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot +=3;
-						tankVar.rightW = true;
-						tankVar.leftW = false;
-				   }
-			 }
-			 if(keys[38]) {
-				   if(tankVar.s <= (3 * speed.speed)) {
-						tankVar.s += tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(keys[40]) {
-				   if(tankVar.s >= (-1.5 * speed.speed)) {
-						tankVar.s -= tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(!keys[38] && !keys[40]) {
-				   if(tankVar.s >= 0) {
-						tankVar.s -= 0.05 * speed.speed;
-				   } else if (tankVar.s <= 0) {
-						tankVar.s += 0.05 * speed.speed;
-				   }
-			 }
-			 //if(tankVar.s < 0) {
-			 //     tankVar.s = 0;
-			 //}
-			 if(tankVar.s === (3 * speed.speed)) {
-				   tankVar.s = 3 * speed.speed;
-			 } else if (tankVar.s === (-3 * speed.speed)) {
-				   tankVar.s = 3 * speed.speed;
-			 }
-		}
-	}
 
-	tankVar.x += cos(tankVar.rot)*tankVar.s;
-	tankVar.y += sin(tankVar.rot)*tankVar.s;
-   
-	tankVar.gx += cos(tankVar.rot)*tankVar.s;
-	tankVar.gy += sin(tankVar.rot)*tankVar.s;
-   
-	push();
-	
-	if (firing) {
-	   if ((!buttonHover)) {
-			 if(mouseIsPressed){
-				   if(reload == 0){
-						bullets.push(new bullet(car.x,car.y));
-						reload = reload2;
-				   }
-			 }
-			 if(keys[32]){
-				   if(reloadTime == 0){
-						bullets.push(new bullet(car.x,car.y));
-						reload = reload2;
-				   }
-			 }
-	   }
-	}
-   if (car.type === 1) {
-	   noStroke();
-	   translate(tankVar.x,tankVar.y);
-	   rotate(tankVar.rot+90);
-	   fill(0, 120, 0);
-	   rect(0,0,20,40,5);
-	   fill(50);
-	   rect(-12,0,5,35,5);
-	   rect(12,0,5,35,5);
-	   pop();
-	 
-	   push();
-	   noStroke();
-	   translate(tankVar.gx,tankVar.gy);
-	   rotate(-tankVar.grot-180);
-	   fill(0, 100, 0);
-	   rect(0,0,15,15,5);
-	   rect(0,-10,5,20,0);
-	   pop();
-   }
-};
 
 function levelOne() {
     background(0, 100, pulse.pulse);
