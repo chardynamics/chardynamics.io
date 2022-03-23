@@ -168,37 +168,6 @@ function tankSpawn(tankVar, firing, movement) {
 						tankVar.s -= 0.02 * speed.speed;
 					}
 				}
-				if(keys[37]) {
-					if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot -=3;
-						tankVar.rightW = false;
-						tankVar.leftW = true;
-					}
-				}
-				if(keys[39]) {
-					if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot +=3;
-						tankVar.rightW = true;
-						tankVar.leftW = false;
-					}
-				}
-				if(keys[38]) {
-					if(tankVar.s <= (3 * speed.speed)) {
-						tankVar.s += tankVar.acc * speed.speed;
-					}
-				}
-				if(keys[40]) {
-					if(tankVar.s >= (-1.5 * speed.speed)) {
-						tankVar.s -= tankVar.acc * speed.speed;
-					}
-				}
-				if(!keys[38] && !keys[40]) {
-					if(tankVar.s >= 0) {
-						tankVar.s -= 0.05 * speed.speed;
-					} else if (tankVar.s <= 0) {
-						tankVar.s += 0.05 * speed.speed;
-					}
-				}
 				if(tankVar.s === (3 * speed.speed)) {
 					tankVar.s = 3 * speed.speed;
 				} else if (tankVar.s === (-3 * speed.speed)) {
@@ -406,6 +375,7 @@ function levelOne() {
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 	tankSpawn(car, true, "wasd");
 	tankSpawn(car2, true, "arrow");
+
 }
 	
 function draw() {
