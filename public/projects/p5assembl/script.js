@@ -152,7 +152,7 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		}
 		if(keys[71]) {
 			if(keyY < windowHeight) {
-				keyYh++;
+				keyY++;
 			}
 		}
 		if(keys[72]) {
