@@ -376,6 +376,16 @@ function levelOne() {
 	tankSpawn(car, true, "wasd");
 	tankSpawn(car2, true, "arrow");
 
+	if(car.x < 25) {car.x = 25}
+	if(car.x > (p5WindowWidth - 25)) {car.x = (p5WindowWidth - 25)}
+	if(car.y < 25) {car.y = 25}
+	if(car.y > (windowHeight - 25)) {car.y = (windowHeight - 25)}
+
+	if(car2.x < 25) {car2.x = 25}
+	if(car2.x > (p5WindowWidth - 25)) {car2.x = (p5WindowWidth - 25)}
+	if(car2.y < 25) {car2.y = 25}
+	if(car2.y > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
+
 }
 	
 function draw() {
