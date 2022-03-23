@@ -794,16 +794,16 @@ function game() {
      }
 
     for (var i = 0; i < bullets.length; i ++) {
-     bullets[i].draw();
-     bx[i] = bullets[i].x;
-     by[i] = bullets[i].y;
-     ba[i] = bullets[i].a;
-     for (var j = 0; j < zombies.length; j++){
-          if(bullets[i].x > zx[j] - 15&&bullets[i].x < zx[j] + 15 && bullets[i].y > zy[j] - 15 && bullets[i].y < zy[j] + 15 && za[j]){bullets[i].a = false;}
-     }
-      if(bullets[i].x>width||bullets[i].x<0||bullets[i].y>height||bullets[i].y<0){rai(bullets,i);}
-}
-     push();
+        bullets[i].draw();
+        bx[i] = bullets[i].x;
+        by[i] = bullets[i].y;
+        ba[i] = bullets[i].a;
+        for (var j = 0; j < zombies.length; j++){
+            if(bullets[i].x > zx[j] - 15&&bullets[i].x < zx[j] + 15 && bullets[i].y > zy[j] - 15 && bullets[i].y < zy[j] + 15 && za[j]){bullets[i].a = false;}
+        }
+        if(bullets[i].x>width||bullets[i].x<0||bullets[i].y>height||bullets[i].y<0){rai(bullets,i);}
+    }
+    push();
     noStroke();
     translate(car.gx,car.gy);
     rotate(-car.grot-180);

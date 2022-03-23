@@ -43,6 +43,7 @@ var introBullet = {
 }
 
 var keys = [];
+var bullets = [];
 var scene = 3;
 var paused = false;
 var buttonHover = false;
@@ -88,10 +89,48 @@ var car = {
 	grotate: 0
 };
 
+var car2 = {
+    x:300,
+    y:300,
+    s:0,
+    rot:-90,
+    acc:0.1,
+    gx:300,
+    gy:300,
+    grot:0,
+    rightW:false,
+    leftW:false,
+    type:1,
+}
+
 var speed = {
     speed: 0.75,
     cost: 200,
     level: 1
+};
+
+function bullet(x, y) {
+	this.x = x;
+	this.y = y;
+	this.rot = 0;
+	this.rot = -car.grot+90;
+	this.a = true;
+};
+
+bullet.prototype.draw = function() {
+	if(this.a){
+	fill(255,0,0);
+	push();
+	translate(this.x,this.y);
+	rotate(this.rot);
+	fill(100, 100, 100, 50);
+	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
+	fill(158, 60, 14);
+	triangle(-4.5, 3, 10, 0, -4.5, -3);
+	pop();
+	this.x += cos(this.rot)*bSpeed;
+	this.y += sin(this.rot)*bSpeed;
+	}
 };
 
 function tankSpawn(tankVar, firing) {
@@ -99,71 +138,110 @@ function tankSpawn(tankVar, firing) {
 	
 	if(!paused){
 		if (keyIsPressed) {
-			 if(keys[65]) {
-				   if(tankVar.s >  (-2 * speed.speed)) {
+			if (tankVar.keys == 1) {
+				if(keys[65]) {
+					if(tankVar.s >  (-2 * speed.speed)) {
 						tankVar.rot -= 3;
 						tankVar.rightW = false;
 						tankVar.leftW = true;
-				   }
-			 }
-			 if(keys[68]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
+					}
+				}
+				if(keys[68]) {
+					if(tankVar.s > (-2 * speed.speed)) {
 						tankVar.rot +=3;
 						tankVar.rightW = true;
 						tankVar.leftW = false;
-				   }
-			 }
-			 if(keys[87]) {
-				   if(tankVar.s <= (3 * speed.speed)) {
+					}
+				}
+				if(keys[87]) {
+					if(tankVar.s <= (3 * speed.speed)) {
 						tankVar.s += tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(keys[83]) {
-				   if(tankVar.s > (-1.5 * speed.speed)) {
+					}
+				}
+				if(keys[83]) {
+					if(tankVar.s > (-1.5 * speed.speed)) {
 						tankVar.s -= tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(!keys[87] && !keys[83]) {
-				   if(tankVar.s >= (0 * speed.speed)) {
+					}
+				}
+				if(!keys[87] && !keys[83]) {
+					if(tankVar.s >= (0 * speed.speed)) {
 						tankVar.s -= 0.02 * speed.speed;
-				   }
-			 }
-			 if(keys[37]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
+					}
+				}
+				if(keys[37]) {
+					if(tankVar.s > (-2 * speed.speed)) {
 						tankVar.rot -=3;
 						tankVar.rightW = false;
 						tankVar.leftW = true;
-				   }
-			 }
-			 if(keys[39]) {
-				   if(tankVar.s > (-2 * speed.speed)) {
+					}
+				}
+				if(keys[39]) {
+					if(tankVar.s > (-2 * speed.speed)) {
 						tankVar.rot +=3;
 						tankVar.rightW = true;
 						tankVar.leftW = false;
-				   }
-			 }
-			 if(keys[38]) {
-				   if(tankVar.s <= (3 * speed.speed)) {
+					}
+				}
+				if(keys[38]) {
+					if(tankVar.s <= (3 * speed.speed)) {
 						tankVar.s += tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(keys[40]) {
-				   if(tankVar.s >= (-1.5 * speed.speed)) {
+					}
+				}
+				if(keys[40]) {
+					if(tankVar.s >= (-1.5 * speed.speed)) {
 						tankVar.s -= tankVar.acc * speed.speed;
-				   }
-			 }
-			 if(!keys[38] && !keys[40]) {
-				   if(tankVar.s >= 0) {
+					}
+				}
+				if(!keys[38] && !keys[40]) {
+					if(tankVar.s >= 0) {
 						tankVar.s -= 0.05 * speed.speed;
-				   } else if (tankVar.s <= 0) {
+					} else if (tankVar.s <= 0) {
 						tankVar.s += 0.05 * speed.speed;
-				   }
-			 }
-			 if(tankVar.s === (3 * speed.speed)) {
-				   tankVar.s = 3 * speed.speed;
-			 } else if (tankVar.s === (-3 * speed.speed)) {
-				   tankVar.s = 3 * speed.speed;
-			 }
+					}
+				}
+				if(tankVar.s === (3 * speed.speed)) {
+					tankVar.s = 3 * speed.speed;
+				} else if (tankVar.s === (-3 * speed.speed)) {
+					tankVar.s = 3 * speed.speed;
+				}
+			} else {
+				if(keys[37]) {
+					if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot -=3;
+						tankVar.rightW = false;
+						tankVar.leftW = true;
+					}
+				}
+				if(keys[39]) {
+					if(tankVar.s > (-2 * speed.speed)) {
+						tankVar.rot +=3;
+						tankVar.rightW = true;
+						tankVar.leftW = false;
+					}
+				}
+				if(keys[38]) {
+					if(tankVar.s <= (3 * speed.speed)) {
+						tankVar.s += tankVar.acc * speed.speed;
+					}
+				}
+				if(keys[40]) {
+					if(tankVar.s >= (-1.5 * speed.speed)) {
+						tankVar.s -= tankVar.acc * speed.speed;
+					}
+				}
+				if(!keys[38] && !keys[40]) {
+					if(tankVar.s >= 0) {
+						tankVar.s -= 0.05 * speed.speed;
+					} else if (tankVar.s <= 0) {
+						tankVar.s += 0.05 * speed.speed;
+					}
+				}
+				if(tankVar.s === (3 * speed.speed)) {
+					tankVar.s = 3 * speed.speed;
+				} else if (tankVar.s === (-3 * speed.speed)) {
+					tankVar.s = 3 * speed.speed;
+				}
+			}
 		}
 	}
 
@@ -327,6 +405,7 @@ function levelOne() {
 	fill(52, 140, 49);
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 	tankSpawn(car, true);
+
 }
 	
 function draw() {
