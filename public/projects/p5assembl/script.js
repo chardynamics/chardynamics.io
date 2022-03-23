@@ -133,12 +133,12 @@ bullet.prototype.draw = function() {
 	}
 };
 
-function tankSpawn(tankVar, firing) {
+function tankSpawn(tankVar, firing, movement) {
 	tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
 	
 	if(!paused){
 		if (keyIsPressed) {
-			if (tankVar.keys == 1) {
+			if (movement === "wasd") {
 				if(keys[65]) {
 					if(tankVar.s >  (-2 * speed.speed)) {
 						tankVar.rot -= 3;
@@ -404,8 +404,8 @@ function levelOne() {
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-	tankSpawn(car, true);
-
+	tankSpawn(car, true, "wasd");
+	tankSpawn(car2, true, "arrow");
 }
 	
 function draw() {
