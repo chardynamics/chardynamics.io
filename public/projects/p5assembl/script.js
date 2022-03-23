@@ -142,7 +142,7 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		tankVar.grot = atan2(keyX-tankVar.x,keyY-tankVar.y);
 		if(keys[84]) {
 			if(keyY > 0) {
-				keyX++;
+				keyY--;
 			}
 		}
 		if(keys[70]) {
@@ -152,7 +152,7 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		}
 		if(keys[71]) {
 			if(keyY < windowHeight) {
-				keyY--;
+				keyYh++;
 			}
 		}
 		if(keys[72]) {
@@ -161,8 +161,8 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 			}
 		}
 		fill(0);
-		rect(keyX, keyY, 50, 20);
-		rect(keyX, keyY, 20, 50);
+		rect(keyX, keyY, 5, 10);
+		rect(keyX, keyY, 10, 5);
 	}
 	
 	if(!paused){
