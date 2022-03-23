@@ -31,13 +31,27 @@ function setup() {
 	}
 }
 
-var scene = 3;
+//Intro Variables
+var introAngle = 0;
+
+var introBullet = {
+	timeLine: 454,
+	timeLineVel: 1,
+	textCover: -864,
+	soundBarrier: 0,
+	bulletVisible: 0,
+}
+
 var keys = [];
-var angle = 0;
+var scene = 3;
 var paused = false;
 var buttonHover = false;
-var reload = 0;
-var reload2 = 0;
+
+var reload = {
+	rate: 5,
+	max: 60,
+	var: 0,
+};
 
 function keyPressed() {
 	keys[keyCode] = true;
@@ -55,14 +69,6 @@ var fade = {
 var pulse = {
 	pulse: 200,
 	rate: 5,
-}
-
-var bullet = {
-	timeLine: 454,
-	timeLineVel: 1,
-	textCover: -864,
-	soundBarrier: 0,
-	bulletVisible: 0,
 }
 
 var car = {
@@ -172,20 +178,30 @@ function tankSpawn(tankVar, firing) {
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
-				   if(reload == 0){
+				   if(reloadTime.var == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reload = reload2;
+						reloadTime.var = reloadTime.max;
 				   }
 			 }
 			 if(keys[32]){
-				   if(reloadTime == 0){
+				   if(reloadTime.var == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reload = reload2;
+						reloadTime.var = reloadTime.max;
 				   }
 			 }
 	   }
 	}
-   if (car.type === 1) {
+
+	if (reloadTime > 0) {
+		if ((reloadTime - reloadTime.rate) >= 0) {
+			reloadTime -= reloadTime.rate;
+		} else {
+			reloadTime = 0;
+		}
+	}
+
+	//Tank skins
+   if (car.type == 1) {
 	   noStroke();
 	   translate(tankVar.x,tankVar.y);
 	   rotate(tankVar.rot+90);
@@ -208,7 +224,7 @@ function tankSpawn(tankVar, firing) {
 };
 
 function intro() {
-	angle += 5;
+	introAngle += 5;
 	
 	if (car.y > 210) {
 		car.y -= 1;
@@ -221,18 +237,18 @@ function intro() {
         	car.grotate += 1;
 	}
 	if (car.grotate == 90) {
-		bullet.bulletVisible = 255;
-		if (bullet.timeLine <= 1525) {
-			bullet.timeLine += 8;
+		introBullet.bulletVisible = 255;
+		if (introBullet.timeLine <= 1525) {
+			introBullet.timeLine += 8;
 		}
-		if ((bullet.timeLine >= 497) && (bullet.soundBarrier < 50)) {
-			bullet.soundBarrier += 5;
+		if ((introBullet.timeLine >= 497) && (introBullet.soundBarrier < 50)) {
+			introBullet.soundBarrier += 5;
 		}
 	}
-	if ((bullet.timeLine >= 536) && (bullet.textCover < 0)) {
-		bullet.textCover += 8;
+	if ((introBullet.timeLine >= 536) && (introBullet.textCover < 0)) {
+		introBullet.textCover += 8;
 	}
-	if ((bullet.timeLine >= 1525) && (fade.opp < 255)) {
+	if ((introBullet.timeLine >= 1525) && (fade.opp < 255)) {
 		fade.opp += 2.5;
 	}
 	
@@ -244,17 +260,17 @@ function intro() {
 	text("roductions", 1100 * scaleResolution, 577.5 * scaleResolution);
 	push();
 	translate(150 * scaleResolution, 730 * scaleResolution);
-	rotate(angle);
+	rotate(introAngle);
 	fill(-pulse.pulse, pulse.pulse, pulse.pulse + 100);
 	rect(0, 0, 125 * scaleResolution, 125 * scaleResolution, 15*scaleResolution);
 	pop();
 	textSize(75 * scaleResolution);
 	text("X", 150 * scaleResolution, 725 * scaleResolution);
 	push();
-	translate(bullet.timeLine * scaleResolution, 716 * scaleResolution);
-	fill(100, 100, 100, bullet.soundBarrier);
+	translate(introBullet.timeLine * scaleResolution, 716 * scaleResolution);
+	fill(100, 100, 100, introBullet.soundBarrier);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14, bullet.bulletVisible);
+	fill(158, 60, 14, introBullet.bulletVisible);
 	triangle(2, 27.5, 45, 17.5, 2, 10);
 	pop();
 	push();
@@ -304,8 +320,6 @@ function menu() {
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 }
 
-
-
 function levelOne() {
     background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
@@ -316,10 +330,6 @@ function levelOne() {
 }
 	
 function draw() {
-	pulse.pulse -= pulse.rate;
-	if(pulse.pulse<125){pulse.rate = -1;}
-	if(pulse.pulse>225){pulse.rate = 1;}
-    
 	if (scene == 1) {
 		intro();
 	} else if (scene == 2) {
@@ -329,7 +339,15 @@ function draw() {
 	}
 	
 	debug();
+	pulseMath();
 }
+
+function pulseMath() {
+	pulse.pulse -= pulse.rate;
+	if(pulse.pulse<125){pulse.rate = -1;}
+	if(pulse.pulse>225){pulse.rate = 1;}
+}
+
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
@@ -337,6 +355,7 @@ function debug() {
 	text(p5WindowWidth, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
 }
+
 function windowResized() {
 	p5WindowWidth = windowHeight * (16/9);
 	Math.floor(p5WindowWidth);
