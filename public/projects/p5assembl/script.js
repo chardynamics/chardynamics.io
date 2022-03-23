@@ -178,25 +178,25 @@ function tankSpawn(tankVar, firing) {
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
-				   if(reloadTime.var == 0){
+				   if(reload.var == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reloadTime.var = reloadTime.max;
+						reload.var = reload.max;
 				   }
 			 }
 			 if(keys[32]){
-				   if(reloadTime.var == 0){
+				   if(reload.var == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reloadTime.var = reloadTime.max;
+						reload.var = reload.max;
 				   }
 			 }
 	   }
 	}
 
-	if (reloadTime > 0) {
-		if ((reloadTime - reloadTime.rate) >= 0) {
-			reloadTime -= reloadTime.rate;
+	if (reload.var > 0) {
+		if ((reload.var - reload.rate) >= 0) {
+			reload -= reload.rate;
 		} else {
-			reloadTime = 0;
+			reload.var = 0;
 		}
 	}
 
