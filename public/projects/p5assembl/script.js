@@ -36,6 +36,8 @@ var scene = 3;
 var angle = 0;
 var paused = false;
 var buttonHover = false;
+var reload = 0;
+var reload2 = 0;
 
 function keyPressed() {
 	keys[keyCode] = true;
@@ -78,6 +80,12 @@ var car = {
     deaths:0,
 	rotate: 0,
 	grotate: 0
+};
+
+var speed = {
+    speed: 0.75,
+    cost: 200,
+    level: 1
 };
 
 function intro() {
@@ -251,9 +259,6 @@ function tankSpawn(tankVar, firing) {
 				   tankVar.s = 3 * speed.speed;
 			 }
 		}
-	} else {
-	   tankVar.rightW = false;
-	   tankVar.leftW = false;
 	}
 
 	tankVar.x += cos(tankVar.rot)*tankVar.s;
@@ -267,15 +272,15 @@ function tankSpawn(tankVar, firing) {
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
-				   if(reloadTime == 0){
+				   if(reload == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reloadTime = reloadTime2;
+						reload = reload2;
 				   }
 			 }
 			 if(keys[32]){
 				   if(reloadTime == 0){
 						bullets.push(new bullet(car.x,car.y));
-						reloadTime = reloadTime2;
+						reload = reload2;
 				   }
 			 }
 	   }
@@ -294,37 +299,6 @@ function tankSpawn(tankVar, firing) {
 	   push();
 	   noStroke();
 	   translate(tankVar.gx,tankVar.gy);
-	   rotate(-tankVar.grot-180);
-	   fill(0, 100, 0);
-	   rect(0,0,15,15,5);
-	   rect(0,-10,5,20,0);
-	   pop();
-   } else {
-	   push();
-	   translate(tankVar.x,tankVar.y);
-	   
-	   if ((tankVar.rightW === false) && (tankVar.leftW === true)) {
-		   rotate(tankVar.rot+86);
-	   } 
-	   if ((tankVar.rightW === true) && (tankVar.leftW === false)) {
-		   rotate(tankVar.rot+94);
-	   }
-   
-	   fill(50);
-	   rect(-12.0,-9,5,13,5);
-	   rect(12.0,-9,5,13,5);
-	   pop();
-	   push();
-	   translate(tankVar.x,tankVar.y);
-	   rotate(tankVar.rot+90);
-	   fill(50);
-	   rect(-12,10,5,13,5);
-	   rect(12,10,5,13,5);
-	   fill(0, 120, 0);
-	   rect(0,0,20,40,5);
-	   pop();
-	   push();
-	   translate(tankVar.x,tankVar.y);
 	   rotate(-tankVar.grot-180);
 	   fill(0, 100, 0);
 	   rect(0,0,15,15,5);
