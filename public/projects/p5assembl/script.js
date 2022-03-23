@@ -391,17 +391,17 @@ function intro() {
 function menu() {
     background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
-	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
-	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 }
 
 function levelOne() {
     background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
-	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
-	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 	tankSpawn(car, true, "wasd", "keys");
 	tankSpawn(car2, true, "arrow", "mouse");
 
@@ -423,9 +423,7 @@ function levelOne() {
 	if(car2.gx < 25) {car2.x = 25}
 	if(car2.gx > (p5WindowWidth - 25)) {car2.x = (p5WindowWidth - 25)}
 	if(car2.gy < 25) {car2.y = 25}
-	if(car2.g
-		
-		?.l;:y > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
+	if(car2.gy > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
 
 }
 	
