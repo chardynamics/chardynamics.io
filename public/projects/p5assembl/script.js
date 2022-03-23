@@ -42,6 +42,8 @@ var introBullet = {
 	bulletVisible: 0,
 }
 
+var keyX = 300;
+var keyY = 300;
 var keys = [];
 var bullets = [];
 var scene = 3;
@@ -73,7 +75,7 @@ var pulse = {
 }
 
 var car = {
-    x:300,
+    x:600,
     y:300,
     s:0,
     rot:-90,
@@ -133,12 +135,38 @@ bullet.prototype.draw = function() {
 	}
 };
 
-function tankSpawn(tankVar, firing, movement) {
-	tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+function tankSpawn(tankVar, firing, control, aimControl) {
+	if (aimControl === "mouse") {
+		tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+	} else {
+		tankVar.grot = atan2(keyX-tankVar.x,keyY-tankVar.y);
+		if(keys[84]) {
+			if(keyY > 0) {
+				keyX++;
+			}
+		}
+		if(keys[70]) {
+			if(keyX > 0) {
+				keyX--;
+			}
+		}
+		if(keys[71]) {
+			if(keyY < windowHeight) {
+				keyY--;
+			}
+		}
+		if(keys[72]) {
+			if(keyX < p5WindowWidth) {
+				keyX++;
+			}
+		}
+		fill(0);
+		rect(keyX, keyY, 10, 10);
+	}
 	
 	if(!paused){
 		if (keyIsPressed) {
-			if (movement === "wasd") {
+			if (control === "wasd") {
 				if(keys[65]) {
 					if(tankVar.s >  (-2 * speed.speed)) {
 						tankVar.rot -= 3;
@@ -267,7 +295,7 @@ function tankSpawn(tankVar, firing, movement) {
 	   rect(0,0,15,15,5);
 	   rect(0,-10,5,20,0);
 	   pop();
-   }
+   	}
 };
 
 function intro() {
@@ -373,8 +401,8 @@ function levelOne() {
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
 	rect(windowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-	tankSpawn(car, true, "wasd");
-	tankSpawn(car2, true, "arrow");
+	tankSpawn(car, true, "wasd", "mouse");
+	tankSpawn(car2, true, "arrow", "keys");
 
 	if(car.x < 25) {car.x = 25}
 	if(car.x > (p5WindowWidth - 25)) {car.x = (p5WindowWidth - 25)}
