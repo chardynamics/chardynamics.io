@@ -80,7 +80,7 @@ var car = {
     s:0,
     rot:-90,
     acc:0.1,
-    gx:300,
+    gx:600,
     gy:300,
     grot:0,
     rightW:false,
