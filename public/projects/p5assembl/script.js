@@ -161,7 +161,7 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 			}
 		}
 		fill(0);
-		rect(keyX, keyY, 10, 10);
+		rect(keyX, keyY, 10, 30);
 	}
 	
 	if(!paused){
