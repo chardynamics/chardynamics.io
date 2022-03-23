@@ -142,27 +142,27 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		tankVar.grot = atan2(keyX-tankVar.x,keyY-tankVar.y);
 		if(keys[84]) {
 			if(keyY > 0) {
-				keyY--;
+				keyY -= 5;
 			}
 		}
 		if(keys[70]) {
 			if(keyX > 0) {
-				keyX--;
+				keyX -= 5;
 			}
 		}
 		if(keys[71]) {
 			if(keyY < windowHeight) {
-				keyY++;
+				keyY += 5;
 			}
 		}
 		if(keys[72]) {
 			if(keyX < p5WindowWidth) {
-				keyX++;
+				keyX += 5;
 			}
 		}
 		fill(0);
-		rect(keyX, keyY, 5, 10);
-		rect(keyX, keyY, 10, 5);
+		rect(keyX, keyY, 5, 25);
+		rect(keyX, keyY, 25, 5);
 	}
 	
 	if(!paused){
