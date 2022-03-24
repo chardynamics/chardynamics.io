@@ -29,6 +29,7 @@ function setup() {
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
+	genWalls();
 }
 
 //Intro Variables
@@ -114,27 +115,17 @@ var speed = {
 var walls = [];
 walls.length = 10;
 
-function genWalls(width, height) {
-	for (let i = 0; i < walls.length; i++) {
-		let x = 25 + Math.floor((Math.random() * 100) + 1);
-		let y = 25 + Math.floor((Math.random() * 100) + 1);
-		walls[i] = new wall(x, y, 20, 20);
-	}
-}
-
 class wall {
-	var x;
-	var y;
-	var w;
-	var h;
-	
 	constructor(varX, varY, varW, varH) {
-		x = this.varX;
-		y = this.varY;
-		w = this.varW;
-		h = this.varH;
+		this.varX = varX;
+		this.varY = varY;
+		this.varW = varW;
+		this.varH = varH;
 	}
-
+	draw() {
+		fill(0);
+		rect(this.varX, this.varY, this.varW, this.varH);
+	}
 }
 
 function bullet(x, y) {
@@ -160,6 +151,14 @@ bullet.prototype.draw = function() {
 	this.y += sin(this.rot)*bSpeed;
 	}
 };
+
+function genWalls() {
+	for (let i = 0; i < walls.length; i++) {
+		let x = (Math.floor(Math.random() * 200)) + 10;
+		let y = (Math.floor(Math.random() * 200)) + 10;
+		walls.splice(i, 0, new wall(x, y, 20, 20));
+	}
+}
 
 function tankSpawn(tankVar, firing, control, aimControl) {
 	if (aimControl === "mouse") {
@@ -462,6 +461,7 @@ function draw() {
 		levelOne();
 	}
 	
+
 	debug();
 	pulseMath();
 }
