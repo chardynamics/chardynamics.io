@@ -19,6 +19,9 @@ var introBullet = {
 	bulletVisible: 0,
 }
 
+//End
+
+var walls = [];
 var keyX = 300;
 var keyY = 300;
 var keys = [];
@@ -424,6 +427,11 @@ function levelOne() {
 	tankSpawn(car, true, "wasd", "keys");
 	tankSpawn(car2, true, "arrow", "mouse");
 
+	for (let i = 0; i < walls.length; i++) {
+		let wallsArr = walls[i];
+		wallsArr.draw();
+	}
+
 	if(car.x < 25) {car.x = 25}
 	if(car.x > (p5WindowWidth - 25)) {car.x = (p5WindowWidth - 25)}
 	if(car.y < 25) {car.y = 25}
@@ -443,7 +451,6 @@ function levelOne() {
 	if(car2.gx > (p5WindowWidth - 25)) {car2.gx = (p5WindowWidth - 25)}
 	if(car2.gy < 25) {car2.gy = 25}
 	if(car2.gy > (windowHeight - 25)) {car2.gy = (windowHeight - 25)}
-
 }
 	
 function draw() {
