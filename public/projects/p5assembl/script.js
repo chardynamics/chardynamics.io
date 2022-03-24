@@ -8,31 +8,6 @@ function preload() {
 var p5WindowWidth;
 var scaleResolution;
 
-function setup() {
-	//probably should find a better solution
-	p5WindowWidth = windowHeight * (16/9);
-	Math.floor(p5WindowWidth);	
-	scaleResolution = windowHeight/853;
-    
-	var canvas = createCanvas(p5WindowWidth, windowHeight);
-	canvas.style('margin', 'auto');
-	//canvas.style('border-style', 'none solid solid');
-	canvas.parent('script-holder');
-	
-	rectMode(CENTER);
-	textAlign(CENTER, CENTER);
-	textFont(arialBold);
-	angleMode(DEGREES);
-	noStroke();
-	
-	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
-	for (var i = 0; i < privacyBanner.length; i++) {
-		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
-	}
-	walls.length = 10;
-	genWalls();
-}
-
 //Intro Variables
 var introAngle = 0;
 
@@ -113,8 +88,6 @@ var speed = {
     level: 1
 };
 
-var walls = [];
-
 class wall {
 	constructor(varX, varY, varW, varH) {
 		this.varX = varX;
@@ -152,8 +125,29 @@ bullet.prototype.draw = function() {
 	}
 };
 
-function genWalls() {
-	for (let i = 0; i < 10; i++) {
+function setup() {
+	//probably should find a better solution
+	p5WindowWidth = windowHeight * (16/9);
+	Math.floor(p5WindowWidth);	
+	scaleResolution = windowHeight/853;
+    
+	var canvas = createCanvas(p5WindowWidth, windowHeight);
+	canvas.style('margin', 'auto');
+	//canvas.style('border-style', 'none solid solid');
+	canvas.parent('script-holder');
+	
+	rectMode(CENTER);
+	textAlign(CENTER, CENTER);
+	textFont(arialBold);
+	angleMode(DEGREES);
+	noStroke();
+	
+	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
+	for (var i = 0; i < privacyBanner.length; i++) {
+		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
+	}
+	walls.length = 10;
+	for (let i = 0; i < walls.length; i++) {
 		let x = (Math.floor(Math.random() * 200)) + 10;
 		let y = (Math.floor(Math.random() * 200)) + 10;
 		walls.splice(i, 0, new wall(x, y, 20, 20));
