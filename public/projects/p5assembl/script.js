@@ -20,8 +20,6 @@ var introBullet = {
 }
 
 //End
-
-var walls = [];
 var keyX = 300;
 var keyY = 300;
 var keys = [];
@@ -91,19 +89,6 @@ var speed = {
     level: 1
 };
 
-class wall {
-	constructor(varX, varY, varW, varH) {
-		this.varX = varX;
-		this.varY = varY;
-		this.varW = varW;
-		this.varH = varH;
-	}
-	draw() {
-		fill(0);
-		rect(this.varX, this.varY, this.varW, this.varH);
-	}
-}
-
 function bullet(x, y) {
 	this.x = x;
 	this.y = y;
@@ -128,6 +113,20 @@ bullet.prototype.draw = function() {
 	}
 };
 
+var walls = [];
+class wall {
+	constructor(varX, varY, varW, varH) {
+		this.varX = varX;
+		this.varY = varY;
+		this.varW = varW;
+		this.varH = varH;
+	}
+	draw() {
+		fill(0);
+		rect(this.varX, this.varY, this.varW, this.varH);
+	}
+}
+
 function setup() {
 	//probably should find a better solution
 	p5WindowWidth = windowHeight * (16/9);
@@ -149,8 +148,7 @@ function setup() {
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
-	walls.length = 10;
-	for (let i = 0; i < walls.length; i++) {
+	for (let i = 0; i < 5; i++) {
 		let x = (Math.floor(Math.random() * 200)) + 10;
 		let y = (Math.floor(Math.random() * 200)) + 10;
 		walls.splice(i, 0, new wall(x, y, 20, 20));
@@ -427,7 +425,7 @@ function levelOne() {
 	tankSpawn(car, true, "wasd", "keys");
 	tankSpawn(car2, true, "arrow", "mouse");
 
-	for (let i = 0; i < walls.length; i++) {
+	for (let i = 0; i < 5; i++) {
 		let wallsArr = walls[i];
 		wallsArr.draw();
 	}
