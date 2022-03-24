@@ -153,7 +153,7 @@ bullet.prototype.draw = function() {
 };
 
 function genWalls() {
-	for (let i = 0; i < walls.length; i++) {
+	for (let i = 20; i < walls.length; i++) {
 		let x = (Math.floor(Math.random() * 200)) + 10;
 		let y = (Math.floor(Math.random() * 200)) + 10;
 		walls.splice(i, 0, new wall(x, y, 20, 20));
