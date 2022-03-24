@@ -111,6 +111,32 @@ var speed = {
     level: 1
 };
 
+var walls = [];
+walls.length = 10;
+
+function genWalls(width, height) {
+	for (let i = 0; i < walls.length; i++) {
+		let x = 25 + Math.floor((Math.random() * 100) + 1);
+		let y = 25 + Math.floor((Math.random() * 100) + 1);
+		walls[i] = new wall(x, y, 20, 20);
+	}
+}
+
+class wall {
+	var x;
+	var y;
+	var w;
+	var h;
+	
+	constructor(varX, varY, varW, varH) {
+		x = this.varX;
+		y = this.varY;
+		w = this.varW;
+		h = this.varH;
+	}
+
+}
+
 function bullet(x, y) {
 	this.x = x;
 	this.y = y;
@@ -371,7 +397,7 @@ function intro() {
 	text("...and more", 1010 * scaleResolution, 715 * scaleResolution);
 	rectMode(CORNER);
 	fill(0);
-	rect(1445  * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
+	rect(1445 * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
 	rectMode(CENTER);
 	
 	if (fade.fade > 0) {
@@ -420,10 +446,10 @@ function levelOne() {
 	if(car2.y < 25) {car2.y = 25}
 	if(car2.y > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
 
-	if(car2.gx < 25) {car2.x = 25}
-	if(car2.gx > (p5WindowWidth - 25)) {car2.x = (p5WindowWidth - 25)}
-	if(car2.gy < 25) {car2.y = 25}
-	if(car2.gy > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
+	if(car2.gx < 25) {car2.gx = 25}
+	if(car2.gx > (p5WindowWidth - 25)) {car2.gx = (p5WindowWidth - 25)}
+	if(car2.gy < 25) {car2.gy = 25}
+	if(car2.gy > (windowHeight - 25)) {car2.gy = (windowHeight - 25)}
 
 }
 	
