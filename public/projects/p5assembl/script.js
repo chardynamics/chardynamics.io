@@ -10,7 +10,7 @@ var scaleResolution;
 
 //Intro Variables
 var introAngle = 0;
-
+var collide = false;
 var introBullet = {
 	timeLine: 454,
 	timeLineVel: 1,
@@ -121,8 +121,15 @@ class wall {
 		this.varW = varW;
 		this.varH = varH;
 	}
+	collision(carX, carY, carW, carH) {
+		collision(carX, carY, carW, carH, this.varX, this.varY, this.varW, varH);
+	}
 	draw() {
-		fill(0);
+		if (collide) {
+			fill(0);
+		} else {
+			fill(100);
+		}
 		rect(this.varX, this.varY, this.varW, this.varH);
 	}
 }
@@ -425,9 +432,14 @@ function levelOne() {
 	tankSpawn(car, true, "wasd", "keys");
 	tankSpawn(car2, true, "arrow", "mouse");
 
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < walls.length; i++) {
 		let wallsArr = walls[i];
 		wallsArr.draw();
+	}
+
+	for (let i = 0; i < walls.length; i++) {
+		let wallsArr = walls[i];
+		wallsArr.collision(car.x, car.y, 30, 40);
 	}
 
 	if(car.x < 25) {car.x = 25}
@@ -450,6 +462,37 @@ function levelOne() {
 	if(car2.gy < 25) {car2.gy = 25}
 	if(car2.gy > (windowHeight - 25)) {car2.gy = (windowHeight - 25)}
 }
+
+function collision(x, y, w, h, wx, wy, ww, wh) {
+	let halfW = w/2;
+	let halfH = h/2;
+	let o1x = x - halfW;
+	let o1y = y - halfH;
+	let o2x = x + halfW;
+	let o2y = y - halfH;
+	let o3x = x - halfW;
+	let o3y = y + halfH;
+	let o4x = x + halfW;
+	let o4y = x + halfY;
+
+	let tHalfW = ww/2;
+	let tHalfH = wh/2;
+
+	let t1x = x - tHalfW;
+	let t1y = y - tHalfH;
+	let t2x = x + tHalfW;
+	let t2y = y - tHalfH;
+	let t3x = x - tHalfW;
+	let t3y = y + tHalfH;
+	let t4x = x + tHalfW;
+	let t4y = x + tHalfH;
+
+	if (t1x > o1x && t1y > o1y && t2x < o1x && t2y > o2y && t3x > o3x && t3y < o3y && t4x < o4y && t4y < o4y) {
+		collide = true;
+	} else {
+		collide = false;
+	}
+}
 	
 function draw() {
 	if (scene == 1) {
@@ -459,7 +502,6 @@ function draw() {
 	} else if (scene == 3) {
 		levelOne();
 	}
-	
 
 	debug();
 	pulseMath();
@@ -474,8 +516,8 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	text(windowWidth, mouseX + 125, mouseY);
-	text(p5WindowWidth, mouseX + 125, mouseY + 20);
+	text(mouseX, mouseX + 125, mouseY);
+	text(mouseY, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
 }
 
