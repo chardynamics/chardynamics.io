@@ -126,7 +126,7 @@ class wall {
 		collision(this.varX, this.varY, this.varW, this.varH, carX, carY, carW, carH);
 	}
 	draw() {
-		if (varCol) {
+		if (this.varCol) {
 			fill(0);
 		} else {
 			fill(100);
