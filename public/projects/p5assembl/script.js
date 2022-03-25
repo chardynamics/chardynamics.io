@@ -478,14 +478,14 @@ function collision(x, y, w, h, wx, wy, ww, wh) {
 	let tHalfW = ww/2;
 	let tHalfH = wh/2;
 
-	let t1x = x - tHalfW;
-	let t1y = y - tHalfH;
-	let t2x = x + tHalfW;
-	let t2y = y - tHalfH;
-	let t3x = x - tHalfW;
-	let t3y = y + tHalfH;
-	let t4x = x + tHalfW;
-	let t4y = x + tHalfH;
+	let t1x = wx - tHalfW;
+	let t1y = wy - tHalfH;
+	let t2x = wx + tHalfW;
+	let t2y = wy - tHalfH;
+	let t3x = wx - tHalfW;
+	let t3y = wy + tHalfH;
+	let t4x = wx + tHalfW;
+	let t4y = wx + tHalfH;
 
 	console.log("halfW = " + halfW);
 	console.log("t3y = " + t3y);
