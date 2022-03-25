@@ -115,17 +115,18 @@ bullet.prototype.draw = function() {
 
 var walls = [];
 class wall {
-	constructor(varX, varY, varW, varH) {
+	constructor(varX, varY, varW, varH, varCol) {
 		this.varX = varX;
 		this.varY = varY;
 		this.varW = varW;
 		this.varH = varH;
+		this.varCol = varCol;
 	}
 	collision(carX, carY, carW, carH) {
 		collision(this.varX, this.varY, this.varW, this.varH, carX, carY, carW, carH);
 	}
 	draw() {
-		if (collide) {
+		if (varCol) {
 			fill(0);
 		} else {
 			fill(100);
@@ -158,7 +159,7 @@ function setup() {
 	for (let i = 0; i < 5; i++) {
 		let x = (Math.floor(Math.random() * 200)) + 10;
 		let y = (Math.floor(Math.random() * 200)) + 10;
-		walls.splice(i, 0, new wall(x, y, 20, 20));
+		walls.splice(i, 0, new wall(x, y, 20, 20, false));
 	}
 }
 
@@ -434,12 +435,17 @@ function levelOne() {
 
 	for (let i = 0; i < walls.length; i++) {
 		let wallsArr = walls[i];
-		wallsArr.draw();
+		let wallsArrCol = wallsArr.collision(car.x, car.y, 40, 30);
+		if (wallsArrCol) {
+			wallsArr.varCol = true;
+		} else {
+			wallsArr.varCol = false;
+		}
 	}
 
 	for (let i = 0; i < walls.length; i++) {
 		let wallsArr = walls[i];
-		wallsArr.collision(car.x, car.y, 30, 40);
+		wallsArr.draw();
 	}
 
 	if(car.x < 25) {car.x = 25}
@@ -487,12 +493,14 @@ function collision(x, y, w, h, wx, wy, ww, wh) {
 	let t4x = wx + tHalfW;
 	let t4y = wx + tHalfH;
 
+	console.assert((o1x < t1x || o1y < t1y || o2x > t2x || o2y < t2y || o3x < t3x || o3y > t3y || o4x > t4x || o4y > t4y), "test");
+
 	//wall is o(ne)
 	//car is t(wo)
-	if (o1x < t1x || o1y < t1y || o2x > t2x || o2y < t2y || o3x < t3x || o3y > t3y || o4x > t4x || o4y > t4y) {
-		collide = true;
+	if ( (o1x < t1x && o1y < t1y) || ( o2x > t2x && o2y < t2y ) || (o3x < t3x && o3y > t3y) || (o4x > t4x && o4y > t4y) ) {
+		return true;
 	} else {
-		collide = false;
+		return false;
 	}
 }
 	
