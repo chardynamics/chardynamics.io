@@ -487,9 +487,9 @@ function collision(x, y, w, h, wx, wy, ww, wh) {
 	let t4x = wx + tHalfW;
 	let t4y = wx + tHalfH;
 
-	console.assert(t1x > o1x, "t1x > o1x is false");
-
-	if (t1x > o1x && t1y > o1y && t2x < o1x && t2y > o2y && t3x > o3x && t3y < o3y && t4x < o4y && t4y < o4y) {
+	//wall is o(ne)
+	//car is t(wo)
+	if (o1x < t1x || o1y < t1y || o2x > t2x || o2y < t2y || o3x < t3x || o3y > t3y || o4x > t4x || o4y > t4y) {
 		collide = true;
 	} else {
 		collide = false;
