@@ -473,7 +473,7 @@ function collision(x, y, w, h, wx, wy, ww, wh) {
 	let o3x = x - halfW;
 	let o3y = y + halfH;
 	let o4x = x + halfW;
-	let o4y = x + halfY;
+	let o4y = x + halfH;
 
 	let tHalfW = ww/2;
 	let tHalfH = wh/2;
