@@ -487,6 +487,9 @@ function collision(x, y, w, h, wx, wy, ww, wh) {
 	let t4x = x + tHalfW;
 	let t4y = x + tHalfH;
 
+	console.log("halfW = " + halfW);
+	console.log("t3y = " + t3y);
+
 	if (t1x > o1x && t1y > o1y && t2x < o1x && t2y > o2y && t3x > o3x && t3y < o3y && t4x < o4y && t4y < o4y) {
 		collide = true;
 	} else {
