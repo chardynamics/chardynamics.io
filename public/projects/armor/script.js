@@ -42,6 +42,9 @@ function setup() {
   car.gy = windowHeight/2;
 }
 
+window.onkeydown = function(e) {return !(e.key == ' ' && e.target == document.body);};
+window.onkeydown = function(e) {return !(e.key == 'ArrowDown' && e.target == document.body);};
+
 var keys = [];
 var bSpeed = 10;
 var zspeed = 0.2;
