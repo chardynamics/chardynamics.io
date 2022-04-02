@@ -58,8 +58,8 @@ var car = {
     x:600,
     y:600,
     s:0,
-    rot:-90,
-    acc:0.1,
+    rot:90,
+    acc:0.75,
     grot:0,
     rightW:false,
     leftW:false,
@@ -120,6 +120,8 @@ function setup() {
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
+	car.x = Math.floor(p5WindowWidth/2);
+	car.y = Math.floor(windowHeight/2);
 }
 
 function tankSpawn(tankVar, firing, control, aimControl) {
@@ -230,9 +232,10 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		}
 	}
 
-	tankVar.x += cos(tankVar.rot)*tankVar.s;
-	tankVar.y += sin(tankVar.rot)*tankVar.s;
+	cameraX += cos(tankVar.rot)*tankVar.s;
+	cameraY += sin(tankVar.rot)*tankVar.s;
 
+		
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
@@ -262,27 +265,24 @@ function tankSpawn(tankVar, firing, control, aimControl) {
    if (car.type == 1) {
 	   noStroke();
 	   push();
-	   scale(2.5);
 	   translate(tankVar.x,tankVar.y);
 	   rotate(tankVar.rot+90);
 	   fill(0, 120, 0);
-	   rect(0,0,20,40,5);
+	   rect(0,0,50,100,12.5);
 	   fill(50);
-	   rect(-12,0,5,35,5);
-	   rect(12,0,5,35,5);
+	   rect(-30,0,12.5,87.5,12.5);
+	   rect(30,0,12.5,87.5,12.5);
 	   pop();
 
 	   push();
-	   scale(2.5);
 	   translate(tankVar.x,tankVar.y);
 	   rotate(-tankVar.grot-180);
 	   fill(0, 100, 0);
-	   rect(0,0,15,15,5);
-	   rect(0,-10,5,20,0);
+	   rect(0,0,37.5,37.5,12.5);
+	   rect(0,-40,12.5,50,0);
 	   pop();
    	}
 };
-
 function intro() {
 	introAngle += 5;
 	
@@ -384,11 +384,6 @@ function levelOne() {
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 	pop();
 	tankSpawn(car, true, "wasd", "mouse");
-	console.log(car.y);
-	if(car.y < Math.floor(windowHeight/2)) {
-		car.y = Math.floor(windowHeight/2);
-		cameraY += car.s;
-	}
 }
 	
 function draw() {
@@ -399,7 +394,6 @@ function draw() {
 	} else if (scene == 3) {
 		levelOne();
 	}
-
 	debug();
 	pulseMath();
 }
@@ -413,8 +407,8 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	text(mouseX, mouseX + 125, mouseY);
-	text(mouseY, mouseX + 125, mouseY + 20);
+	text(cameraX, mouseX + 125, mouseY);
+	text(cameraY, mouseX + 125, mouseY + 20);
 	text(windowHeight, mouseX + 125, mouseY + 40);
 }
 
