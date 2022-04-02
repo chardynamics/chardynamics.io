@@ -27,6 +27,8 @@ var bullets = [];
 var scene = 3;
 var paused = false;
 var buttonHover = false;
+var cameraX = 0;
+var cameraY = 0;
 
 var reload = {
 	rate: 5,
@@ -54,12 +56,10 @@ var pulse = {
 
 var car = {
     x:600,
-    y:300,
+    y:600,
     s:0,
     rot:-90,
     acc:0.1,
-    gx:600,
-    gy:300,
     grot:0,
     rightW:false,
     leftW:false,
@@ -68,20 +68,6 @@ var car = {
 	rotate: 0,
 	grotate: 0
 };
-
-var car2 = {
-    x:300,
-    y:300,
-    s:0,
-    rot:-90,
-    acc:0.1,
-    gx:300,
-    gy:300,
-    grot:0,
-    rightW:false,
-    leftW:false,
-    type:1,
-}
 
 var speed = {
     speed: 0.75,
@@ -113,28 +99,6 @@ bullet.prototype.draw = function() {
 	}
 };
 
-var walls = [];
-class wall {
-	constructor(varX, varY, varW, varH, varCol) {
-		this.varX = varX;
-		this.varY = varY;
-		this.varW = varW;
-		this.varH = varH;
-		this.varCol = varCol;
-	}
-	collision(carX, carY, carW, carH) {
-		collision(this.varX, this.varY, this.varW, this.varH, carX, carY, carW, carH);
-	}
-	draw() {
-		if (this.varCol) {
-			fill(0);
-		} else {
-			fill(100);
-		}
-		rect(this.varX, this.varY, this.varW, this.varH);
-	}
-}
-
 function setup() {
 	//probably should find a better solution
 	p5WindowWidth = windowHeight * (16/9);
@@ -155,11 +119,6 @@ function setup() {
 	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
-	}
-	for (let i = 0; i < 5; i++) {
-		let x = (Math.floor(Math.random() * 200)) + 10;
-		let y = (Math.floor(Math.random() * 200)) + 10;
-		walls.splice(i, 0, new wall(x, y, 20, 20, false));
 	}
 }
 
@@ -273,12 +232,7 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 
 	tankVar.x += cos(tankVar.rot)*tankVar.s;
 	tankVar.y += sin(tankVar.rot)*tankVar.s;
-   
-	tankVar.gx += cos(tankVar.rot)*tankVar.s;
-	tankVar.gy += sin(tankVar.rot)*tankVar.s;
-   
-	push();
-	
+
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
@@ -307,6 +261,8 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 	//Tank skins
    if (car.type == 1) {
 	   noStroke();
+	   push();
+	   scale(2.5);
 	   translate(tankVar.x,tankVar.y);
 	   rotate(tankVar.rot+90);
 	   fill(0, 120, 0);
@@ -315,10 +271,10 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 	   rect(-12,0,5,35,5);
 	   rect(12,0,5,35,5);
 	   pop();
-	 
+
 	   push();
-	   noStroke();
-	   translate(tankVar.gx,tankVar.gy);
+	   scale(2.5);
+	   translate(tankVar.x,tankVar.y);
 	   rotate(-tankVar.grot-180);
 	   fill(0, 100, 0);
 	   rect(0,0,15,15,5);
@@ -416,91 +372,22 @@ function intro() {
 	}
 }
 
-function menu() {
-    background(0, 100, pulse.pulse);
-	fill(255, 245, 190);
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
-	fill(52, 140, 49);
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-}
+function menu() {}
 
 function levelOne() {
     background(0, 100, pulse.pulse);
 	fill(255, 245, 190);
+	push();
+	translate(cameraX, cameraY);
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-	tankSpawn(car, true, "wasd", "keys");
-	tankSpawn(car2, true, "arrow", "mouse");
-
-	for (let i = 0; i < walls.length; i++) {
-		let wallsArr = walls[i];
-		let wallsArrCol = wallsArr.collision(car.x, car.y, 40, 30);
-		if (wallsArrCol) {
-			wallsArr.varCol = true;
-		} else {
-			wallsArr.varCol = false;
-		}
-	}
-
-	for (let i = 0; i < walls.length; i++) {
-		let wallsArr = walls[i];
-		wallsArr.draw();
-	}
-
-	if(car.x < 25) {car.x = 25}
-	if(car.x > (p5WindowWidth - 25)) {car.x = (p5WindowWidth - 25)}
-	if(car.y < 25) {car.y = 25}
-	if(car.y > (windowHeight - 25)) {car.y = (windowHeight - 25)}
-
-	if(car.gx < 25) {car.gx = 25}
-	if(car.gx > (p5WindowWidth - 25)) {car.gx = (p5WindowWidth - 25)}
-	if(car.gy < 25) {car.gy = 25}
-	if(car.gy > (windowHeight - 25)) {car.gy = (windowHeight - 25)}
-
-	if(car2.x < 25) {car2.x = 25}
-	if(car2.x > (p5WindowWidth - 25)) {car2.x = (p5WindowWidth - 25)}
-	if(car2.y < 25) {car2.y = 25}
-	if(car2.y > (windowHeight - 25)) {car2.y = (windowHeight - 25)}
-
-	if(car2.gx < 25) {car2.gx = 25}
-	if(car2.gx > (p5WindowWidth - 25)) {car2.gx = (p5WindowWidth - 25)}
-	if(car2.gy < 25) {car2.gy = 25}
-	if(car2.gy > (windowHeight - 25)) {car2.gy = (windowHeight - 25)}
-}
-
-function collision(x, y, w, h, wx, wy, ww, wh) {
-	let halfW = w/2;
-	let halfH = h/2;
-	let o1x = x - halfW;
-	let o1y = y - halfH;
-	let o2x = x + halfW;
-	let o2y = y - halfH;
-	let o3x = x - halfW;
-	let o3y = y + halfH;
-	let o4x = x + halfW;
-	let o4y = x + halfH;
-
-	let tHalfW = ww/2;
-	let tHalfH = wh/2;
-
-	let t1x = wx - tHalfW;
-	let t1y = wy - tHalfH;
-	let t2x = wx + tHalfW;
-	let t2y = wy - tHalfH;
-	let t3x = wx - tHalfW;
-	let t3y = wy + tHalfH;
-	let t4x = wx + tHalfW;
-	let t4y = wx + tHalfH;
-
-	console.assert((o1x < t1x || o1y < t1y || o2x > t2x || o2y < t2y || o3x < t3x || o3y > t3y || o4x > t4x || o4y > t4y), "test");
-
-	//wall is o(ne)
-	//car is t(wo)
-	if ( (o1x < t1x && o1y < t1y) || ( o2x > t2x && o2y < t2y ) || (o3x < t3x && o3y > t3y) || (o4x > t4x && o4y > t4y) ) {
-		return true;
-	} else {
-		return false;
+	pop();
+	tankSpawn(car, true, "wasd", "mouse");
+	console.log(car.y);
+	if(car.y < Math.floor(windowHeight/2)) {
+		car.y = Math.floor(windowHeight/2);
+		cameraY += car.s;
 	}
 }
 	
