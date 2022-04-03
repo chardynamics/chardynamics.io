@@ -28,7 +28,7 @@ var scene = 3;
 var paused = false;
 var buttonHover = false;
 var cameraX = 0;
-var cameraY = 0;
+var cameraY = -500;
 
 var reload = {
 	rate: 5,
@@ -263,26 +263,27 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 
 	//Tank skins
    if (car.type == 1) {
-	   noStroke();
-	   push();
-	   translate(tankVar.x,tankVar.y);
-	   rotate(tankVar.rot+90);
-	   fill(0, 120, 0);
-	   rect(0,0,50,100,12.5);
-	   fill(50);
-	   rect(-30,0,12.5,87.5,12.5);
-	   rect(30,0,12.5,87.5,12.5);
-	   pop();
+		noStroke();
+		push();
+		translate(tankVar.x,tankVar.y);
+		rotate(tankVar.rot+90);
+		fill(0, 120, 0);
+		rect(0,0,50,100,12.5);
+		fill(50);
+		rect(-30,0,12.5,87.5,12.5);
+		rect(30,0,12.5,87.5,12.5);
+		pop();
 
-	   push();
-	   translate(tankVar.x,tankVar.y);
-	   rotate(-tankVar.grot-180);
-	   fill(0, 100, 0);
-	   rect(0,0,37.5,37.5,12.5);
-	   rect(0,-40,12.5,50,0);
-	   pop();
+		push();
+		translate(tankVar.x,tankVar.y);
+		rotate(-tankVar.grot-180);
+		fill(0, 100, 0);
+		rect(0,0,37.5,37.5,12.5);
+		rect(0,-40,12.5,50,0);
+		pop();
    	}
 };
+
 function intro() {
 	introAngle += 5;
 	
