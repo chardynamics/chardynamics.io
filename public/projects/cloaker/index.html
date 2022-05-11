@@ -83,8 +83,8 @@
 			else {
 				link = linkPrompt;
 			}
-			iframeHolder.setAttribute("src", link);
-			iframeHolder.window.addEventListener("keydown", checkKeyPressed);
+			document.getElementById("iframe-holder-2").setAttribute("src", link);
+			document.getElementById("iframe-holder-2").window.addEventListener("keydown", checkKeyPressed);
 
 			function checkKeyPressed(evt) {
 				if (evt.keyCode == "192") {
