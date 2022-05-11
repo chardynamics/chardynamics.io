@@ -75,6 +75,7 @@
 		</style>
 		<script>
 			var link = "ttps://quizizz.com";
+			var iframeHolder = document.getElementById("iframe-holder-2");
 			var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
 			if (linkPrompt == null || linkPrompt == "") {
 				link = "https://hub5214.up.railway.app"
@@ -82,7 +83,6 @@
 			else {
 				link = linkPrompt;
 			}
-			var iframeHolder = document.getElementById("iframe");
 			iframeHolder.setAttribute("src", link);
 			iframeHolder.window.addEventListener("keydown", checkKeyPressed);
 
@@ -96,7 +96,7 @@
 
     <body>
 	    <div id="iframe-holder">
-		    <iframe id="iframe" src="https://quizizz.com" title="Quizizz — The world’s most engaging learning platform"></iframe>
+		    <iframe id="iframe-holder-2" src="https://quizizz.com" title="Quizizz — The world’s most engaging learning platform"></iframe>
 	    </div>
     </body>
 
