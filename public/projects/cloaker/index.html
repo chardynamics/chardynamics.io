@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        
+        <title>Classes</title>
+		
+		<link rel="icon" type="image/png" href="https://ssl.gstatic.com/classroom/favicon.png'">
+		
+		<style id="style">
+			body {
+				background-color: black;
+				margin: 0px;
+				border: 0px;
+				user-select:none;
+				color: white;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			#script-description {
+				padding: 1%;
+				margin: 0px;
+			}
+			#description {
+				padding: 1%;
+				margin: 0px;
+			}
+			#p5_loading {
+				text-align: center;
+            			box-sizing: border-box;
+				font-weight: bold;
+				font-size: 4em;
+			}
+			#attribution {
+				padding: 1%;
+				margin: 0px;
+			}
+			a:link {
+				color: purple;
+				background-color: transparent;
+			}
+			a:hover {
+				color: red;
+				background-color: transparent;
+			}
+			a:active {
+				color: white;
+				background-color: transparent;
+			}
+			
+			h1 {
+				text-align: center;
+				font-size: 4em;
+				margin-block-start: 0px;
+				margin-block-end: 0px;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				font-weight: bold;
+			}
+			h2, h3 {
+				font-size: 2em;
+				margin-block-start: 0px;
+				margin-block-end: 0px;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				font-weight: bold;
+			}
+			#iframe-holder {
+				text-align: center;
+			}
+			iframe {
+				width: 100vw;
+				height: 100vh;
+				border: none;
+			}
+		</style>
+		<script>
+			var link = "https://classroom.google.com/h";
+			var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
+			if (linkPrompt == null || linkPrompt == "") {
+				link = "https://hub5214.up.railway.app"
+			}
+			else {
+				link = linkPrompt;
+			}
+			var iframeHolder = document.getElementById("iframe");
+			iframeHolder.setAttribute("src", link);
+			iframeHolder.window.addEventListener("keydown", checkKeyPressed);
+
+			function checkKeyPressed(evt) {
+				if (evt.keyCode == "192") {
+					link = "https://classroom.google.com/h";
+				}
+			}
+		</script>
+    </head>
+
+    <body>
+	    <div id="iframe-holder">
+		    <iframe id="iframe" src="https://classroom.google.com/h" title="Classes"></iframe>
+	    </div>
+    </body>
+
+</html>
