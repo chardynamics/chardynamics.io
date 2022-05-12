@@ -75,20 +75,20 @@
 		</style>
 		<script>
 			var link = "https://quizizz.com";
-			var iframeHolder = document.getElementById("iframe-holder-2");
 			var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
 			if (linkPrompt == null || linkPrompt == "") {
-				link = "https://hub5214.up.railway.app"
+				link = "https://hub5214.up.railway.app";
+			document.getElementById("iframe-holder-2").setAttribute("src", link);
 			}
 			else {
 				link = linkPrompt;
+			document.getElementById("iframe-holder-2").setAttribute("src", link);
 			}
-			document.getElementById("iframe-holder-2").setAttribute("src", link); 
 			document.getElementById("iframe-holder-2").window.addEventListener("keydown", checkKeyPressed);
 
 			function checkKeyPressed(evt) {
 				if (evt.keyCode == "192") {
-					link = "Quizizz — The world’s most engaging learning platform";
+					link = "https://quizizz.com";
 				}
 			}
 		</script>
