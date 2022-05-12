@@ -74,7 +74,7 @@
 			}
 		</style>
 		<script>
-			var link = "ttps://quizizz.com";
+			var link = "https://quizizz.com";
 			var iframeHolder = document.getElementById("iframe-holder-2");
 			var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
 			if (linkPrompt == null || linkPrompt == "") {
@@ -83,7 +83,7 @@
 			else {
 				link = linkPrompt;
 			}
-			document.getElementById("iframe-holder-2").setAttribute("src", link);
+			document.getElementById("iframe-holder-2").setAttribute("src", link); 
 			document.getElementById("iframe-holder-2").window.addEventListener("keydown", checkKeyPressed);
 
 			function checkKeyPressed(evt) {
