@@ -1,103 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        
-        <title>Quizizz — The world’s most engaging learning platform</title>
-		
-		<link rel="icon" type="image/x-icon" href="https://cf.quizizz.com/img/favicon/favicon.ico">
-		
-		<style id="style">
-			body {
-				background-color: black;
-				margin: 0px;
-				border: 0px;
-				user-select:none;
-				color: white;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-			#script-description {
-				padding: 1%;
-				margin: 0px;
-			}
-			#description {
-				padding: 1%;
-				margin: 0px;
-			}
-			#p5_loading {
-				text-align: center;
-            			box-sizing: border-box;
-				font-weight: bold;
-				font-size: 4em;
-			}
-			#attribution {
-				padding: 1%;
-				margin: 0px;
-			}
-			a:link {
-				color: purple;
-				background-color: transparent;
-			}
-			a:hover {
-				color: red;
-				background-color: transparent;
-			}
-			a:active {
-				color: white;
-				background-color: transparent;
-			}
-			
-			h1 {
-				text-align: center;
-				font-size: 4em;
-				margin-block-start: 0px;
-				margin-block-end: 0px;
-				margin-inline-start: 0px;
-				margin-inline-end: 0px;
-				font-weight: bold;
-			}
-			h2, h3 {
-				font-size: 2em;
-				margin-block-start: 0px;
-				margin-block-end: 0px;
-				margin-inline-start: 0px;
-				margin-inline-end: 0px;
-				font-weight: bold;
-			}
-			#iframe-holder {
-				text-align: center;
-			}
-			iframe {
-				width: 100vw;
-				height: 100vh;
-				border: none;
-			}
-		</style>
-		<script>
-			var link = "https://quizizz.com";
-			var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
-			if (linkPrompt == null || linkPrompt == "") {
-				link = "https://hub5214.up.railway.app";
-			document.getElementById("iframe-holder-2").setAttribute("src", link);
-			}
-			else {
-				link = linkPrompt;
-			document.getElementById("iframe-holder-2").setAttribute("src", link);
-			}
-			document.getElementById("iframe-holder-2").window.addEventListener("keydown", checkKeyPressed);
 
-			function checkKeyPressed(evt) {
-				if (evt.keyCode == "192") {
-					link = "https://quizizz.com";
-				}
-			}
-		</script>
-    </head>
+<head>
+	<meta charset="utf-8" />
 
-    <body>
-	    <div id="iframe-holder">
-		    <iframe id="iframe-holder-2" src="https://quizizz.com" title="Quizizz — The world’s most engaging learning platform"></iframe>
-	    </div>
-    </body>
+	<title>Quizizz — The world’s most engaging learning platform</title>
+
+	<link rel="icon" type="image/x-icon" href="https://cf.quizizz.com/img/favicon/favicon.ico">
+
+	<style id="style">
+		body {
+			background-color: black;
+			margin: 0px;
+			border: 0px;
+			user-select: none;
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		#script-description {
+			padding: 1%;
+			margin: 0px;
+		}
+
+		#description {
+			padding: 1%;
+			margin: 0px;
+		}
+
+		#p5_loading {
+			text-align: center;
+			box-sizing: border-box;
+			font-weight: bold;
+			font-size: 4em;
+		}
+
+		#attribution {
+			padding: 1%;
+			margin: 0px;
+		}
+
+		a:link {
+			color: purple;
+			background-color: transparent;
+		}
+
+		a:hover {
+			color: red;
+			background-color: transparent;
+		}
+
+		a:active {
+			color: white;
+			background-color: transparent;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 4em;
+			margin-block-start: 0px;
+			margin-block-end: 0px;
+			margin-inline-start: 0px;
+			margin-inline-end: 0px;
+			font-weight: bold;
+		}
+
+		h2,
+		h3 {
+			font-size: 2em;
+			margin-block-start: 0px;
+			margin-block-end: 0px;
+			margin-inline-start: 0px;
+			margin-inline-end: 0px;
+			font-weight: bold;
+		}
+
+		#iframe-holder {
+			text-align: center;
+		}
+
+		iframe {
+			width: 100vw;
+			height: 100vh;
+			border: none;
+		}
+	</style>
+	<script>
+		var link = "https://quizizz.com";
+		var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
+		if (linkPrompt == null || linkPrompt == "") {
+			link = "https://hub5214.up.railway.app";
+			document.getElementById("iframe-holder-2").src = link;
+		}
+		else {
+			link = linkPrompt;
+			document.getElementById("iframe-holder-2").src = link;
+		}
+		document.getElementById("iframe-holder-2").addEventListener("keydown", checkKeyPressed);
+
+		function checkKeyPressed(evt) {
+			if (evt.keyCode == "192") {
+				link = "https://quizizz.com";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="iframe-holder">
+		<iframe id="iframe-holder-2" src="https://quizizz.com"
+			title="Quizizz — The world’s most engaging learning platform"></iframe>
+	</div>
+</body>
 
 </html>
