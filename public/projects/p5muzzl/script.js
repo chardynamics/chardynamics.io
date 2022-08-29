@@ -28,12 +28,13 @@ var scene = 3;
 var paused = false;
 var buttonHover = false;
 var cameraX = 0;
-var cameraY = -500;
+var cameraY = 0;
+var bulletSpeed = 25;
 
 var reload = {
 	rate: 5,
 	max: 60,
-	var: 0,
+	var: 100
 };
 
 function keyPressed() {
@@ -66,7 +67,9 @@ var car = {
     type:1,
     deaths:0,
 	rotate: 0,
-	grotate: 0
+	grotate: 0,
+	bulletX: 600,
+	bulletY: 600,
 };
 
 var speed = {
@@ -78,31 +81,32 @@ var speed = {
 function bullet(x, y) {
 	this.x = x;
 	this.y = y;
-	this.rot = 0;
 	this.rot = -car.grot+90;
 	this.a = true;
 };
 
 bullet.prototype.draw = function() {
 	if(this.a){
-	fill(255,0,0);
-	push();
-	translate(this.x,this.y);
-	rotate(this.rot);
-	fill(100, 100, 100, 50);
-	triangle(-7.5, 9, 7.5, 0, -7.5, -9);
-	fill(158, 60, 14);
-	triangle(-4.5, 3, 10, 0, -4.5, -3);
-	pop();
-	this.x += cos(this.rot)*bSpeed;
-	this.y += sin(this.rot)*bSpeed;
+		fill(255,0,0);
+		push();
+		translate(this.x,this.y);
+		rotate(this.rot);
+		scale(2.5);
+		fill(100, 100, 100, 50);
+		triangle(-7.5, 9, 7.5, 0, -7.5, -9);
+		fill(158, 60, 14);
+		triangle(-4.5, 3, 10, 0, -4.5, -3);
+		pop();
+		this.x += cos(this.rot)*bulletSpeed;
+		this.y += sin(this.rot)*bulletSpeed;
 	}
 };
 
 function setup() {
 	//probably should find a better solution
-	p5WindowWidth = windowHeight * (16/9);
-	Math.floor(p5WindowWidth);	
+	p5WindowWidth = 1516;
+	Math.floor(p5WindowWidth);
+	windowHeight = 853;
 	scaleResolution = windowHeight/853;
     
 	var canvas = createCanvas(p5WindowWidth, windowHeight);
@@ -122,6 +126,8 @@ function setup() {
 	}
 	car.x = Math.floor(p5WindowWidth/2);
 	car.y = Math.floor(windowHeight/2);
+	car.bulletX = Math.floor(p5WindowWidth/2);
+	car.bulletY = Math.floor(windowHeight/2);
 }
 
 function tankSpawn(tankVar, firing, control, aimControl) {
@@ -155,8 +161,8 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 	}
 	
 	if(!paused){
-		if (keyIsPressed) {
-			if (control === "wasd") {
+		if (control === "wasd") {
+			if (keyIsPressed) {
 				if(keys[65]) {
 					if(tankVar.s >  (-2 * speed.speed)) {
 						tankVar.rot -= 3;
@@ -181,17 +187,21 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 						tankVar.s -= tankVar.acc * speed.speed;
 					}
 				}
-				if(!keys[87] && !keys[83]) {
-					if(tankVar.s >= (0 * speed.speed)) {
-						tankVar.s -= 0.02 * speed.speed;
-					}
-				}
 				if(tankVar.s === (3 * speed.speed)) {
 					tankVar.s = 3 * speed.speed;
 				} else if (tankVar.s === (-3 * speed.speed)) {
 					tankVar.s = 3 * speed.speed;
 				}
-			} else {
+			}
+			if((!keys[87]) && (!keys[83])) {
+				if(tankVar.s >= (0 * speed.speed)) {
+					tankVar.s -= 0.05 * speed.speed;
+				} else {
+					tankVar.s += 0.05 * speed.speed;
+				}
+			}
+		} else {
+			if (keyIsPressed) {
 				if(keys[37]) {
 					if(tankVar.s > (-2 * speed.speed)) {
 						tankVar.rot -=3;
@@ -235,29 +245,30 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 	cameraX += cos(tankVar.rot)*tankVar.s;
 	cameraY += sin(tankVar.rot)*tankVar.s;
 
+	tankVar.bulletX -= cos(tankVar.rot)*tankVar.s;
+	tankVar.bulletY -= sin(tankVar.rot)*tankVar.s;
 		
 	if (firing) {
 	   if ((!buttonHover)) {
 			 if(mouseIsPressed){
 				   if(reload.var == 0){
-						bullets.push(new bullet(car.x,car.y));
+						bullets.push(new bullet(tankVar.bulletX,tankVar.bulletY));
 						reload.var = reload.max;
 				   }
 			 }
 			 if(keys[32]){
 				   if(reload.var == 0){
-						bullets.push(new bullet(car.x,car.y));
+						bullets.push(new bullet(tankVar.bulletX,tankVar.bulletY));
 						reload.var = reload.max;
 				   }
 			 }
 	   }
 	}
 
+	
 	if (reload.var > 0) {
 		if ((reload.var - reload.rate) >= 0) {
-			reload -= reload.rate;
-		} else {
-			reload.var = 0;
+			reload.var -= reload.rate;
 		}
 	}
 
@@ -373,7 +384,25 @@ function intro() {
 	}
 }
 
-function menu() {}
+function menu() {
+    background(0, 100, pulse.pulse);
+	fill(255, 245, 190);
+	push();
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
+	fill(52, 140, 49);
+	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+	fill(100, 100, 100, 50);
+	push();
+	translate(p5WindowWidth/2 + 155, windowHeight/2 - 165);
+	scale(5);
+	triangle(-7.5, 9, 10, 0, -7.5, -9);
+	fill(158, 60, 14);
+	triangle(-4.5, 3, 10, 0, -4.5, -3);
+	pop();
+	fill(255);
+	textSize(100);
+	text("Muzzl", 500, 100);
+}
 
 function levelOne() {
     background(0, 100, pulse.pulse);
@@ -383,6 +412,9 @@ function levelOne() {
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
+	for (let i = 0; i < bullets.length; i++) {
+		bullets[i].draw();
+	}  
 	pop();
 	tankSpawn(car, true, "wasd", "mouse");
 }
@@ -408,9 +440,9 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	text(cameraX, mouseX + 125, mouseY);
-	text(cameraY, mouseX + 125, mouseY + 20);
-	text(windowHeight, mouseX + 125, mouseY + 40);
+	//text(cameraX, mouseX + 125, mouseY);
+	//text(cameraY, mouseX + 125, mouseY + 20);
+	text(car.grot, mouseX + 125, mouseY + 40);
 }
 
 function windowResized() {
