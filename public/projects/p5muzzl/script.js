@@ -14,7 +14,7 @@ var collide = false;
 var introBullet = {
 	timeLine: 454,
 	timeLineVel: 1,
-	textCover: -864,
+	textCover: 0,
 	soundBarrier: 0,
 	bulletVisible: 0,
 }
@@ -24,7 +24,7 @@ var keyX = 300;
 var keyY = 300;
 var keys = [];
 var bullets = [];
-var scene = 3;
+var scene = 2;
 var paused = false;
 var buttonHover = false;
 var cameraX = 0;
@@ -62,6 +62,7 @@ var car = {
     rot:90,
     acc:0.75,
     grot:0,
+    grotL:0,
     rightW:false,
     leftW:false,
     type:1,
@@ -132,7 +133,16 @@ function setup() {
 
 function tankSpawn(tankVar, firing, control, aimControl) {
 	if (aimControl === "mouse") {
-		tankVar.grot = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+		tankVar.grotL = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+		Math.round(tankVar.grotL);
+		if (tankVar.grot != tankVar.grotL) {
+			if (tankVar.grot < tankVar.grotL) {
+				tankVar.grot += 1;
+			}
+			if (tankVar.grot > tankVar.grotL) {
+				tankVar.grot -= 1;
+			}
+		}
 	} else {
 		tankVar.grot = atan2(keyX-tankVar.x,keyY-tankVar.y);
 		if(keys[84]) {
@@ -306,9 +316,10 @@ function intro() {
 		car.grotate = car.rotate;
 	}
 	if (car.rotate == 25 && car.grotate < 90) {
-        	car.grotate += 1;
+        car.grotate += 1;
 	}
 	if (car.grotate == 90) {
+		console.log("true");
 		introBullet.bulletVisible = 255;
 		if (introBullet.timeLine <= 1525) {
 			introBullet.timeLine += 8;
@@ -317,14 +328,14 @@ function intro() {
 			introBullet.soundBarrier += 5;
 		}
 	}
-	if ((introBullet.timeLine >= 536) && (introBullet.textCover < 0)) {
+	if ((introBullet.timeLine >= 536)) {
 		introBullet.textCover += 8;
 	}
 	if ((introBullet.timeLine >= 1525) && (fade.opp < 255)) {
 		fade.opp += 2.5;
 	}
 	
-	background(0, 0, 0);
+	background(0);
 	fill(255, 255, 255);
 	textSize(800 * scaleResolution); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
 	text("DP", 700 * scaleResolution, 250 * scaleResolution);
@@ -339,22 +350,28 @@ function intro() {
 	textSize(75 * scaleResolution);
 	text("X", 150 * scaleResolution, 725 * scaleResolution);
 	push();
-	translate(introBullet.timeLine * scaleResolution, 716 * scaleResolution);
-	fill(100, 100, 100, introBullet.soundBarrier);
-	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14, introBullet.bulletVisible);
-	triangle(2, 27.5, 45, 17.5, 2, 10);
-	pop();
-	push();
 	scale(3.5);
 	translate(110 * scaleResolution, car.y * scaleResolution);
-	rotate(car.rotate);
 	fill(50, 0, 0);
 	rect(-12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
 	rect(12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
 	fill(0, 120, 0);
 	rect(0,0,20 * scaleResolution,40 * scaleResolution,5*scaleResolution);
 	pop();
+	textSize(165 * scaleResolution);
+	text("...and more", 1010 * scaleResolution, 715 * scaleResolution);
+	rectMode(CORNER);
+	fill(0);
+	//rect(1445 * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
+	rect(581 * scaleResolution, 670 * scaleResolution, introBullet.textCover * scaleResolution, 122* scaleResolution);
+	push();
+	translate(introBullet.timeLine * scaleResolution, 716 * scaleResolution);
+	fill(100, 100, 100, introBullet.soundBarrier);
+	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
+	fill(158, 60, 14, introBullet.bulletVisible);
+	triangle(2, 27.5, 45, 17.5, 2, 10);
+	pop();
+	rectMode(CENTER);
 	push();
 	scale(3.5);
 	translate(110 * scaleResolution, car.y * scaleResolution);
@@ -363,12 +380,6 @@ function intro() {
 	rect(0,0,15 * scaleResolution,15 * scaleResolution,5*scaleResolution);
 	rect(0,-20 * scaleResolution,5 * scaleResolution,25 * scaleResolution,0);
 	pop();
-	textSize(165 * scaleResolution);
-	text("...and more", 1010 * scaleResolution, 715 * scaleResolution);
-	rectMode(CORNER);
-	fill(0);
-	rect(1445 * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
-	rectMode(CENTER);
 	
 	if (fade.fade > 0) {
 		fill(0, 0, 0, fade.fade);
@@ -381,6 +392,7 @@ function intro() {
 	
 	if (fade.opp >= 255) {
 		scene = 2;
+		fade.fade = 255;
 	}
 }
 
@@ -402,6 +414,12 @@ function menu() {
 	fill(255);
 	textSize(100);
 	text("Muzzl", 500, 100);
+	
+	if (fade.fade > 0) {
+		fill(0, 0, 0, fade.fade);
+		rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+		fade.fade -= 2.5;
+	}
 }
 
 function levelOne() {
@@ -441,8 +459,8 @@ function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
 	//text(cameraX, mouseX + 125, mouseY);
-	//text(cameraY, mouseX + 125, mouseY + 20);
-	text(car.grot, mouseX + 125, mouseY + 40);
+	text(fade.fade, mouseX + 125, mouseY + 20);
+	//text(scaleResolution, mouseX + 125, mouseY + 40);
 }
 
 function windowResized() {
