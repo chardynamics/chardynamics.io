@@ -24,7 +24,7 @@ var keyX = 300;
 var keyY = 300;
 var keys = [];
 var bullets = [];
-var scene = 2;
+var scene = 3;
 var paused = false;
 var buttonHover = false;
 var cameraX = 0;
@@ -252,8 +252,8 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		}
 	}
 
-	cameraX += cos(tankVar.rot)*tankVar.s;
-	cameraY += sin(tankVar.rot)*tankVar.s;
+	camera.x += cos(tankVar.rot)*tankVar.s;
+	camera.y += sin(tankVar.rot)*tankVar.s;
 
 	tankVar.bulletX -= cos(tankVar.rot)*tankVar.s;
 	tankVar.bulletY -= sin(tankVar.rot)*tankVar.s;
@@ -458,7 +458,7 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	//text(cameraX, mouseX + 125, mouseY);
+	text(cameraX, mouseX + 125, mouseY);
 	text(fade.fade, mouseX + 125, mouseY + 20);
 	//text(scaleResolution, mouseX + 125, mouseY + 40);
 }
