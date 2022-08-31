@@ -5,6 +5,15 @@
     font-weight: normal;
     font-style: normal;
 }
+.p-footer {
+    text-align: center;
+    font-size: 4em;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
 l.tree-view {
     display: block;
     padding: 6px;
