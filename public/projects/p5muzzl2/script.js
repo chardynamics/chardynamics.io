@@ -30,7 +30,7 @@ var keyAim = {
 	y: 0,
 }
 
-var camera = {
+var viewport = {
 	x: 0,
 	y: 0
 }
@@ -63,7 +63,7 @@ var tankMenu = {
 function bullet(x, y) {
 	this.x = x;
 	this.y = y;
-	this.rot = -tankMenu.turretRotate+90;
+	this.rotate = -tankMenu.turretRotate+90;
 	this.a = true;
 };
 
@@ -254,8 +254,8 @@ function tankSpawn(tankVar) {
 		}
 	}
  
-	camera.x += (cos(tankMenu.rotate) * tankMenu.speed);
-	camera.y += (sin(tankMenu.rotate) * tankMenu.speed);
+	viewport.x += (cos(tankMenu.rotate) * tankMenu.speed);
+	viewport.y += (sin(tankMenu.rotate) * tankMenu.speed);
 
 	tankVar.bulletX -= cos(tankVar.rotate)*tankVar.speed;
 	tankVar.bulletY -= sin(tankVar.rotate)*tankVar.speed;
@@ -400,7 +400,7 @@ function intro() {
 function menu() {
     background(0, 100, pulse.var);
 	push();
-	translate(camera.x, camera.y);
+	translate(viewport.x, viewport.y);
 	fill(255, 245, 190);
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
 	fill(52, 140, 49);
@@ -432,7 +432,7 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	text(camera.x, mouseX + 125, mouseY);
+	text(viewport.x, mouseX + 125, mouseY);
 	text(tankMenu.speed, mouseX + 125, mouseY + 20);
 	text(tankMenu.rotate, mouseX + 125, mouseY + 40);
 }
@@ -442,6 +442,11 @@ function windowResized() {
 	Math.floor(p5WindowWidth);
 	scaleResolution = windowHeight/853;
 	resizeCanvas(p5WindowWidth, windowHeight);
+	
+	tankMenu.x = Math.floor(p5WindowWidth/2);
+	tankMenu.y = Math.floor(windowHeight/2);
+	tankMenu.bulletX = Math.floor(p5WindowWidth/2);
+	tankMenu.bulletY = Math.floor(windowHeight/2);
 }
 
 function draw() {
