@@ -63,7 +63,7 @@ var tankMenu = {
 function bullet(x, y) {
 	this.x = x;
 	this.y = y;
-	this.rot = -tankMenu.grot+90;
+	this.rot = -tankMenu.turretRotate+90;
 	this.a = true;
 };
 
