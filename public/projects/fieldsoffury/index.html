@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         
-        <title>Faction</title>
+        <title>Fields of Fury</title>
 		
 		<link rel="icon" type="image/png" sizes="32x32" href="/public/assets/images/logos/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/public/assets/images/logos/favicon-16x16.png">
@@ -66,28 +66,27 @@
 				margin-inline-end: 0px;
 				font-weight: bold;
 			}
-			#script-holder {
+			#iframe-holder {
 				text-align: center;
 			}
+			iframe {
+				width: 100vw;
+				height: 100vh;
+				border: none;
+			}
 		</style>
-		
-		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-		<script src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="/footer.css">
     </head>
 
     <body>
-	    <div id="script-holder">
-		    <!-- p5.js Canvas Here !! -->
-	    </div>
-	    
-	    <div id="p5_loading">
-		    <p>Loading...</p>
+	    <div id="iframe-holder">
+		    <iframe src="https://fieldsoffury.io" title="Fields of Fury"></iframe>
 	    </div>
 	    
 	    <div id="description">
-		    <h1>Faction</h1>
+		    <h1>Fields of Fury</h1>
 		    <h2>Description</h2>
-		    <p id="script-description">Currently a work in progress, this game is supposed to be an incremental game based on building a tribe and advancing civilization. I'm planning it to be primarily made using HTML, although I may use p5.js.</p>
+		    <p id="script-description">World War 2 FPS in your browser.</p>
 		    <h3>Attribution</h3>
 		    <p id="attribution">This project is avaliable under the <a href="https://gitlab.com/chardynamics/chardynamics.gitlab.io/-/blob/main/LICENSE.txt">MIT license</a>.</p>
 	    </div>

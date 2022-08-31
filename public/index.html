@@ -91,6 +91,10 @@
 				width: auto;
 				background-color: white;
 			}
+			.grid-logo-img {
+				height: 35px;
+				width: auto;
+			}
 			#armor-logo {
 				height: 35px;
 				width: 35px;
@@ -114,108 +118,10 @@
 				background-color: white;
 			}
 			.window {
-				border: 1px solid #ccc;
-			}
-			@font-face {
-				font-family: "Pixelated MS Sans Serif";
-				src: url("/lib/98css/dist/ms_sans_serif.woff") format("woff");
-				src: url("/lib/98css/dist/ms_sans_serif.woff2") format("woff2");
-				font-weight: normal;
-				font-style: normal;
-			}
-			l.tree-view {
-				display: block;
-				padding: 6px;
-				margin: 0;
-			}
-
-			ul.tree-view li {
-			list-style-type: none;
-			}
-
-			ul.tree-view a {
-			text-decoration: none;
-			color: purple;
-			}
-
-			ul.tree-view a:focus {
-				background-color: purple;
-				color: purple;
-			}
-
-			ul.tree-view ul,
-			ul.tree-view li {
-			margin-top: 3px;
-			}
-
-			ul.tree-view ul {
-			margin-left: 16px;
-			padding-left: 16px;
-			/* Goes down too far */
-			border-left: 1px dotted #808080;
-			}
-
-			ul.tree-view ul > li {
-			position: relative;
-			}
-			ul.tree-view ul > li::before {
-				content: "";
-				display: block;
-				position: absolute;
-				left: -16px;
-				top: 6px;
-				width: 12px;
-				border-bottom: 1px dotted #808080;
-			}
-
-			/* Cover the bottom of the left dotted border */
-				ul.tree-view ul > li:last-child::after {
-				content: "";
-				display: block;
-				position: absolute;
-				left: -20px;
-				top: 7px;
-				bottom: 0px;
-				width: 8px;
-				background: black;
-			}
-
-			ul.tree-view details {
-				margin-top: 0;
-			}
-
-			ul.tree-view details[open] summary {
-				margin-bottom: 0;
-			}
-
-			ul.tree-view ul details > summary:before {
-				margin-left: -22px;
-				position: relative;
-				z-index: 1;
-			}
-
-			ul.tree-view details > summary:before {
-				text-align: center;
-				display: block;
-				float: left;
-				content: "+";
-				border: 1px solid #808080;
-				width: 8px;
-				height: 9px;
-				line-height: 9px;
-				margin-right: 5px;
-				padding-left: 1px;
-				background-color: #fff;
-			}
-
-			ul.tree-view details[open] > summary:before {
-				content: "-";
-			}
-			.window-body {
-				font-family: "Pixelated MS Sans Serif";
-				font-size: 11px;
+    			border: 1px solid #ccc;
 			}
 		</style>
+		<link rel="stylesheet" type="text/css" href="/footer.css">
 	</head>
 
 	<script>
@@ -247,7 +153,7 @@
 			</div>
 			<div id="item-4" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="p5canvas logo">
-				<p id="p-title"><a href="/projects/p5canvas/">p5svg</a><br>p5 Canvas Editor</p>
+				<p id="p-title"><a href="/projects/p5canvas/">p5canvas</a><br>p5 Canvas Editor</p>
 			</div>
 			<div id="item-5"></div>
 			<div id="item-6"></div>
@@ -255,27 +161,27 @@
 				<p id="container-title">some other stuff</p>
 			</div>
 			<div id="item-8" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" src="https://cheatstc.com/retro-bowl/img/retro-bowl-logo.jpg" alt="retro bowl logo">
 				<p id="p-title"><a href="/projects/retrobowl/">Retro Bowl</a><br>An embedded page of Retro Bowl (<a href="https://game316009.konggames.com/gamez/0031/6009/live/index.html">original link here</a>)</p>
 			</div>
 			<div id="item-9" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" src="https://geometry.monster/favicon192.png" alt="shell shockers logo">
 				<p id="p-title"><a href="/projects/shellshockers/">Shell Shockers</a><br>An embedded page of Shell Shockers (<a href="https://yolk.life/">accessible link here</a>)</p>
 			</div>
 			<div id="item-10" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" id="wip-logo" src="https://corsair.fun/favicon/favicon.ico" alt="faction logo">
 				<p id="p-title"><a href="/projects/yohoho/">Yohoho.io</a><br>An embedded page of Yohoho.io (<a href="https://corsair.fun/">accessible link here</a>)</p>
 			</div>
 			<div id="item-11" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" src="https://www.funkykarts.rocks/favicon.ico" alt="funky karts logo">
 				<p id="p-title"><a href="https://funkykarts.rocks/demo.html">Funky Karts Demo</a><br>(SENDS YOU TO ANOTHER PAGE)</p>
 			</div>
 			<div id="item-12" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" src="https://img3.goodfon.com/wallpaper/nbig/a/eb/doom-3-doom-logo-logotip.jpg" alt="faction logo">
 				<p id="p-title"><a href="https://wasm.continuation-labs.com/d3demo/">d3wasm</a><br>WebAssembly/Emscripten port of Doom 3 Demo<br>(SENDS YOU TO ANOTHER PAGE)</p>
 			</div>
 			<div id="item-13" class="grid-div">
-				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<img class="grid-logo-img" src="https://i0.wp.com/hitnfind.com/wp-content/uploads/2020/04/Subway-Surfers-Download-Free-PC-Game-1.png?ssl=1" alt="faction logo">
 				<p id="p-title"><a href="/projects/subwaysurfers">Subway Surfers</a><br>An embedded page of Subway Surfers</p>
 			</div>
 			<div id="item-14" class="grid-div">
@@ -288,7 +194,11 @@
 			</div>
 			<div id="item-16" class="grid-div">
 				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
-				<p id="p-title"><a href="http://www.thesmokinggun.com/time-waster">Time Waster</a><br>Match arestees with their crime</p>
+				<p id="p-title"><a href="/projects/timewaster">Time Waster</a><br>Match arestees with their crime</p>
+			</div>
+			<div id="item-17" class="grid-div">
+				<img class="grid-logo-img" id="wip-logo" src="assets/images/logos/productions.svg" alt="faction logo">
+				<p id="p-title"><a href="/projects/fieldsoffury">Fields of Fury</a><br>World War 2 FPS in the browser</p>
 			</div>
 		</div>
 
@@ -303,6 +213,8 @@
 						<ul>
 							<li><a href="/projects/p5svg/">p5svg</a></li>
 							<li><a href="/projects/armor/">Armor</a></li>
+							<li><a href="/projects/p5muzzl/">Muzzl</a></li>
+							<li><a href="/projects/p5canvas/">p5canvas</a></li>
 						</ul>
 						</li>
 						<li>
@@ -311,6 +223,15 @@
 							<li><a href="/projects/retrobowl/">Retro Bowl</a></li>
 							<li><a href="/projects/shellshockers/">Shell Shockers</a></li>
 							<li><a href="/projects/yohoho/">Yohoho</a></li>
+							<li><a href="/projects/subwaysurfers/">Subway Surfers</a></li>
+							<li><a href="/projects/fieldsoffury/">Fields of Fury</a></li>
+						</ul>
+						</li>
+						<li>
+						External Websites
+						<ul>
+							<li><a href="https://funkykarts.rocks/demo.html">Funky Karts Demo</a></li>
+							<li><a href="https://wasm.continuation-labs.com/d3demo/">d3wasm</a></li>
 						</ul>
 						</li>
 					</ul>
