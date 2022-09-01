@@ -97,7 +97,7 @@ var introVar = {
 
 function setup() {
 	//probably should find a better solution
-	p5WindowWidth = 1516;
+	p5WindowWidth = windowHeight * (16/9);
 	Math.floor(p5WindowWidth);
 	windowHeight = 853;
 	scaleResolution = windowHeight/853;
