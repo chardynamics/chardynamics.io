@@ -97,10 +97,9 @@ var introVar = {
 
 function setup() {
 	//probably should find a better solution
-	p5WindowWidth = 1516;
-	Math.floor(p5WindowWidth);
-	windowHeight = 853;
-	scaleResolution = windowHeight/853;
+	p5WindowWidth = Math.floor(windowHeight * (16/9));
+	scaleResolution = Math.floor(windowHeight/853);
+	resizeCanvas(p5WindowWidth, windowHeight);
     
 	var canvas = createCanvas(p5WindowWidth, windowHeight);
 	canvas.style('margin', 'auto');
@@ -407,7 +406,7 @@ function menu() {
 	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
 	fill(255);
 	textSize(100);
-	text("Muzzl", 500, 100);
+	text("Muzzl", 100, 100);
 	if (tankMenu.firing) {
 		for (let i = 0; i < bullets.length; i++) {
 			bullets[i].draw();
@@ -432,21 +431,23 @@ function pulseMath() {
 function debug() {
 	fill(255, 0, 0);
 	textSize(25 * scaleResolution);
-	text(viewport.x, mouseX + 125, mouseY);
-	text(tankMenu.speed, mouseX + 125, mouseY + 20);
-	text(tankMenu.rotate, mouseX + 125, mouseY + 40);
+	text(p5WindowWidth, mouseX + 125, mouseY);
+	text(windowHeight, mouseX + 125, mouseY + 20);
+	text(viewport.x, mouseX + 125, mouseY + 40);
 }
 
 function windowResized() {
-	p5WindowWidth = windowHeight * (16/9);
-	Math.floor(p5WindowWidth);
-	scaleResolution = windowHeight/853;
+	p5WindowWidth = Math.floor(windowHeight * (16/9));
+	scaleResolution = Math.floor(windowHeight/853);
 	resizeCanvas(p5WindowWidth, windowHeight);
+	viewport.x *= scaleResolution;
+	viewport.y *= scaleResolution;
 	
 	tankMenu.x = Math.floor(p5WindowWidth/2);
 	tankMenu.y = Math.floor(windowHeight/2);
-	tankMenu.bulletX = Math.floor(p5WindowWidth/2);
-	tankMenu.bulletY = Math.floor(windowHeight/2);
+
+	tankMenu.bulletX = tankMenu.x - viewport.x;
+	tankMenu.bulletY = tankMenu.y - viewport.y;
 }
 
 function draw() {
