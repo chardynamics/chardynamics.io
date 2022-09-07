@@ -97,7 +97,7 @@
 <script>
 	let link = "https://quizizz.com";
 	var linkPrompt = prompt("(` is the PANIC BUTTON) Website URL to stay hidden: (leave blank or exit to bypass)", "https://");
-	if (linkPrompt == null || linkPrompt == "") {
+	if (linkPrompt == null || linkPrompt == "https://") {
 		link = "https://illusive.app";
 		document.getElementById("iframe-holder-2").src = link;
 	}
