@@ -85,26 +85,6 @@
 			border: none;
 		}
 	</style>
-	<script>
-		let link = "https://quizizz.com";
-		var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
-		if (linkPrompt == null || linkPrompt == "") {
-			link = "https://illusive.app";
-			document.getElementById("iframe-holder-2").src = link;
-			console.log(false);
-		}
-		else {
-			link = linkPrompt;
-			document.getElementById("iframe-holder-2").src = link;
-		}
-		document.getElementById("iframe-holder-2").addEventListener("keydown", checkKeyPressed);
-
-		function checkKeyPressed(evt) {
-			if (evt.keyCode == "192") {
-				link = "https://quizizz.com";
-			}
-		}
-	</script>
 </head>
 
 <body>
@@ -113,5 +93,26 @@
 			title="Quizizz — The world’s most engaging learning platform"></iframe>
 	</div>
 </body>
+
+<script>
+	let link = "https://quizizz.com";
+	var linkPrompt = prompt("Website URL: (press Ok or Cancel to go to proxy, panic button is ` on the top left corner of the keyboard)", "");
+	if (linkPrompt == null || linkPrompt == "") {
+		link = "https://illusive.app";
+		document.getElementById("iframe-holder-2").src = link;
+		console.log(false);
+	}
+	else {
+		link = linkPrompt;
+		document.getElementById("iframe-holder-2").src = link;
+	}
+	document.getElementById("iframe-holder-2").addEventListener("keydown", checkKeyPressed);
+
+	function checkKeyPressed(evt) {
+		if (evt.keyCode == "192") {
+			link = "https://quizizz.com";
+		}
+	}
+</script>
 
 </html>
