@@ -101,19 +101,22 @@
 	if (linkPrompt === null || linkPrompt === "https://") {
 		link = "https://hypertabs.cc/";
 		document.getElementById("iframe-holder-2").src = link;
+		document.body.addEventListener("keydown", checkKeyPressed);
+		document.body.addEventListener("keydown", checkKeyPressed2);
 	}
 	else {
 		link = linkPrompt;
 		document.getElementById("iframe-holder-2").src = link;
+		document.body.addEventListener("keydown", checkKeyPressed);
+		document.body.addEventListener("keydown", checkKeyPressed2);
 	}
-	
-	document.body.addEventListener("keydown", checkKeyPressed);
-	document.body.addEventListener("keydown", checkKeyPressed2);
 
 	function checkKeyPressed(evt) {
 		if (evt.key == "`") {
 			link = "https://quizizz.com";
 			document.getElementById("iframe-holder-2").src = link;
+			document.body.addEventListener("keydown", checkKeyPressed);
+			document.body.addEventListener("keydown", checkKeyPressed2);
 		}
 	}
 
@@ -124,10 +127,14 @@
 			if (linkPrompt === null || linkPrompt === "https://") {
 				link = "https://hypertabs.cc/";
 				document.getElementById("iframe-holder-2").src = link;
+				document.body.addEventListener("keydown", checkKeyPressed);
+				document.body.addEventListener("keydown", checkKeyPressed2);
 			}
 			else {
 				link = linkPrompt;
 				document.getElementById("iframe-holder-2").src = link;
+				document.body.addEventListener("keydown", checkKeyPressed);
+				document.body.addEventListener("keydown", checkKeyPressed2);
 			}
 		}
 	}
