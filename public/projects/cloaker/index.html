@@ -108,7 +108,7 @@
 	document.body.addEventListener("keydown", checkKeyPressed);
 
 	function checkKeyPressed(evt) {
-		if (evt.keyCode == "192") {
+		if (evt.key == "`") {
 			link = "https://quizizz.com";
 			document.getElementById("iframe-holder-2").src = link;
 		}
