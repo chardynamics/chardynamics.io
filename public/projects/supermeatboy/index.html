@@ -84,6 +84,8 @@
 			const player = ruffle.createPlayer();
 			const container = document.getElementById("iframe-holder");
 			container.appendChild(player);
+			player.style.height = "100vw";
+			player.style.width = "auto";
 			player.load("meatboy.swf");
     	});
 		</script>
