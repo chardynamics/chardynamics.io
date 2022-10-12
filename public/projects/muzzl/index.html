@@ -106,39 +106,6 @@
     </body>
 
 	<footer>
-		<div style="display:flex; justify-content: center; align-items: center">
-			<p class="p-footer">👋 <a href="https://github.com/chardynamics">&lt;/&gt;</a></p>
-			<div class="window-body">
-				<ul class="tree-view">
-					<li><a href="/">Home Page</a></li>
-					<li>
-					Projects
-					<ul>
-						<li><a href="/projects/p5svg/">p5svg</a></li>
-						<li><a href="/projects/armor/">Armor</a></li>
-						<li><a href="/projects/p5muzzl/">Muzzl</a></li>
-						<li><a href="/projects/p5canvas/">p5canvas</a></li>
-					</ul>
-					</li>
-					<li>
-					iFrame Websites
-					<ul>
-						<li><a href="/projects/retrobowl/">Retro Bowl</a></li>
-						<li><a href="/projects/shellshockers/">Shell Shockers</a></li>
-						<li><a href="/projects/yohoho/">Yohoho</a></li>
-						<li><a href="/projects/subwaysurfers/">Subway Surfers</a></li>
-						<li><a href="/projects/fieldsoffury/">Fields of Fury</a></li>
-					</ul>
-					</li>
-					<li>
-					External Websites
-					<ul>
-						<li><a href="https://funkykarts.rocks/demo.html">Funky Karts Demo</a></li>
-						<li><a href="https://wasm.continuation-labs.com/d3demo/">d3wasm</a></li>
-					</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<iframe src="/footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 	</footer>
 </html>

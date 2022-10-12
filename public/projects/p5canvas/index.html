@@ -152,44 +152,7 @@ rect(0, 0, 100, 100);</textarea>
     </body>
 
 	<footer>
-		<div style="display:flex; justify-content: center; align-items: center">
-			<p class="p-footer" style="margin-right: 25px">👋 <a href="https://github.com/chardynamics">&lt;/&gt;</a></p>
-			<div class="window">
-				<div class="title-bar">
-					<div class="img-and-title-text" style="display: flex">
-						<img class="program-img" src="/assets/images/logos/productions.svg" style="height: 12px; background-color: white; margin-right: 5px" alt="logo">
-						<div class="title-bar-text">
-							File Structure
-						</div>
-					</div>
-					<div class="title-bar-controls">
-						<button aria-label="Minimize"></button>
-						<button aria-label="Maximize"></button>
-						<button aria-label="Close"></button>
-					</div>
-				</div>
-				<div class="window-body">
-					<ul class="tree-view">
-						<li><a href="/">Home Page</a></li>
-						<li>
-						Projects
-						<ul>
-							<li><a href="/projects/p5svg/">p5svg</a></li>
-							<li><a href="/projects/armor/">Armor</a></li>
-						</ul>
-						</li>
-						<li>
-						iFrame Websites
-						<ul>
-							<li><a href="/projects/retrobowl/">Retro Bowl</a></li>
-							<li><a href="/projects/shellshockers/">Shell Shockers</a></li>
-							<li><a href="/projects/yohoho/">Yohoho</a></li>
-						</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<iframe src="/footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 	</footer>
 
 </html>
