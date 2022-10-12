@@ -271,7 +271,7 @@
 		</div>
 
 		<footer>
-			<link href="/footer.html" rel="import"/>
+			<iframe src="/footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 		</footer>
 	</body>
 
