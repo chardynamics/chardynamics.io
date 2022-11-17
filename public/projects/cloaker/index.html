@@ -95,21 +95,13 @@
 </body>
 
 <script>
-	let link = "https://quizizz.com";
+	let link = "https://chardynamics.gitlab.io";
 
 	var linkPrompt = prompt("(` is the PANIC BUTTON, ~ reopens this prompt [remember to use shift])\n\nRemember to reload and try again if it doesn't work.\n\nTo fully utilize this, press Control + S, then as one of the options to save, select 'Webpage, HTML Only', then save it with whatever name. Saving it and loading it from file will not show on on your search history, but the website version will only allow them to not see your screen.\n\nWebsite URL to stay hidden: (leave blank or cancel to bypass)", "https://");
-	if (linkPrompt === null || linkPrompt === "https://") {
-		link = "https://bananaboat.me/";
-		document.getElementById("iframe-holder-2").src = link;
-		document.body.addEventListener("keydown", checkKeyPressed);
-		document.body.addEventListener("keydown", checkKeyPressed2);
-	}
-	else {
-		link = linkPrompt;
-		document.getElementById("iframe-holder-2").src = link;
-		document.body.addEventListener("keydown", checkKeyPressed);
-		document.body.addEventListener("keydown", checkKeyPressed2);
-	}
+	link = linkPrompt;
+	document.getElementById("iframe-holder-2").src = link;
+	document.body.addEventListener("keydown", checkKeyPressed);
+	document.body.addEventListener("keydown", checkKeyPressed2);
 
 	function checkKeyPressed(evt) {
 		if (evt.key == "`") {
@@ -124,18 +116,10 @@
 		if (evt.key == "~") {
 			link = "https://quizizz.com";
 			var linkPrompt = prompt("(` is the PANIC BUTTON, ~ reopens this prompt [remember to use shift])\n\nRemember to reload and try again if it doesn't work.\n\nTo fully utilize this, press Control + S, then as one of the options to save, select 'Webpage, HTML Only', then save it with whatever name. Saving it and loading it from file will not show on on your search history, but the website version will only allow them to not see your screen.\n\nWebsite URL to stay hidden: (leave blank or cancel to bypass)", "https://");
-			if (linkPrompt === null || linkPrompt === "https://") {
-				link = "https://bananaboat.me";
-				document.getElementById("iframe-holder-2").src = link;
-				document.body.addEventListener("keydown", checkKeyPressed);
-				document.body.addEventListener("keydown", checkKeyPressed2);
-			}
-			else {
-				link = linkPrompt;
-				document.getElementById("iframe-holder-2").src = link;
-				document.body.addEventListener("keydown", checkKeyPressed);
-				document.body.addEventListener("keydown", checkKeyPressed2);
-			}
+			link = linkPrompt;
+			document.getElementById("iframe-holder-2").src = link;
+			document.body.addEventListener("keydown", checkKeyPressed);
+			document.body.addEventListener("keydown", checkKeyPressed2);
 		}
 	}
 </script>
