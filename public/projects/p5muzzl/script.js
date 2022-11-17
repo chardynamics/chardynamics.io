@@ -1,293 +1,209 @@
-var arialBold;
-
-function preload() {
-	arialBold = loadFont("/assets/fonts/arialbd.ttf");
-}
-
-//probably should find a better solution
-var p5WindowWidth;
-var scaleResolution;
-
-//Intro Variables
-var introAngle = 0;
-var collide = false;
-var introBullet = {
-	timeLine: 454,
-	timeLineVel: 1,
-	textCover: 0,
-	soundBarrier: 0,
-	bulletVisible: 0,
-}
-
-//End
-var keyX = 300;
-var keyY = 300;
-var keys = [];
-var bullets = [];
-var scene = 3;
-var paused = false;
-var buttonHover = false;
-var cameraX = 0;
-var cameraY = 0;
-var bulletSpeed = 25;
-
-var reload = {
-	rate: 5,
-	max: 60,
-	var: 100
-};
-
-function keyPressed() {
-	keys[keyCode] = true;
-}
-
-function keyReleased() {
-	keys[keyCode] = false;
-}
-
-var fade = {
-	fade: 255,
-	opp: 0,
-}
-
-var pulse = {
-	pulse: 200,
-	rate: 5,
-}
-
-var car = {
-    x:600,
-    y:600,
-    s:0,
-    rot:90,
-    acc:0.75,
-    grot:0,
-    grotL:0,
-    rightW:false,
-    leftW:false,
-    type:1,
-    deaths:0,
-	rotate: 0,
-	grotate: 0,
-	bulletX: 600,
-	bulletY: 600,
-};
-
-var speed = {
-    speed: 0.75,
-    cost: 200,
-    level: 1
-};
-
-function bullet(x, y) {
-	this.x = x;
-	this.y = y;
-	this.rot = -car.grot+90;
-	this.a = true;
-};
-
-bullet.prototype.draw = function() {
-	if(this.a){
-		fill(255,0,0);
-		push();
-		translate(this.x,this.y);
-		rotate(this.rot);
-		scale(2.5);
-		fill(100, 100, 100, 50);
-		triangle(-7.5, 9, 7.5, 0, -7.5, -9);
-		fill(158, 60, 14);
-		triangle(-4.5, 3, 10, 0, -4.5, -3);
-		pop();
-		this.x += cos(this.rot)*bulletSpeed;
-		this.y += sin(this.rot)*bulletSpeed;
-	}
-};
-
 function setup() {
-	//probably should find a better solution
-	p5WindowWidth = 1516;
-	Math.floor(p5WindowWidth);
-	windowHeight = 853;
-	scaleResolution = windowHeight/853;
-    
-	var canvas = createCanvas(p5WindowWidth, windowHeight);
+	var canvas = createCanvas(1366, 768);
 	canvas.style('margin', 'auto');
-	//canvas.style('border-style', 'none solid solid');
 	canvas.parent('script-holder');
 	
 	rectMode(CENTER);
 	textAlign(CENTER, CENTER);
-	textFont(arialBold);
 	angleMode(DEGREES);
+  textStyle(BOLD);
 	noStroke();
 	
 	var privacyBanner = document.querySelectorAll("[data-gg-privacy-banner-anchor]");
 	for (var i = 0; i < privacyBanner.length; i++) {
 		privacyBanner[i].parentNode.removeChild(privacyBanner[i]);
 	}
-	car.x = Math.floor(p5WindowWidth/2);
-	car.y = Math.floor(windowHeight/2);
-	car.bulletX = Math.floor(p5WindowWidth/2);
-	car.bulletY = Math.floor(windowHeight/2);
 }
 
-function tankSpawn(tankVar, firing, control, aimControl) {
-	if (aimControl === "mouse") {
-		tankVar.grotL = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
-		Math.round(tankVar.grotL);
-		if (tankVar.grot != tankVar.grotL) {
-			if (tankVar.grot < tankVar.grotL) {
-				tankVar.grot += 1;
+var stage = 1;
+
+var introVar = {
+	cubeRotate: 0,
+	tankY: 300,
+	tankRotate: 0,
+	turretRotate: 0,
+	bulletX: 454,
+	textCover: 0,
+	bulletTransparency: 0,
+	soundTransparency: 0,
+}
+
+var pulse = {
+	var: 200,
+	rate: 5,
+}
+
+var fade = {
+	intro: 255,
+	out: 0
+}
+
+function tankSpawn(tankVar) {
+	if (tankVar.aimControl === "mouse") {
+		tankVar.turretRotateCopy = atan2(mouseX-tankVar.x,mouseY-tankVar.y);
+		Math.round(tankVar.turretRotateCopy);
+		if (tankVar.turretRotate != tankVar.turretRotateCopy) {
+			if (tankVar.turretRotate < tankVar.turretRotateCopy) {
+				tankVar.turretRotate += 1;
 			}
-			if (tankVar.grot > tankVar.grotL) {
-				tankVar.grot -= 1;
+			if (tankVar.turretRotate > tankVar.turretRotateCopy) {
+				tankVar.turretRotate -= 1;
 			}
 		}
 	} else {
-		tankVar.grot = atan2(keyX-tankVar.x,keyY-tankVar.y);
+		tankVar.turretRotateCopy = atan2(keyX-tankVar.x,keyY-tankVar.y);
+		Math.round(tankVar.turretRotateCopy);
+		if (tankVar.turretRotate != tankVar.turretRotateCopy) {
+			if (tankVar.turretRotate < tankVar.turretRotateCopy) {
+				tankVar.turretRotate += 1;
+			}
+			if (tankVar.turretRotate > tankVar.turretRotateCopy) {
+				tankVar.turretRotate -= 1;
+			}
+		}
 		if(keys[84]) {
-			if(keyY > 0) {
-				keyY -= 5;
+			if(keyAim.y > 0) {
+				keyAim.y -= 5;
 			}
 		}
 		if(keys[70]) {
-			if(keyX > 0) {
-				keyX -= 5;
+			if(keyAim.x > 0) {
+				keyAim.x -= 5;
 			}
 		}
 		if(keys[71]) {
-			if(keyY < windowHeight) {
-				keyY += 5;
+			if(keyAim.y < windowHeight) {
+				keyAim.y += 5;
 			}
 		}
 		if(keys[72]) {
-			if(keyX < p5WindowWidth) {
-				keyX += 5;
+			if(keyAim.x < p5WindowWidth) {
+				keyAim.x += 5;
 			}
 		}
 		fill(0);
-		rect(keyX, keyY, 5, 25);
-		rect(keyX, keyY, 25, 5);
+		rect(keyAim.x, keyAim.y, 5, 25);
+		rect(keyAim.x, keyAim.y, 25, 5);
 	}
 	
 	if(!paused){
-		if (control === "wasd") {
+		if (tankVar.control == "wasd") {
 			if (keyIsPressed) {
 				if(keys[65]) {
-					if(tankVar.s >  (-2 * speed.speed)) {
-						tankVar.rot -= 3;
+					if(tankVar.speed > (-2 * tankVar.speedMultipler)) {
+						tankVar.rotate -= 3;
 						tankVar.rightW = false;
 						tankVar.leftW = true;
 					}
 				}
 				if(keys[68]) {
-					if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot +=3;
+					if(tankVar.speed > (-2 * tankVar.speedMultipler)) {
+						tankVar.rotate +=3;
 						tankVar.rightW = true;
 						tankVar.leftW = false;
 					}
 				}
 				if(keys[87]) {
-					if(tankVar.s <= (3 * speed.speed)) {
-						tankVar.s += tankVar.acc * speed.speed;
+					if(tankVar.speed <= (3 * tankVar.speedMultipler)) {
+						tankVar.speed += tankVar.acceleration * tankVar.speedMultipler;
 					}
 				}
 				if(keys[83]) {
-					if(tankVar.s > (-1.5 * speed.speed)) {
-						tankVar.s -= tankVar.acc * speed.speed;
+					if(tankVar.speed > (-1.5 * tankVar.speedMultipler)) {
+						tankVar.speed -= tankVar.acceleration * tankVar.speedMultipler;
 					}
 				}
-				if(tankVar.s === (3 * speed.speed)) {
-					tankVar.s = 3 * speed.speed;
-				} else if (tankVar.s === (-3 * speed.speed)) {
-					tankVar.s = 3 * speed.speed;
+				if(tankVar.speed === (3 * tankVar.speedMultipler)) {
+					tankVar.speed = 3 * tankVar.speedMultipler;
+				} else if (tankVar.speed === (-3 * tankVar.speedMultipler)) {
+					tankVar.speed = 3 * tankVar.speedMultipler;
 				}
 			}
 			if((!keys[87]) && (!keys[83])) {
-				if(tankVar.s >= (0 * speed.speed)) {
-					tankVar.s -= 0.05 * speed.speed;
+				if(tankVar.speed >= (0 * tankVar.speedMultipler)) {
+					tankVar.speed -= 0.05 * tankVar.speedMultipler;
 				} else {
-					tankVar.s += 0.05 * speed.speed;
+					tankVar.speed += 0.05 * tankVar.speedMultipler;
 				}
 			}
 		} else {
 			if (keyIsPressed) {
 				if(keys[37]) {
-					if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot -=3;
+					if(tankVar.speed > (-2 * tankVar.speedMultipler)) {
+						tankVar.rotate -=3;
 						tankVar.rightW = false;
 						tankVar.leftW = true;
 					}
 				}
 				if(keys[39]) {
-					if(tankVar.s > (-2 * speed.speed)) {
-						tankVar.rot +=3;
+					if(tankVar.speed > (-2 * tankVar.speedMultipler)) {
+						tankVar.rotate +=3;
 						tankVar.rightW = true;
 						tankVar.leftW = false;
 					}
 				}
 				if(keys[38]) {
-					if(tankVar.s <= (3 * speed.speed)) {
-						tankVar.s += tankVar.acc * speed.speed;
+					if(tankVar.speed <= (3 * tankVar.speedMultipler)) {
+						tankVar.speed += tankVar.acceleration * tankVar.speedMultipler;
 					}
 				}
 				if(keys[40]) {
-					if(tankVar.s >= (-1.5 * speed.speed)) {
-						tankVar.s -= tankVar.acc * speed.speed;
+					if(tankVar.speed >= (-1.5 * tankVar.speedMultipler)) {
+						tankVar.speed -= tankVar.acceleration * tankVar.speedMultipler;
 					}
 				}
 				if(!keys[38] && !keys[40]) {
-					if(tankVar.s >= 0) {
-						tankVar.s -= 0.05 * speed.speed;
-					} else if (tankVar.s <= 0) {
-						tankVar.s += 0.05 * speed.speed;
+					if(tankVar.speed >= 0) {
+						tankVar.speed -= 0.05 * tankVar.speedMultipler;
+					} else if (tankVar.speed <= 0) {
+						tankVar.speed += 0.05 * tankVar.speedMultipler;
 					}
 				}
-				if(tankVar.s === (3 * speed.speed)) {
-					tankVar.s = 3 * speed.speed;
-				} else if (tankVar.s === (-3 * speed.speed)) {
-					tankVar.s = 3 * speed.speed;
+				if(tankVar.speed === (3 * tankVar.speedMultipler)) {
+					tankVar.speed = 3 * tankVar.speedMultipler;
+				} else if (tankVar.speed === (-3 * tankVar.speedMultipler)) {
+					tankVar.speed = 3 * tankVar.speedMultipler;
 				}
 			}
 		}
 	}
+ 
+	viewport.x += (cos(tankMenu.rotate) * tankMenu.speed);
+	viewport.y += (sin(tankMenu.rotate) * tankMenu.speed);
 
-	camera.x += cos(tankVar.rot)*tankVar.s;
-	camera.y += sin(tankVar.rot)*tankVar.s;
-
-	tankVar.bulletX -= cos(tankVar.rot)*tankVar.s;
-	tankVar.bulletY -= sin(tankVar.rot)*tankVar.s;
+	tankVar.bulletX -= cos(tankVar.rotate)*tankVar.speed;
+	tankVar.bulletY -= sin(tankVar.rotate)*tankVar.speed;
 		
-	if (firing) {
-	   if ((!buttonHover)) {
+	if (tankVar.firing) {
+	   if ((!tankHover)) {
 			 if(mouseIsPressed){
-				   if(reload.var == 0){
+				   if(tankVar.reloadVar == 0){
 						bullets.push(new bullet(tankVar.bulletX,tankVar.bulletY));
-						reload.var = reload.max;
+						tankVar.reloadVar = tankVar.reloadMax;
 				   }
 			 }
 			 if(keys[32]){
-				   if(reload.var == 0){
+				   if(tankVar.reloadVar == 0){
 						bullets.push(new bullet(tankVar.bulletX,tankVar.bulletY));
-						reload.var = reload.max;
+						tankVar.reloadVar = reload.max;
 				   }
 			 }
 	   }
 	}
 
 	
-	if (reload.var > 0) {
-		if ((reload.var - reload.rate) >= 0) {
-			reload.var -= reload.rate;
+	if (tankVar.reloadVar > 0) {
+		if ((tankVar.reloadVar - tankVar.reloadRate) >= 0) {
+			tankVar.reloadVar -= tankVar.reloadRate;
 		}
 	}
 
 	//Tank skins
-   if (car.type == 1) {
+   if (tankVar.type == 1) {
 		noStroke();
 		push();
-		translate(tankVar.x,tankVar.y);
-		rotate(tankVar.rot+90);
+		translate(tankVar.x, tankVar.y);
+		rotate(tankVar.rotate+90);
 		fill(0, 120, 0);
 		rect(0,0,50,100,12.5);
 		fill(50);
@@ -296,8 +212,8 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 		pop();
 
 		push();
-		translate(tankVar.x,tankVar.y);
-		rotate(-tankVar.grot-180);
+		translate(tankVar.x, tankVar.y);
+		rotate(-tankVar.turretRotate-180);
 		fill(0, 100, 0);
 		rect(0,0,37.5,37.5,12.5);
 		rect(0,-40,12.5,50,0);
@@ -306,166 +222,103 @@ function tankSpawn(tankVar, firing, control, aimControl) {
 };
 
 function intro() {
-	introAngle += 5;
+	introVar.cubeRotate += 5;
 	
-	if (car.y > 210) {
-		car.y -= 1;
+	if (introVar.tankY > 195) {
+		introVar.tankY -= 1;
 	}
-	if ((car.y == 210) && (car.rotate < 25)) {
-		car.rotate += 1;
-		car.grotate = car.rotate;
+	if ((introVar.tankY == 195) && (introVar.tankRotate < 25)) {
+		introVar.tankRotate += 1;
+		introVar.turretRotate = introVar.tankRotate;
 	}
-	if (car.rotate == 25 && car.grotate < 90) {
-        car.grotate += 1;
+	if (introVar.tankRotate == 25 && introVar.turretRotate < 90) {
+        introVar.turretRotate += 1;
 	}
-	if (car.grotate == 90) {
-		console.log("true");
-		introBullet.bulletVisible = 255;
-		if (introBullet.timeLine <= 1525) {
-			introBullet.timeLine += 8;
+	if (introVar.turretRotate == 90) {
+		if (introVar.bulletX <= 1525) {
+			introVar.bulletX += 8;
 		}
-		if ((introBullet.timeLine >= 497) && (introBullet.soundBarrier < 50)) {
-			introBullet.soundBarrier += 5;
+		if ((introVar.bulletX >= 497)) {
+			introVar.bulletTransparency = 255;
+			introVar.soundTransparency = 50;
 		}
 	}
-	if ((introBullet.timeLine >= 536)) {
-		introBullet.textCover += 8;
+	if ((introVar.bulletX >= 536)) {
+		introVar.textCover += 8;
 	}
-	if ((introBullet.timeLine >= 1525) && (fade.opp < 255)) {
-		fade.opp += 2.5;
+	if ((introVar.bulletX >= 1525) && (fade.out < 255)) {
+		fade.out += 2.5;
 	}
 	
 	background(0);
 	fill(255, 255, 255);
-	textSize(800 * scaleResolution); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
-	text("DP", 700 * scaleResolution, 250 * scaleResolution);
-	textSize(75 * scaleResolution);
-	text("roductions", 1100 * scaleResolution, 577.5 * scaleResolution);
+	textSize(800); //I'm just using this as a general scale/ratio factor, although it only works with appropriate ratios
+	text("DP", 675, 350.5);
+	textSize(75);
+	text("roductions", 1075, 550.5);
 	push();
-	translate(150 * scaleResolution, 730 * scaleResolution);
-	rotate(introAngle);
-	fill(-pulse.pulse, pulse.pulse, pulse.pulse + 100);
-	rect(0, 0, 125 * scaleResolution, 125 * scaleResolution, 15*scaleResolution);
+	translate(150, 675);
+	rotate(introVar.cubeRotate);
+	fill(-pulse.var, pulse.var, pulse.var + 100);
+	rect(0, 0, 125, 125, 15);
 	pop();
-	textSize(75 * scaleResolution);
-	text("X", 150 * scaleResolution, 725 * scaleResolution);
+	textSize(75);
+	text("X", 150, 680);
 	push();
 	scale(3.5);
-	translate(110 * scaleResolution, car.y * scaleResolution);
+	translate(110, introVar.tankY);
 	fill(50, 0, 0);
-	rect(-12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
-	rect(12 * scaleResolution,0,5 * scaleResolution,35 * scaleResolution,5*scaleResolution);
+	rect(-12,0,5,35,5);
+	rect(12,0,5,35,5);
 	fill(0, 120, 0);
-	rect(0,0,20 * scaleResolution,40 * scaleResolution,5*scaleResolution);
+	rect(0,0,20,40,5);
 	pop();
-	textSize(165 * scaleResolution);
-	text("...and more", 1010 * scaleResolution, 715 * scaleResolution);
+	textSize(125);
+	text("...and more", 900, 700);
 	rectMode(CORNER);
 	fill(0);
-	//rect(1445 * scaleResolution, 670 * scaleResolution, bullet.textCover* scaleResolution, 122* scaleResolution);
-	rect(581 * scaleResolution, 670 * scaleResolution, introBullet.textCover * scaleResolution, 122* scaleResolution);
+	//rect(1445, 670, bullet.textCover, 122);
+	rect(575, 625, introVar.textCover, 122);
 	push();
-	translate(introBullet.timeLine * scaleResolution, 716 * scaleResolution);
-	fill(100, 100, 100, introBullet.soundBarrier);
+	translate(introVar.bulletX, 663.5);
+	fill(100, 100, 100, introVar.soundTransparency);
 	triangle(-7.5, 45, 40, 17.5, -7.5, -9);
-	fill(158, 60, 14, introBullet.bulletVisible);
+	fill(158, 60, 14, introVar.bulletTransparency);
 	triangle(2, 27.5, 45, 17.5, 2, 10);
 	pop();
 	rectMode(CENTER);
 	push();
 	scale(3.5);
-	translate(110 * scaleResolution, car.y * scaleResolution);
-	rotate(car.grotate);
+	translate(110, introVar.tankY);
+	rotate(introVar.turretRotate);
 	fill(0, 100, 0);
-	rect(0,0,15 * scaleResolution,15 * scaleResolution,5*scaleResolution);
-	rect(0,-20 * scaleResolution,5 * scaleResolution,25 * scaleResolution,0);
+	rect(0,0,15,15,5);
+	rect(0,-20,5,25,0);
 	pop();
 	
-	if (fade.fade > 0) {
-		fill(0, 0, 0, fade.fade);
+	if (fade.intro > 0) {
+		fill(0, 0, 0, fade.intro);
 		rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-		fade.fade -= 2.5;
+		fade.intro -= 2.5;
 	}
 
-	fill(0, 0, 0, fade.opp);
+	fill(0, 0, 0, fade.out);
 	rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
 	
-	if (fade.opp >= 255) {
+	if (fade.out >= 255) {
 		scene = 2;
-		fade.fade = 255;
+		fade.intro = 255;
 	}
 }
 
-function menu() {
-    background(0, 100, pulse.pulse);
-	fill(255, 245, 190);
-	push();
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
-	fill(52, 140, 49);
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-	fill(100, 100, 100, 50);
-	push();
-	translate(p5WindowWidth/2 + 155, windowHeight/2 - 165);
-	scale(5);
-	triangle(-7.5, 9, 10, 0, -7.5, -9);
-	fill(158, 60, 14);
-	triangle(-4.5, 3, 10, 0, -4.5, -3);
-	pop();
-	fill(255);
-	textSize(100);
-	text("Muzzl", 500, 100);
-	
-	if (fade.fade > 0) {
-		fill(0, 0, 0, fade.fade);
-		rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-		fade.fade -= 2.5;
-	}
+function level1() {
+  
 }
 
-function levelOne() {
-    background(0, 100, pulse.pulse);
-	fill(255, 245, 190);
-	push();
-	translate(cameraX, cameraY);
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (50 * scaleResolution), windowHeight - (50 * scaleResolution), 10);
-	fill(52, 140, 49);
-	rect(p5WindowWidth/2, windowHeight/2, p5WindowWidth - (100 * scaleResolution), windowHeight - (100 * scaleResolution), 10);
-	for (let i = 0; i < bullets.length; i++) {
-		bullets[i].draw();
-	}  
-	pop();
-	tankSpawn(car, true, "wasd", "mouse");
-}
-	
 function draw() {
-	if (scene == 1) {
-		intro();
-	} else if (scene == 2) {
-		menu();
-	} else if (scene == 3) {
-		levelOne();
-	}
-	debug();
-	pulseMath();
-}
-
-function pulseMath() {
-	pulse.pulse -= pulse.rate;
-	if(pulse.pulse<125){pulse.rate = -1;}
-	if(pulse.pulse>225){pulse.rate = 1;}
-}
-
-function debug() {
-	fill(255, 0, 0);
-	textSize(25 * scaleResolution);
-	text(cameraX, mouseX + 125, mouseY);
-	text(fade.fade, mouseX + 125, mouseY + 20);
-	//text(scaleResolution, mouseX + 125, mouseY + 40);
-}
-
-function windowResized() {
-	p5WindowWidth = windowHeight * (16/9);
-	Math.floor(p5WindowWidth);
-	scaleResolution = windowHeight/853;
-	resizeCanvas(p5WindowWidth, windowHeight);
+  if (stage = 1) {
+    intro();
+  } else if (stage = 2) {
+    level1();
+  }
 }
